@@ -110,7 +110,7 @@ for ((i = 0 ; i < ${#PACKAGES[@]} ; i+=1)); do
     fi
 done
 
-if [ ${#INSTALL[@]} -ge 0 ]; then
+if [ ${#INSTALL[@]} -gt 0 ]; then
     apt-get -y update
     if [ $? -ne 0 ]; then
         exit 1
@@ -505,7 +505,7 @@ function CONFIGURATION {
             cp $CORE_DIRECTORY/etc/modules/SkipDKModule.conf.dist $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
             sed -i 's/GM.Skip.Deathknight.Starter.Enable =.*/GM.Skip.Deathknight.Starter.Enable = 1/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
             sed -i 's/Skip.Deathknight.Starter.Enable =.*/Skip.Deathknight.Starter.Enable = 1/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
-            if [ $WORLD_STARTLEVEL -gt 58 ]; then
+            if [ $WORLD_STARTLEVEL -ge 58 ]; then
                 sed -i 's/Skip.Deathknight.Start.Level =.*/Skip.Deathknight.Start.Level = '$WORLD_STARTLEVEL'/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
             else
                 sed -i 's/Skip.Deathknight.Start.Level =.*/Skip.Deathknight.Start.Level = 58/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf

@@ -197,4 +197,4 @@ INSERT INTO `npc_trainer` (`ID`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSki
 -- Kickstarter
 DELETE FROM `creature` WHERE `id`=9000000;
 INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(9000000, 9000000, 571, 4395, 4739, 5800.45, 621.938, 647.722, 1.69419);
+(9000000, 9000000, 571, 4395, 4739, 5811.024414, 625.651367, 647.411682, 1.843417);

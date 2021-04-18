@@ -7,8 +7,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 16, 16, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 389, 2437, 2437, 15248, 5.932387, -26.050083, -20.757383, 2.230886);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 389, 2437, 2437, 5.932387, -26.050083, -20.757383, 2.230886);
 
 -- Searching for the Lost Satchel
 SET @Quest := 5722;
@@ -57,8 +57,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 20, 20, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 43, 718, 718, 15248, -160.318878, 124.585793, -74.088326, 1.012204);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 43, 718, 718, -160.318878, 124.585793, -74.088326, 1.012204);
 
 -- Leaders of the Fang
 SET @Quest := 914;
@@ -107,8 +107,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 20, 20, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 36, 1581, 1581, 15248, -11.191869, -383.491119, 62.211040, 3.025098);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 36, 1581, 1581, -11.191869, -383.491119, 62.211040, 3.025098);
 
 -- The Defias Brotherhood
 SET @Quest := 166;
@@ -143,8 +143,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 20, 20, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 33, 209, 209, 15248, -217.310745, 2120.118408, 80.152290, 3.968776);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 33, 209, 209, -217.310745, 2120.118408, 80.152290, 3.968776);
 
 -- The Book of Ur
 SET @Quest := 1013;
@@ -175,8 +175,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 24, 24, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 48, 719, 719, 15248, -150.129486, 81.555962, -43.927952, 2.193446);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 48, 719, 719, -150.129486, 81.555962, -43.927952, 2.193446);
 
 -- Knowledge in the Deeps
 SET @Quest := 971;
@@ -245,8 +245,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 25, 25, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 34, 717, 717, 15248, 53.081776, 5.022602, -17.917654, 4.803876);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 34, 717, 717, 53.081776, 5.022602, -17.917654, 4.803876);
 
 -- Crime and Punishment
 SET @Quest := 377;
@@ -302,8 +302,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 37, 37, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 47, 491, 491, 15248, 1941.500732, 1556.740356, 81.506493, 6.135584);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 47, 491, 491, 1941.500732, 1556.740356, 81.506493, 6.135584);
 
 -- Crate with Holes (Blueleaf Tubers)
 DELETE FROM `gameobject` WHERE `guid`=@Entry;
@@ -360,8 +360,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 28, 28, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 90, 721, 721, 15248, -329.518494, 2.273906, -152.843903, 4.297603);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 90, 721, 721, -329.518494, 2.273906, -152.843903, 4.297603);
 
 -- Rig Wars
 SET @Quest := 2841;
@@ -409,8 +409,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 37, 37, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 129, 722, 722, 15248, 2596.764160, 1101.787231, 52.110310, 3.232038);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 129, 722, 722, 2596.764160, 1101.787231, 52.110310, 3.232038);
 
 -- Bring the End
 SET @Quest := 3341;
@@ -436,14 +436,14 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 37, 37, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 189, 796, 796, 15248, 1686.425903, 1054.362671, 18.677500, 5.424347);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry+1, @Entry, 189, 796, 796, 15248, 252.909058, -209.867447, 18.677299, 0.766019);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry+2, @Entry, 189, 796, 796, 15248, 851.822449, 1323.248047, 18.671103, 5.534225);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry+3, @Entry, 189, 796, 796, 15248, 1625.116333, -311.625702, 18.007574, 4.658371);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 189, 796, 796, 1686.425903, 1054.362671, 18.677500, 5.424347);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry+1, @Entry, 189, 796, 796, 252.909058, -209.867447, 18.677299, 0.766019);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry+2, @Entry, 189, 796, 796, 851.822449, 1323.248047, 18.671103, 5.534225);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry+3, @Entry, 189, 796, 796, 1625.116333, -311.625702, 18.007574, 4.658371);
 
 -- Compendium of the Fallen
 SET @Quest := 1049;
@@ -501,8 +501,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 40, 40, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 70, 1337, 1337, 15248, -227.971207, 68.912483, -46.037704, 4.688672);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 70, 1337, 1337, -227.971207, 68.912483, -46.037704, 4.688672);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -514,8 +514,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 46, 46, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 209, 1176, 1176, 15248, 1217.395996, 831.202515, 8.902082, 1.051672);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 209, 1176, 1176, 1217.395996, 831.202515, 8.902082, 1.051672);
 
 -- Divino-matic Rod
 SET @Quest := 2768;
@@ -587,10 +587,10 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 48, 48, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 349, 2100, 2100, 15248, 1017.726929, -451.871216, -43.446407, 5.078657);
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry+1, @Entry, 349, 2100, 2100, 15248, 740.835632, -597.290771, -32.653210, 5.509045);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 349, 2100, 2100, 1017.726929, -451.871216, -43.446407, 5.078657);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry+1, @Entry, 349, 2100, 2100, 740.835632, -597.290771, -32.653210, 5.509045);
 
 -- Twisted Evils
 SET @Quest := 7028;
@@ -644,8 +644,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 50, 50, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 109, 1477, 1477, 15248, -320.984436, 78.934074, -131.850006, 2.265926);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 109, 1477, 1477, -320.984436, 78.934074, -131.850006, 2.265926);
 
 -- The Temple of Atal'Hakkar
 SET @Quest := 1445;
@@ -712,8 +712,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 56, 56, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 230, 1584, 1584, 15248, 443.845032, 23.719954, -70.480469, 5.260233);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 230, 1584, 1584, 443.845032, 23.719954, -70.480469, 5.260233);
 
 -- Dark Iron Legacy
 SET @Quest := 3802;
@@ -849,8 +849,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 60, 60, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 329, 2017, 2017, 15248, 3387.887207, -3379.173828, 142.760788, 6.281084);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 329, 2017, 2017, 3387.887207, -3379.173828, 142.760788, 6.281084);
 
 -- The Flesh Does Not Lie
 SET @Quest := 5212;
@@ -938,8 +938,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 60, 60, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 289, 2057, 2057, 15248, 202.186020, 129.245758, 134.910004, 3.898742);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 289, 2057, 2057, 202.186020, 129.245758, 134.910004, 3.898742);
 
 -- Dawn's Gambit
 SET @Quest := 4771;
@@ -1004,8 +1004,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 60, 60, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 429, 2557, 2557, 15248, -201.015717, -335.113678, -2.725355, 0.613636);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 429, 2557, 2557, -201.015717, -335.113678, -2.725355, 0.613636);
 
 -- Shards of the Felvine
 SET @Quest := 5526;
@@ -1045,8 +1045,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 60, 60, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 429, 2557, 2557, 15248, 248.960388, -33.690758, -2.587370, 0.765152);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 429, 2557, 2557, 248.960388, -33.690758, -2.587370, 0.765152);
 
 -- Elven Legends (Horde)
 SET @Quest := 7481;
@@ -1072,8 +1072,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 60, 60, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 229, 1583, 1583, 15248, 75.098602, -227.298584, 49.754997, 0.144138);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 229, 1583, 1583, 75.098602, -227.298584, 49.754997, 0.144138);
 
 -- Lower
 -- Put Her Down
@@ -1201,8 +1201,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 61, 61, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 543, 3562, 3562, 15248, -1363.565308, 1648.090942, 68.430687, 0.197461);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 543, 3562, 3562, -1363.565308, 1648.090942, 68.430687, 0.197461);
 
 -- Weaken the Ramparts (Horde)
 SET @Quest := 9572;
@@ -1230,8 +1230,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 63, 63, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 542, 3713, 3713, 15248, -9.681078, 10.342448, -44.697002, 5.295887);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 542, 3713, 3713, -9.681078, 10.342448, -44.697002, 5.295887);
 
 -- The Blood is Life (Alliance)
 SET @Quest := 9589;
@@ -1259,8 +1259,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 64, 64, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 547, 3717, 3717, 15248, 135.673706, -119.109886, -1.590557, 2.982134);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 547, 3717, 3717, 135.673706, -119.109886, -1.590557, 2.982134);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1272,8 +1272,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 65, 65, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 546, 3716, 3716, 15248, 43.963852, -16.454206, -2.755201, 4.117830);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 546, 3716, 3716, 43.963852, -16.454206, -2.755201, 4.117830);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1285,8 +1285,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 66, 66, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 557, 3792, 3792, 15248, -3.271465, 7.528450, -0.954300, 4.668355);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 557, 3792, 3792, -3.271465, 7.528450, -0.954300, 4.668355);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1298,8 +1298,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 67, 67, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 558, 3790, 3790, 15248, -18.753958, -7.163058, -0.120600, 1.606138);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 558, 3790, 3790, -18.753958, -7.163058, -0.120600, 1.606138);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1311,8 +1311,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 68, 68, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 560, 2367, 2367, 15248, 2720.402588, 1306.491211, 14.496667, 0.384049);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 560, 2367, 2367, 2720.402588, 1306.491211, 14.496667, 0.384049);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1324,8 +1324,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 69, 69, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 545, 3715, 3715, 15248, 9.032151, 9.713045, -3.908064, 3.628544);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 545, 3715, 3715, 9.032151, 9.713045, -3.908064, 3.628544);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1337,8 +1337,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 69, 69, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 540, 3714, 3714, 15248, -21.925442, 1.835999, -13.115076, 4.739878);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 540, 3714, 3714, -21.925442, 1.835999, -13.115076, 4.739878);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1350,8 +1350,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 69, 69, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 554, 3849, 3849, 15248, -28.189423, -10.620949, -1.812820, 0.821168);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 554, 3849, 3849, -28.189423, -10.620949, -1.812820, 0.821168);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1363,8 +1363,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 69, 69, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 553, 3847, 3847, 15248, 25.963009, -6.480484, -1.083299, 4.836117);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 553, 3847, 3847, 25.963009, -6.480484, -1.083299, 4.836117);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1376,8 +1376,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 69, 69, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 555, 3789, 3789, 15248, 3.135054, 6.700622, -1.127880, 3.833485);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 555, 3789, 3789, 3.135054, 6.700622, -1.127880, 3.833485);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1389,8 +1389,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 69, 69, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 556, 3791, 3791, 15248, 27.057100, -4.731260, 0.006200, 3.069330);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 556, 3791, 3791, 27.057100, -4.731260, 0.006200, 3.069330);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1402,8 +1402,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 70, 70, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 269, 2366, 2366, 15248, -1475.968140, 7057.547363, 33.296432, 3.692997);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 269, 2366, 2366, -1475.968140, 7057.547363, 33.296432, 3.692997);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1415,8 +1415,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 70, 70, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 552, 3848, 3848, 15248, 11.828168, -5.482939, -0.205258, 2.422960);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 552, 3848, 3848, 11.828168, -5.482939, -0.205258, 2.422960);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1428,8 +1428,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 70, 70, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 585, 4131, 4131, 15248, 15.428506, -10.098178, -2.809786, 2.362998);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 585, 4131, 4131, 15.428506, -10.098178, -2.809786, 2.362998);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1441,8 +1441,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 70, 70, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 574, 206, 206, 15248, 165.224960, -70.167709, 12.553828, 4.325240);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 574, 206, 206, 165.224960, -70.167709, 12.553828, 4.325240);
 
 -- Into Utgarde!
 SET @Quest := 11252;
@@ -1491,8 +1491,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 71, 71, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 576, 4265, 4265, 15248, 145.605423, -3.024071, -16.636038, 4.720644);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 576, 4265, 4265, 145.605423, -3.024071, -16.636038, 4.720644);
 
 -- Postponing the Inevitable
 SET @Quest := 11905;
@@ -1542,8 +1542,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 72, 72, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 601, 4277, 4277, 15248, 444.840454, 792.553772, 828.904968, 3.705367);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 601, 4277, 4277, 444.840454, 792.553772, 828.904968, 3.705367);
 
 -- Death to the Traitor King
 SET @Quest := 13167;
@@ -1569,8 +1569,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 73, 73, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 619, 4623, 4623, 15248, 364.130646, -1078.684814, 47.360531, 6.113483);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 619, 4623, 4623, 364.130646, -1078.684814, 47.360531, 6.113483);
 
 -- The Faceless Ones
 SET @Quest := 13187;
@@ -1603,8 +1603,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 74, 74, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 600, 4196, 4196, 15248, -515.140625, -537.538208, 11.024030, 2.419826);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 600, 4196, 4196, -515.140625, -537.538208, 11.024030, 2.419826);
 
 -- Search and Rescue
 SET @Quest := 12037;
@@ -1640,8 +1640,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 75, 75, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 608, 4415, 4415, 15248, 1831.098877, 793.833801, 44.333935, 6.282004);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 608, 4415, 4415, 1831.098877, 793.833801, 44.333935, 6.282004);
 
 -- Containment
 SET @Quest := 13159;
@@ -1661,8 +1661,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 76, 76, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 604, 4416, 4416, 15248, 1874.995972, 658.413147, 176.681229, 4.017632);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 604, 4416, 4416, 1874.995972, 658.413147, 176.681229, 4.017632);
 
 -- Gal'darah Must Pay
 SET @Quest := 13096;
@@ -1697,8 +1697,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 77, 77, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 599, 4264, 4264, 15248, 1144.786987, 802.957642, 195.936998, 0.014390);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 599, 4264, 4264, 1144.786987, 802.957642, 195.936998, 0.014390);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1710,8 +1710,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 79, 79, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 575, 1196, 1196, 15248, 571.840942, -334.676056, 110.139084, 1.539422);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 575, 1196, 1196, 571.840942, -334.676056, 110.139084, 1.539422);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1723,8 +1723,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 79, 79, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 650, 4723, 4723, 15248, 800.261108, 610.237427, 412.356415, 2.949251);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 650, 4723, 4723, 800.261108, 610.237427, 412.356415, 2.949251);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1736,8 +1736,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 79, 79, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 578, 4228, 4228, 15248, 1051.802368, 996.073669, 361.083221, 5.387641);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 578, 4228, 4228, 1051.802368, 996.073669, 361.083221, 5.387641);
 
 -- The Struggle Persists
 SET @Quest := 13124;
@@ -1780,8 +1780,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 79, 79, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 595, 4100, 4100, 15248, 1470.156006, 508.931122, 35.828003, 2.175483);*/
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 595, 4100, 4100, 1470.156006, 508.931122, 35.828003, 2.175483);*/
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
@@ -1793,8 +1793,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 79, 79, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 602, 4272, 4272, 15248, 1318.072144, 237.991486, 52.988964, 6.269638);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 602, 4272, 4272, 1318.072144, 237.991486, 52.988964, 6.269638);
 
 -- Whatever it Takes!
 SET @Quest := 13108;
@@ -1822,8 +1822,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (@Entry, 15248, 'The Commoner', 'Dungeon Quests', 80, 80, 35, 3, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=@Entry;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(@Entry, @Entry, 632, 4809, 4809, 15248, 4919.859375, 2200.539062, 638.733948, 3.633251);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(@Entry, @Entry, 632, 4809, 4809, 4919.859375, 2200.539062, 638.733948, 3.633251);
 
 -- Inside the Frozen Citadel (Horde)
 SET @Quest := 24506;

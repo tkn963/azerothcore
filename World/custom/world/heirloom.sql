@@ -6,8 +6,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (9000010, 15322, 'Cenarion Emissary Blackhoof', 'Heirloom Armor', 1, 1, 35, 128, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=9000010;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(9000010, 9000010, 571, 4395, 4395, 15322, 5809.225586, 622.384949, 647.759766, 2.174072);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(9000010, 9000010, 571, 4395, 4395, 5809.225586, 622.384949, 647.759766, 2.174072);
 
 DELETE FROM `npc_vendor` WHERE `entry`=9000010 AND `item` IN (42943, 42944, 42945, 42946, 42947, 42948, 44091, 44092, 44093, 44094, 44095, 44096, 48716, 48718);
 INSERT INTO `npc_vendor` (`entry`, `item`) VALUES (9000010, 42943);
@@ -37,8 +37,8 @@ INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlev
 (9000011, 18648, 'Emissary Mordin', 'Heirloom Weapons', 1, 1, 35, 128, 0, 0, 0, 0, 1);
 
 DELETE FROM `creature` WHERE `id`=9000011;
-INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `modelid`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(9000011, 9000011, 571, 4395, 4395, 18648, 5799.781738, 621.482483, 647.510315, 1.333695);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(9000011, 9000011, 571, 4395, 4395, 5799.781738, 621.482483, 647.510315, 1.333695);
 
 DELETE FROM `npc_vendor` WHERE `entry`=9000011 AND `item` IN (42949, 42950, 42951, 42952, 42984, 42985, 44099, 44100, 44101, 44102, 44103, 44105, 44107, 48677, 48683, 48685, 48687, 48689, 48691, 50255, 42991, 42992, 44097, 44098);
 INSERT INTO `npc_vendor` (`entry`, `item`) VALUES (9000011, 42949);

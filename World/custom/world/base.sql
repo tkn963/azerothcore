@@ -193,3 +193,8 @@ INSERT INTO `npc_trainer` (`ID`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSki
 -- Maul
 DELETE FROM `npc_trainer` WHERE `ID`=200006 AND `SpellID`=6807;
 INSERT INTO `npc_trainer` (`ID`, `SpellID`, `MoneyCost`, `ReqSkillLine`, `ReqSkillRank`, `ReqLevel`) VALUES (200006, 6807, 0, 0, 0, 10);
+
+-- Kickstarter
+DELETE FROM `creature` WHERE `id`=9000000;
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
+(9000000, 9000000, 571, 4395, 4739, 5800.45, 621.938, 647.722, 1.69419);

@@ -5,6 +5,8 @@ The server is not public, only I play on it and I multibox so things like having
 
 While using these Bash scripts and crontab, the server is fully automated. Once a day the server will save and stop, followed by pulling the latest source code, compile it, import the database updates, update the configuration files, import any custom content and then start the server again. The frequency of this happening can be changed by modifying the crontab.
 
+I will create Docker/Podman images to handle all of this in the future.
+
 All respect goes to the amazing people developing the core for us to use.
 
 Everyone is free to use this content for themselves or any public server, but I do not want anyone to take credit for creating it.

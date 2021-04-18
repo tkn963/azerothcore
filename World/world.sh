@@ -110,7 +110,7 @@ for ((i = 0 ; i < ${#PACKAGES[@]} ; i+=1)); do
     fi
 done
 
-if [ ${#INSTALL[@]} -gt 0 ]; then
+if [ ${#INSTALL[@]} -ge 0 ]; then
     apt-get -y update
     if [ $? -ne 0 ]; then
         exit 1

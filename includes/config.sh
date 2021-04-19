@@ -86,3 +86,70 @@ MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE="$(echo "cat /config/modul
 MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE="$(echo "cat /config/module/kickstarter/functions/utilities/appearance_change/text()" | xmllint --nocdata --shell $CONFIG_FILE | sed '1d;$d')"
 
 MODULE_EXPERIENCED_ENABLED="$(echo "cat /config/module/experienced/enabled/text()" | xmllint --nocdata --shell $CONFIG_FILE | sed '1d;$d')"
+
+if [[ -z $MYSQL_HOSTNAME ]] || [[ $MYSQL_HOSTNAME == "" ]] || 
+   [[ -z $MYSQL_PORT ]] || [[ $MYSQL_PORT == "" ]] || 
+   [[ -z $MYSQL_USERNAME ]] || [[ $MYSQL_USERNAME == "" ]] || 
+   [[ -z $MYSQL_PASSWORD ]] || [[ $MYSQL_PASSWORD == "" ]] || 
+   [[ -z $MYSQL_DATABASE_AUTH ]] || [[ $MYSQL_DATABASE_AUTH == "" ]] || 
+   [[ -z $MYSQL_DATABASE_CHARACTERS ]] || [[ $MYSQL_DATABASE_CHARACTERS == "" ]] || 
+   [[ -z $MYSQL_DATABASE_WORLD ]] || [[ $MYSQL_DATABASE_WORLD == "" ]] || 
+   [[ -z $CORE_DIRECTORY ]] || [[ $CORE_DIRECTORY == "" ]] || 
+   [[ -z $WORLD_NAME ]] || [[ $WORLD_NAME == "" ]] || 
+   [[ -z $WORLD_MOTD ]] || [[ $WORLD_MOTD == "" ]] || 
+   [[ -z $WORLD_ID ]] || [[ $WORLD_ID == "" ]] || 
+   [[ -z $WORLD_IP ]] || [[ $WORLD_IP == "" ]] || 
+   [[ -z $WORLD_GAME_TYPE ]] || [[ $WORLD_GAME_TYPE == "" ]] || 
+   [[ -z $WORLD_REALM_ZONE ]] || [[ $WORLD_REALM_ZONE == "" ]] || 
+   [[ -z $WORLD_PLAYER_LIMIT ]] || [[ $WORLD_PLAYER_LIMIT == "" ]] || 
+   [[ -z $WORLD_SKIP_CINEMATICS ]] || [[ $WORLD_SKIP_CINEMATICS == "" ]] || 
+   [[ -z $WORLD_START_LEVEL ]] || [[ $WORLD_START_LEVEL == "" ]] || 
+   [[ -z $WORLD_START_MONEY ]] || [[ $WORLD_START_MONEY == "" ]] || 
+   [[ -z $WORLD_ALWAYS_MAX_SKILL ]] || [[ $WORLD_ALWAYS_MAX_SKILL == "" ]] || 
+   [[ -z $WORLD_ALL_FLIGHT_PATHS ]] || [[ $WORLD_ALL_FLIGHT_PATHS == "" ]] || 
+   [[ -z $WORLD_MAPS_EXPLORED ]] || [[ $WORLD_MAPS_EXPLORED == "" ]] || 
+   [[ -z $WORLD_ALLOW_COMMANDS ]] || [[ $WORLD_ALLOW_COMMANDS == "" ]] || 
+   [[ -z $WORLD_QUEST_IGNORE_RAID ]] || [[ $WORLD_QUEST_IGNORE_RAID == "" ]] || 
+   [[ -z $WORLD_PREVENT_AFK_LOGOUT ]] || [[ $WORLD_PREVENT_AFK_LOGOUT == "" ]] || 
+   [[ -z $WORLD_RATE_EXPERIENCE ]] || [[ $WORLD_RATE_EXPERIENCE == "" ]] || 
+   [[ -z $WORLD_RATE_RESTED_EXP ]] || [[ $WORLD_RATE_RESTED_EXP == "" ]] || 
+   [[ -z $WORLD_RATE_REPUTATION ]] || [[ $WORLD_RATE_REPUTATION == "" ]] || 
+   [[ -z $WORLD_RATE_MONEY ]] || [[ $WORLD_RATE_MONEY == "" ]] || 
+   [[ -z $WORLD_RATE_CRAFTING ]] || [[ $WORLD_RATE_CRAFTING == "" ]] || 
+   [[ -z $WORLD_RATE_GATHERING ]] || [[ $WORLD_RATE_GATHERING == "" ]] || 
+   [[ -z $WORLD_RATE_WEAPON_SKILL ]] || [[ $WORLD_RATE_WEAPON_SKILL == "" ]] || 
+   [[ -z $WORLD_RATE_DEFENSE_SKILL ]] || [[ $WORLD_RATE_DEFENSE_SKILL == "" ]] || 
+   [[ -z $WORLD_GM_LOGIN_STATE ]] || [[ $WORLD_GM_LOGIN_STATE == "" ]] || 
+   [[ -z $WORLD_GM_VISIBLE ]] || [[ $WORLD_GM_VISIBLE == "" ]] || 
+   [[ -z $WORLD_GM_CHAT ]] || [[ $WORLD_GM_CHAT == "" ]] || 
+   [[ -z $WORLD_GM_WHISPER ]] || [[ $WORLD_GM_WHISPER == "" ]] || 
+   [[ -z $WORLD_GM_GM_LIST ]] || [[ $WORLD_GM_GM_LIST == "" ]] || 
+   [[ -z $WORLD_GM_WHO_LIST ]] || [[ $WORLD_GM_WHO_LIST == "" ]] || 
+   [[ -z $WORLD_GM_ALLOW_INVITE ]] || [[ $WORLD_GM_ALLOW_INVITE == "" ]] || 
+   [[ -z $WORLD_GM_LOWER_SECURITY ]] || [[ $WORLD_GM_LOWER_SECURITY == "" ]] || 
+   [[ -z $MODULE_AHBOT_ENABLED ]] || [[ $MODULE_AHBOT_ENABLED == "" ]] || 
+   [[ -z $MODULE_AHBOT_ENABLE_SELLER ]] || [[ $MODULE_AHBOT_ENABLE_SELLER == "" ]] || 
+   [[ -z $MODULE_AHBOT_ENABLE_BUYER ]] || [[ $MODULE_AHBOT_ENABLE_BUYER == "" ]] || 
+   [[ -z $MODULE_AHBOT_ACCOUNT_ID ]] || [[ $MODULE_AHBOT_ACCOUNT_ID == "" ]] || 
+   [[ -z $MODULE_AHBOT_CHARACTER_GUID ]] || [[ $MODULE_AHBOT_CHARACTER_GUID == "" ]] || 
+   [[ -z $MODULE_AHBOT_MIN_ITEMS ]] || [[ $MODULE_AHBOT_MIN_ITEMS == "" ]] || 
+   [[ -z $MODULE_AHBOT_MAX_ITEMS ]] || [[ $MODULE_AHBOT_MAX_ITEMS == "" ]] || 
+   [[ -z $MODULE_SKIP_DK_AREA_ENABLED ]] || [[ $MODULE_SKIP_DK_AREA_ENABLED == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_ENABLED ]] || [[ $MODULE_KICKSTARTER_ENABLED == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_GEMS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_GEMS == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_GLYPHS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_GLYPHS == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_SPELLS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_SPELLS == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_ENABLED ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_ENABLED == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_MAX_SKILL ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_MAX_SKILL == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_MOUNTS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_MOUNTS == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_ENABLED ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_ENABLED == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE == "" ]] || 
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE == "" ]] || 
+   [[ -z $MODULE_EXPERIENCED_ENABLED ]] || [[ $MODULE_EXPERIENCED_ENABLED == "" ]]
+then
+    echo -e "\e[0;33mAtleast one of the configuration values is missing or invalid\e[0m"
+    exit 1
+fi

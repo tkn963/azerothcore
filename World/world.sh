@@ -504,6 +504,11 @@ function CONFIGURATION {
         sed -i 's/Quests.IgnoreRaid =.*/Quests.IgnoreRaid = '$WORLD_QUESTIGNORERAID'/g' $CORE_DIRECTORY/etc/worldserver.conf
         sed -i 's/PreventAFKLogout =.*/PreventAFKLogout = '$WORLD_PREVENTAFKLOGOUT'/g' $CORE_DIRECTORY/etc/worldserver.conf
 
+        if [[ $MODULE_EXPERIENCED_ENABLED == "true" ]]; then
+            WORLD_RATE_EXPERIENCE = 1
+            WORLD_RATE_REPUTATION = 1
+        fi
+
         sed -i 's/Rate.Drop.Money                 =.*/Rate.Drop.Money                 = '$WORLD_RATE_MONEY'/g' $CORE_DIRECTORY/etc/worldserver.conf
         sed -i 's/Rate.XP.Kill    =.*/Rate.XP.Kill    = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
         sed -i 's/Rate.XP.Quest   =.*/Rate.XP.Quest   = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf

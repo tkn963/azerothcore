@@ -32,6 +32,7 @@ MODULE_KICKSTARTER_UTILITIES_NAME=1
 MODULE_KICKSTARTER_UTILITIES_RACE=1
 MODULE_KICKSTARTER_UTILITIES_FACTION=1
 MODULE_KICKSTARTER_UTILITIES_APPEARANCE=1
+MODULE_EXPERIENCED_ENABLED=true
 
 WORLD_NAME="Aurora"
 WORLD_MOTD="Welcome to Aurora. This is hosted for those who are truly excellent!"
@@ -50,14 +51,14 @@ WORLD_ALLOWCOMMANDS=0
 WORLD_QUESTIGNORERAID=1
 WORLD_PREVENTAFKLOGOUT=0
 
-WORLD_RATE_MONEY=5
-WORLD_RATE_EXPERIENCE=5
-WORLD_RATE_REPUTATION=5
-WORLD_RATE_CRAFTING=5
-WORLD_RATE_DEFENSE=5
-WORLD_RATE_GATHERING=5
-WORLD_RATE_WEAPON=5
-WORLD_RATE_RESTEXP=5
+WORLD_RATE_MONEY=3
+WORLD_RATE_EXPERIENCE=1
+WORLD_RATE_REPUTATION=1
+WORLD_RATE_CRAFTING=3
+WORLD_RATE_DEFENSE=3
+WORLD_RATE_GATHERING=3
+WORLD_RATE_WEAPON=3
+WORLD_RATE_RESTEXP=3
 
 WORLD_GM_LOGINSTATE=1
 WORLD_GM_VISIBLE=0
@@ -245,6 +246,40 @@ function INSTALL {
         else
             if [[ -d $CORE_DIRECTORY/modules/kickstarter ]]; then
                 rm -rf $CORE_DIRECTORY/modules/kickstarter
+
+                if [[ -d $CORE_DIRECTORY/build ]]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
+            fi
+        fi
+
+        if [[ $MODULE_EXPERIENCED_ENABLED == "true" ]]; then
+            if [[ ! -d $CORE_DIRECTORY/modules/experienced ]]; then
+                git clone --recursive --branch main --depth 1 https://github.com/tkn963/experienced.git $CORE_DIRECTORY/modules/experienced
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/experienced
+
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/main
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            fi
+        else
+            if [[ -d $CORE_DIRECTORY/modules/experienced ]]; then
+                rm -rf $CORE_DIRECTORY/modules/experienced
 
                 if [[ -d $CORE_DIRECTORY/build ]]; then
                     rm -rf $CORE_DIRECTORY/build

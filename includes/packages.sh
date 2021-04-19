@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ $OS == "ubuntu" ]; then
-    if [ $VERSION == "20.04" ] || [ $VERSION == "20.10" ]; then
+if [[ $OS == "ubuntu" ]]; then
+    if [[ $VERSION == "20.04" ]] || [[ $VERSION == "20.10" ]]; then
         PACKAGES=("git" 
                   "cmake" 
                   "make" 
@@ -18,7 +18,8 @@ if [ $OS == "ubuntu" ]; then
                   "mysql-client" 
                   "libxml2-utils" 
                   "curl" 
-                  "unzip")
+                  "unzip"
+                  "libxml2-utils")
 
         for ((i = 0 ; i < ${#PACKAGES[@]} ; i+=1)); do
             sleep 0.1

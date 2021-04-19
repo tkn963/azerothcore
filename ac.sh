@@ -1,28 +1,11 @@
 #!/bin/bash
-if [ -f "includes/config.sh" ]; then
-    source "includes/config.sh"
-else
-    echo -e "\e[0;33mUnable to access config.sh\e[0m"
-    exit 1
-fi
+INCLUDES=("config" "distro" "functions" "packages")
 
-if [ -f "includes/distro.sh" ]; then
-    source "includes/distro.sh"
-else
-    echo -e "\e[0;33mUnable to access distro.sh\e[0m"
-    exit 1
-fi
-
-if [ -f "includes/functions.sh" ]; then
-    source "includes/functions.sh"
-else
-    echo -e "\e[0;33mUnable to access functions.sh\e[0m"
-    exit 1
-fi
-
-if [ -f "includes/packages.sh" ]; then
-    source "includes/packages.sh"
-else
-    echo -e "\e[0;33mUnable to access packages.sh\e[0m"
-    exit 1
-fi
+for ((i = 0 ; i < ${#INCLUDES[@]} ; i+=1)); do
+    if [ -f "includes/${INCLUDES[i]}.sh" ]; then
+        source "includes/${INCLUDES[i]}.sh"
+    else
+        echo -e "\e[0;33mUnable to access includes/${INCLUDES[i]}.sh\e[0m"
+        exit 1
+    fi
+done

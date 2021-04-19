@@ -21,11 +21,9 @@ if [[ $OS == "ubuntu" ]]; then
                   "unzip"
                   "libxml2-utils")
 
-        for ((i = 0 ; i < ${#PACKAGES[@]} ; i+=1)); do
-            sleep 0.1
-
-            if [ $(dpkg-query -W -f='${Status}' ${PACKAGES[i]} 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-                INSTALL+=(${PACKAGES[i]})
+        for p in "${PACKAGES[@]}"; do
+            if [ $(dpkg-query -W -f='${Status}' $p 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+                INSTALL+=($p)
             fi
         done
 

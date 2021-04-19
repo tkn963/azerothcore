@@ -80,6 +80,6 @@ if [[ -z $CORE_DIRECTORY ]] || [[ -z $MYSQL_HOST ]] || [[ -z $MYSQL_PORT ]] || [
    [[ -z $MODULE_KICKSTARTER_GEMS ]] || [[ -z $MODULE_KICKSTARTER_GLYPHS ]] || [[ -z $MODULE_KICKSTARTER_SPELLS ]] || [[ -z $MODULE_KICKSTARTER_PROFICIENCY ]] || [[ -z $MODULE_KICKSTARTER_PROFICIENCY_MAX ]] || 
    [[ -z $MODULE_KICKSTARTER_MOUNTS ]] || [[ -z $MODULE_KICKSTARTER_UTILITIES ]] || [[ -z $MODULE_KICKSTARTER_UTILITIES_NAME ]] || [[ -z $MODULE_KICKSTARTER_UTILITIES_RACE ]] || [[ -z $MODULE_KICKSTARTER_UTILITIES_FACTION ]] || 
    [[ -z $MODULE_KICKSTARTER_UTILITIES_APPEARANCE ]] || [[ -z $MODULE_EXPERIENCED_ENABLED ]]; then
-    echo -e "\e[0;33mAtleast one of the variables are missing or invalid\e[0m"
+    echo -e "\e[0;33mAtleast one of the variables is missing or invalid\e[0m"
     exit 1
 fi

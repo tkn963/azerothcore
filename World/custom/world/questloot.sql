@@ -15,6 +15,7 @@ UPDATE `item_template` SET `Flags`=2048 WHERE `entry` IN (SELECT `RequiredItemId
 UPDATE `item_template` SET `Flags`=2048 WHERE `entry` IN (SELECT `RequiredItemId5` FROM `quest_template` WHERE `RequiredItemId5` IN (SELECT `item` FROM `creature_loot_template`)) AND `Flags`=0 AND `class`=12;
 UPDATE `item_template` SET `Flags`=2048 WHERE `entry` IN (SELECT `RequiredItemId6` FROM `quest_template` WHERE `RequiredItemId6` IN (SELECT `item` FROM `creature_loot_template`)) AND `Flags`=0 AND `class`=12;
 UPDATE `item_template` SET `Flags`=2048 WHERE `entry` IN (33778, 33779, 33780); -- Book of Runes Chapter 1, 2, 3
+UPDATE `item_template` SET `Flags`=2048 WHERE `entry` IN (36786); -- Bark of the Walkers
 
 COMMIT;
 END //

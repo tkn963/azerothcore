@@ -428,28 +428,6 @@ function DATABASE {
                     done
                 fi
 
-                if [ -d $ROOT/custom ]; then
-                    if [ -d $ROOT/custom/characters ]; then
-                        for f in $ROOT/custom/characters/*.sql; do
-                            echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
-                            mysql --defaults-extra-file=$ROOT/mysql.cnf $MYSQL_DATA_CHARACTERS < $f
-                            if [ $? -ne 0 ]; then
-                                exit 1
-                            fi
-                        done
-                    fi
-
-                    if [ -d $ROOT/custom/world ]; then
-                        for f in $ROOT/custom/world/*.sql; do
-                            echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
-                            mysql --defaults-extra-file=$ROOT/mysql.cnf $MYSQL_DATA_WORLD < $f
-                            if [ $? -ne 0 ]; then
-                                exit 1
-                            fi
-                        done
-                    fi
-                fi
-
                 if [ ! -z `mysql --defaults-extra-file=$ROOT/mysql.cnf --skip-column-names $MYSQL_DATA_WORLD -e "SHOW TABLES LIKE 'mod_auctionhousebot'"` ]; then
                     mysql --defaults-extra-file=$ROOT/mysql.cnf $MYSQL_DATA_WORLD -e "UPDATE mod_auctionhousebot SET minitems='$MODULE_AHBOT_MINITEMS', maxitems='$MODULE_AHBOT_MAXITEMS'"
                 fi
@@ -469,6 +447,32 @@ function DATABASE {
         fi
 
         rm -rf $ROOT/mysql.cnf
+    fi
+}
+
+function CUSTOM {
+    if [ -d $ROOT/custom ]; then
+        clear
+
+        if [ -d $ROOT/custom/characters ]; then
+            for f in $ROOT/custom/characters/*.sql; do
+                echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                mysql --defaults-extra-file=$ROOT/mysql.cnf $MYSQL_DATA_CHARACTERS < $f
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            done
+        fi
+
+        if [ -d $ROOT/custom/world ]; then
+            for f in $ROOT/custom/world/*.sql; do
+                echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                mysql --defaults-extra-file=$ROOT/mysql.cnf $MYSQL_DATA_WORLD < $f
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            done
+        fi
     fi
 }
 
@@ -594,6 +598,7 @@ function ALL {
     STOP
     INSTALL
     DATABASE
+    CUSTOM
     CONFIGURATION
     START
 }
@@ -603,6 +608,7 @@ if [ $# == 1 ]; then
         "all") ALL;;
         "setup" | "install" | "update") INSTALL;;
         "import" | "database" | "db") DATABASE;;
+        "custom") CUSTOM;;
         "configuration" | "config" | "conf" | "cfg") CONFIGURATION;;
         "start") START;;
         "stop") STOP;;

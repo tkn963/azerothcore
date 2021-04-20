@@ -20,8 +20,8 @@ if [ $# -eq 2 ]; then
             perform_setup $1
         elif [[ $2 == "database" ]] || [[ $2 == "db" ]]; then
             import_database $1
-        elif [[ $2 == "configuration" ]] || [[ $2 == "config" ]] || [[ $2 == "cfg" ]]; then
-            echo "$1 $2"
+        elif [[ $2 == "configuration" ]] || [[ $2 == "config" ]] || [[ $2 == "conf" ]] || [[ $2 == "cfg" ]]; then
+            update_configuration $1
         elif [ $2 == "start" ]; then
             echo "$1 $2"
         elif [ $2 == "stop" ]; then
@@ -29,6 +29,7 @@ if [ $# -eq 2 ]; then
         elif [ $2 == "all" ]; then
             perform_setup $1
             import_database $1
+            update_configuration $1
         else
             invalid_arguments
         fi

@@ -19,8 +19,6 @@ MODULE_SKIPDKAREA_URL="https://github.com/Crypticaz/SkipDeathKnightStartingArea.
 MODULE_SKIPDKAREA_BRANCH="master"
 MODULE_KICKSTARTER_URL="https://github.com/tkn963/kickstarter.git"
 MODULE_KICKSTARTER_BRANCH="main"
-MODULE_EXPERIENCED_URL="https://github.com/tkn963/experienced.git"
-MODULE_EXPERIENCED_BRANCH="main"
 
 CLIENT_DATA="https://github.com/wowgaming/client-data/releases/download/v10/data.zip"
 

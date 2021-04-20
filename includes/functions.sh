@@ -140,40 +140,6 @@ function build_server()
                 fi
             fi
         fi
-
-        if [ $MODULE_EXPERIENCED_ENABLED == "true" ]; then
-            if [ ! -d $CORE_DIRECTORY/modules/experienced ]; then
-                git clone --recursive --branch $MODULE_EXPERIENCED_BRANCH --depth 1 $MODULE_EXPERIENCED_URL $CORE_DIRECTORY/modules/experienced
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-            else
-                cd $CORE_DIRECTORY/modules/experienced
-
-                git fetch --all
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-
-                git reset --hard origin/$MODULE_EXPERIENCED_BRANCH
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-
-                git submodule update
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-            fi
-        else
-            if [ -d $CORE_DIRECTORY/modules/experienced ]; then
-                rm -rf $CORE_DIRECTORY/modules/experienced
-
-                if [ -d $CORE_DIRECTORY/build ]; then
-                    rm -rf $CORE_DIRECTORY/build
-                fi
-            fi
-        fi
     fi
 
     echo -e "\e[0;32mCompiling source code\e[0m"
@@ -492,19 +458,11 @@ function update_configuration()
             sed -i 's/RecruitAFriend.MaxLevel =.*/RecruitAFriend.MaxLevel = '$WORLD_RAF_MAX_LEVEL'/g' $CORE_DIRECTORY/etc/worldserver.conf
 
             sed -i 's/Rate.Drop.Money                 =.*/Rate.Drop.Money                 = '$WORLD_RATE_MONEY'/g' $CORE_DIRECTORY/etc/worldserver.conf
-            if [[ $MODULE_EXPERIENCED_ENABLED == "true" ]]; then
-                sed -i 's/Rate.XP.Kill    =.*/Rate.XP.Kill    = 1/g' $CORE_DIRECTORY/etc/worldserver.conf
-                sed -i 's/Rate.XP.Quest   =.*/Rate.XP.Quest   = 1/g' $CORE_DIRECTORY/etc/worldserver.conf
-                sed -i 's/Rate.XP.Explore =.*/Rate.XP.Explore = 1/g' $CORE_DIRECTORY/etc/worldserver.conf
-                sed -i 's/Rate.XP.Pet     =.*/Rate.XP.Pet     = 1/g' $CORE_DIRECTORY/etc/worldserver.conf
-                sed -i 's/Rate.Reputation.Gain =.*/Rate.Reputation.Gain = 1/g' $CORE_DIRECTORY/etc/worldserver.conf
-            else
-                sed -i 's/Rate.XP.Kill    =.*/Rate.XP.Kill    = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
-                sed -i 's/Rate.XP.Quest   =.*/Rate.XP.Quest   = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
-                sed -i 's/Rate.XP.Explore =.*/Rate.XP.Explore = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
-                sed -i 's/Rate.XP.Pet     =.*/Rate.XP.Pet     = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
-                sed -i 's/Rate.Reputation.Gain =.*/Rate.Reputation.Gain = '$WORLD_RATE_REPUTATION'/g' $CORE_DIRECTORY/etc/worldserver.conf
-            fi
+            sed -i 's/Rate.XP.Kill    =.*/Rate.XP.Kill    = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
+            sed -i 's/Rate.XP.Quest   =.*/Rate.XP.Quest   = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
+            sed -i 's/Rate.XP.Explore =.*/Rate.XP.Explore = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
+            sed -i 's/Rate.XP.Pet     =.*/Rate.XP.Pet     = '$WORLD_RATE_EXPERIENCE'/g' $CORE_DIRECTORY/etc/worldserver.conf
+            sed -i 's/Rate.Reputation.Gain =.*/Rate.Reputation.Gain = '$WORLD_RATE_REPUTATION'/g' $CORE_DIRECTORY/etc/worldserver.conf
 
             sed -i 's/SkillGain.Crafting  =.*/SkillGain.Crafting  = '$WORLD_RATE_CRAFTING'/g' $CORE_DIRECTORY/etc/worldserver.conf
             sed -i 's/SkillGain.Defense   =.*/SkillGain.Defense   = '$WORLD_RATE_DEFENSE_SKILL'/g' $CORE_DIRECTORY/etc/worldserver.conf

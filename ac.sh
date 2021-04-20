@@ -17,7 +17,7 @@ done
 if [ $# -eq 2 ]; then
     if [[ $1 == "all" ]] || [[ $1 == "auth" ]] || [[ $1 == "world" ]]; then
         if [[ $2 == "setup" ]] || [[ $2 == "install" ]] || [[ $2 == "update" ]]; then
-            perform_setup $1
+            build_server $1
         elif [[ $2 == "database" ]] || [[ $2 == "db" ]]; then
             import_database $1
         elif [[ $2 == "configuration" ]] || [[ $2 == "config" ]] || [[ $2 == "conf" ]] || [[ $2 == "cfg" ]]; then
@@ -28,10 +28,12 @@ if [ $# -eq 2 ]; then
             stop_server $1
         elif [ $2 == "all" ]; then
             stop_server $1
-            perform_setup $1
+            build_server $1
             import_database $1
             update_configuration $1
             start_server $1
+        elif [ $2 == "backup" ]; then
+            backup_server $1
         else
             invalid_arguments
         fi

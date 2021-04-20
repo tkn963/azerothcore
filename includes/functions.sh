@@ -6,8 +6,10 @@ function invalid_arguments()
     echo -e "\e[0;33mThe supplied arguments are invalid\e[0m"
 }
 
-function perform_setup()
+function build_server()
 {
+    install_build_packages
+
     clear
 
     echo -e "\e[0;32mDownloading source code\e[0m"
@@ -266,6 +268,8 @@ function perform_setup()
 
 function import_database()
 {
+    install_database_packages
+
     clear
 
     echo -e "\e[0;32mImporting database files\e[0m"
@@ -609,4 +613,53 @@ function stop_server()
     else
         echo -e "\e[0;33mNo running server found\e[0m"
     fi
+}
+
+function backup_server()
+{
+    install_backup_packages
+
+    clear
+
+    echo "[client]" > $MYSQL_CONFIG
+    echo "host=\"$MYSQL_HOSTNAME\"" >> $MYSQL_CONFIG
+    echo "port=\"$MYSQL_PORT\"" >> $MYSQL_CONFIG
+    echo "user=\"$MYSQL_USERNAME\"" >> $MYSQL_CONFIG
+    echo "password=\"$MYSQL_PASSWORD\"" >> $MYSQL_CONFIG
+    echo "[mysqldump]" >> $MYSQL_CONFIG
+    echo "column-statistics=0" >> $MYSQL_CONFIG
+
+    BACKUP_DATE=$(date +"%Y-%m-%d_%H-%M")
+
+    echo -e "\e[0;32mBacking up database\e[0m"
+
+    if [[ $1 == "auth" ]] || [[ $1 == "all" ]]; then
+        if [ ! -z `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names -e "SHOW DATABASES LIKE '$MYSQL_DATABASE_AUTH'"` ]; then
+            mkdir -p $ROOT/backup/$BACKUP_DATE/$MYSQL_DATABASE_AUTH
+
+            for t in `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names -e "SHOW TABLES FROM $MYSQL_DATABASE_AUTH"`; do
+                echo -e "\e[0;33mExporting table $t\e[0m"
+                mysqldump --defaults-extra-file=$MYSQL_CONFIG --hex-blob $MYSQL_DATABASE_AUTH $t > $ROOT/backup/$BACKUP_DATE/$MYSQL_DATABASE_AUTH/$t.sql
+            done
+        fi
+    fi
+
+    if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
+        if [ ! -z `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names -e "SHOW DATABASES LIKE '$MYSQL_DATABASE_CHARACTERS'"` ]; then
+            mkdir -p $ROOT/backup/$BACKUP_DATE/$MYSQL_DATABASE_CHARACTERS
+
+            for t in `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names -e "SHOW TABLES FROM $MYSQL_DATABASE_CHARACTERS"`; do
+                echo -e "\e[0;33mExporting table $t\e[0m"
+                mysqldump --defaults-extra-file=$MYSQL_CONFIG --hex-blob $MYSQL_DATABASE_CHARACTERS $t > $ROOT/backup/$BACKUP_DATE/$MYSQL_DATABASE_CHARACTERS/$t.sql
+            done
+        fi
+    fi
+
+    if [ -d $ROOT/backup/$BACKUP_DATE ]; then
+        cd $ROOT/backup/$BACKUP_DATE
+        zip -q -r -9 $ROOT/backup/$BACKUP_DATE.zip *
+        rm -rf $ROOT/backup/$BACKUP_DATE
+    fi
+
+    rm -rf $MYSQL_CONFIG
 }

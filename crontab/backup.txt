@@ -1,0 +1,1 @@
+0 * * * * cd /root && ./ac.sh all backup >/dev/null 2>&1

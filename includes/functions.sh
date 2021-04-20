@@ -526,10 +526,10 @@ function update_configuration()
                 sed -i 's/Kickstarter.Gems =.*/Kickstarter.Gems = '$MODULE_KICKSTARTER_FUNCTIONS_GEMS'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
                 sed -i 's/Kickstarter.Glyphs =.*/Kickstarter.Glyphs = '$MODULE_KICKSTARTER_FUNCTIONS_GLYPHS'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
                 sed -i 's/Kickstarter.Spells =.*/Kickstarter.Spells = '$MODULE_KICKSTARTER_FUNCTIONS_SPELLS'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Proficiency =.*/Kickstarter.Proficiency = '$MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
+                sed -i 's/Kickstarter.Proficiency =.*/Kickstarter.Proficiency = '$MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_ENABLED'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
                 sed -i 's/Kickstarter.Proficiency.Max =.*/Kickstarter.Proficiency.Max = '$MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_MAX_SKILL'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
                 sed -i 's/Kickstarter.Mounts =.*/Kickstarter.Mounts = '$MODULE_KICKSTARTER_FUNCTIONS_MOUNTS'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Utilities =.*/Kickstarter.Utilities = '$MODULE_KICKSTARTER_UTILITIES_ENABLED'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
+                sed -i 's/Kickstarter.Utilities =.*/Kickstarter.Utilities = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_ENABLED'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
                 sed -i 's/Kickstarter.Utilities.ChangeName =.*/Kickstarter.Utilities.ChangeName = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
                 sed -i 's/Kickstarter.Utilities.ChangeRace =.*/Kickstarter.Utilities.ChangeRace = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
                 sed -i 's/Kickstarter.Utilities.ChangeFaction =.*/Kickstarter.Utilities.ChangeFaction = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf

@@ -391,6 +391,16 @@ function import_database()
                     done
                 fi
 
+                if [[ -d $ROOT/custom/world ]] || [[ -z "$(ls -A $ROOT/world/custom/)" ]]; then
+                    for f in $ROOT/custom/world/*.sql; do
+                        echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                        mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
+                        if [ $? -ne 0 ]; then
+                            exit 1
+                        fi
+                    done
+                fi
+
                 if [ ! -z `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names $MYSQL_DATABASE_WORLD -e "SHOW TABLES LIKE 'mod_auctionhousebot'"` ]; then
                     mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD -e "UPDATE mod_auctionhousebot SET minitems='$MODULE_AHBOT_MIN_ITEMS', maxitems='$MODULE_AHBOT_MAX_ITEMS'"
                 fi

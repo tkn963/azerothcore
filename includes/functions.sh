@@ -34,138 +34,140 @@ function perform_setup()
         fi
     fi
 
-    if [ $MODULE_AHBOT_ENABLED == "true" ]; then
-        if [ ! -d $CORE_DIRECTORY/modules/ahbot ]; then
-            git clone --recursive --branch $MODULE_AHBOT_BRANCH --depth 1 $MODULE_AHBOT_URL $CORE_DIRECTORY/modules/ahbot
-            if [ $? -ne 0 ]; then
-                exit 1
+    if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
+        if [ $MODULE_AHBOT_ENABLED == "true" ]; then
+            if [ ! -d $CORE_DIRECTORY/modules/ahbot ]; then
+                git clone --recursive --branch $MODULE_AHBOT_BRANCH --depth 1 $MODULE_AHBOT_URL $CORE_DIRECTORY/modules/ahbot
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/ahbot
+
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/$MODULE_AHBOT_BRANCH
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
             fi
         else
-            cd $CORE_DIRECTORY/modules/ahbot
+            if [ -d $CORE_DIRECTORY/modules/ahbot ]; then
+                rm -rf $CORE_DIRECTORY/modules/ahbot
 
-            git fetch --all
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-
-            git reset --hard origin/$MODULE_AHBOT_BRANCH
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-
-            git submodule update
-            if [ $? -ne 0 ]; then
-                exit 1
+                if [ -d $CORE_DIRECTORY/build ]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
             fi
         fi
-    else
-        if [ -d $CORE_DIRECTORY/modules/ahbot ]; then
-            rm -rf $CORE_DIRECTORY/modules/ahbot
 
-            if [ -d $CORE_DIRECTORY/build ]; then
-                rm -rf $CORE_DIRECTORY/build
-            fi
-        fi
-    fi
+        if [ $MODULE_SKIP_DK_AREA_ENABLED == "true" ]; then
+            if [ ! -d $CORE_DIRECTORY/modules/skipdkarea ]; then
+                git clone --recursive --branch $MODULE_SKIPDKAREA_BRANCH --depth 1 $MODULE_SKIPDKAREA_URL $CORE_DIRECTORY/modules/skipdkarea
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/skipdkarea
 
-    if [ $MODULE_SKIP_DK_AREA_ENABLED == "true" ]; then
-        if [ ! -d $CORE_DIRECTORY/modules/skipdkarea ]; then
-            git clone --recursive --branch $MODULE_SKIPDKAREA_BRANCH --depth 1 $MODULE_SKIPDKAREA_URL $CORE_DIRECTORY/modules/skipdkarea
-            if [ $? -ne 0 ]; then
-                exit 1
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/$MODULE_SKIPDKAREA_BRANCH
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
             fi
         else
-            cd $CORE_DIRECTORY/modules/skipdkarea
+            if [ -d $CORE_DIRECTORY/modules/skipdkarea ]; then
+                rm -rf $CORE_DIRECTORY/modules/skipdkarea
 
-            git fetch --all
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-
-            git reset --hard origin/$MODULE_SKIPDKAREA_BRANCH
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-
-            git submodule update
-            if [ $? -ne 0 ]; then
-                exit 1
+                if [ -d $CORE_DIRECTORY/build ]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
             fi
         fi
-    else
-        if [ -d $CORE_DIRECTORY/modules/skipdkarea ]; then
-            rm -rf $CORE_DIRECTORY/modules/skipdkarea
 
-            if [ -d $CORE_DIRECTORY/build ]; then
-                rm -rf $CORE_DIRECTORY/build
-            fi
-        fi
-    fi
+        if [ $MODULE_KICKSTARTER_ENABLED == "true" ]; then
+            if [ ! -d $CORE_DIRECTORY/modules/kickstarter ]; then
+                git clone --recursive --branch $MODULE_KICKSTARTER_BRANCH --depth 1 $MODULE_KICKSTARTER_URL $CORE_DIRECTORY/modules/kickstarter
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/kickstarter
 
-    if [ $MODULE_KICKSTARTER_ENABLED == "true" ]; then
-        if [ ! -d $CORE_DIRECTORY/modules/kickstarter ]; then
-            git clone --recursive --branch $MODULE_KICKSTARTER_BRANCH --depth 1 $MODULE_KICKSTARTER_URL $CORE_DIRECTORY/modules/kickstarter
-            if [ $? -ne 0 ]; then
-                exit 1
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/$MODULE_KICKSTARTER_BRANCH
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
             fi
         else
-            cd $CORE_DIRECTORY/modules/kickstarter
+            if [ -d $CORE_DIRECTORY/modules/kickstarter ]; then
+                rm -rf $CORE_DIRECTORY/modules/kickstarter
 
-            git fetch --all
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-
-            git reset --hard origin/$MODULE_KICKSTARTER_BRANCH
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-
-            git submodule update
-            if [ $? -ne 0 ]; then
-                exit 1
+                if [ -d $CORE_DIRECTORY/build ]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
             fi
         fi
-    else
-        if [ -d $CORE_DIRECTORY/modules/kickstarter ]; then
-            rm -rf $CORE_DIRECTORY/modules/kickstarter
 
-            if [ -d $CORE_DIRECTORY/build ]; then
-                rm -rf $CORE_DIRECTORY/build
-            fi
-        fi
-    fi
+        if [ $MODULE_EXPERIENCED_ENABLED == "true" ]; then
+            if [ ! -d $CORE_DIRECTORY/modules/experienced ]; then
+                git clone --recursive --branch $MODULE_EXPERIENCED_BRANCH --depth 1 $MODULE_EXPERIENCED_URL $CORE_DIRECTORY/modules/experienced
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/experienced
 
-    if [ $MODULE_EXPERIENCED_ENABLED == "true" ]; then
-        if [ ! -d $CORE_DIRECTORY/modules/experienced ]; then
-            git clone --recursive --branch $MODULE_EXPERIENCED_BRANCH --depth 1 $MODULE_EXPERIENCED_URL $CORE_DIRECTORY/modules/experienced
-            if [ $? -ne 0 ]; then
-                exit 1
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/$MODULE_EXPERIENCED_BRANCH
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
             fi
         else
-            cd $CORE_DIRECTORY/modules/experienced
+            if [ -d $CORE_DIRECTORY/modules/experienced ]; then
+                rm -rf $CORE_DIRECTORY/modules/experienced
 
-            git fetch --all
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-
-            git reset --hard origin/$MODULE_EXPERIENCED_BRANCH
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-
-            git submodule update
-            if [ $? -ne 0 ]; then
-                exit 1
-            fi
-        fi
-    else
-        if [ -d $CORE_DIRECTORY/modules/experienced ]; then
-            rm -rf $CORE_DIRECTORY/modules/experienced
-
-            if [ -d $CORE_DIRECTORY/build ]; then
-                rm -rf $CORE_DIRECTORY/build
+                if [ -d $CORE_DIRECTORY/build ]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
             fi
         fi
     fi

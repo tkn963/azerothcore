@@ -536,10 +536,30 @@ function start_server()
     echo -e "\e[0;32mStarting server\e[0m"
 
     if [[ -z `screen -list | grep -E "auth"` ]] && [[ -z `screen -list | grep -E "world"` ]]; then
+        if [[ $1 == "auth" ]] || [[ $1 == "all" ]]; then
+            if [[ ! -f $CORE_DIRECTORY/bin/authserver ]] || [[ ! -f $CORE_DIRECTORY/bin/auth.sh ]]; then
+                echo -e "\e[0;33mUnable to locate the required executables\e[0m"
+
+                exit 1
+            fi
+        fi
+
+        if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
+            if [[ ! -f $CORE_DIRECTORY/bin/worldserver ]] || [[ ! -f $CORE_DIRECTORY/bin/world.sh ]]; then
+                echo -e "\e[0;33mUnable to locate the required executables\e[0m"
+
+                exit 1
+            fi
+        fi
+
         if [ -f $CORE_DIRECTORY/bin/start.sh ]; then
             echo -e "\e[0;33mStarting the server process\e[0m"
 
             cd $CORE_DIRECTORY/bin && ./start.sh
+        else
+            echo -e "\e[0;33mUnable to locate the required executable\e[0m"
+
+            exit 1
         fi
     else
         echo -e "\e[0;33mThe server is already running\e[0m"
@@ -567,6 +587,10 @@ function stop_server()
             echo -e "\e[0;33mStopping the server process\e[0m"
 
             cd $CORE_DIRECTORY/bin && ./shutdown.sh
+        else
+            echo -e "\e[0;33mUnable to locate the required executable\e[0m"
+
+            exit 1
         fi
     else
         echo -e "\e[0;33mNo running server found\e[0m"

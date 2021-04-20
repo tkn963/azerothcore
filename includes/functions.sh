@@ -591,7 +591,7 @@ function stop_server()
 
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
         if [[ ! -z `screen -list | grep -E "world"` ]]; then
-            echo -e "\e[0;33mSending command saveall to the world server\e[0m"
+            echo -e "\e[0;33mTelling the world server to save\e[0m"
 
             screen -S world -p 0 -X stuff "saveall^m"
 

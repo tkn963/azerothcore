@@ -565,3 +565,47 @@ function update_configuration()
         fi
     fi
 }
+
+function start_server()
+{
+    clear
+
+    echo -e "\e[0;32mStarting server\e[0m"
+
+    if [[ -z `screen -list | grep -E "auth"` ]] && [[ -z `screen -list | grep -E "world"` ]]; then
+        if [ -f $CORE_DIRECTORY/bin/start.sh ]; then
+            echo -e "\e[0;33mStarting the server process\e[0m"
+
+            cd $CORE_DIRECTORY/bin && ./start.sh
+        fi
+    else
+        echo -e "\e[0;33mThe server is already running\e[0m"
+    fi
+}
+
+function stop_server()
+{
+    clear
+
+    echo -e "\e[0;32mStopping server\e[0m"
+
+    if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
+        if [[ ! -z `screen -list | grep -E "world"` ]]; then
+            echo -e "\e[0;33mSending command saveall to the world server\e[0m"
+
+            screen -S world -p 0 -X stuff "saveall^m"
+
+            sleep 3
+        fi
+    fi
+
+    if [[ ! -z `screen -list | grep -E "auth"` ]] || [[ ! -z `screen -list | grep -E "world"` ]]; then
+        if [ -f $CORE_DIRECTORY/bin/shutdown.sh ]; then
+            echo -e "\e[0;33mStopping the server process\e[0m"
+
+            cd $CORE_DIRECTORY/bin && ./shutdown.sh
+        fi
+    else
+        echo -e "\e[0;33mNo running server found\e[0m"
+    fi
+}

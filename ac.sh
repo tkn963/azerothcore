@@ -23,13 +23,15 @@ if [ $# -eq 2 ]; then
         elif [[ $2 == "configuration" ]] || [[ $2 == "config" ]] || [[ $2 == "conf" ]] || [[ $2 == "cfg" ]]; then
             update_configuration $1
         elif [ $2 == "start" ]; then
-            echo "$1 $2"
+            start_server $1
         elif [ $2 == "stop" ]; then
-            echo "$1 $2"
+            stop_server $1
         elif [ $2 == "all" ]; then
+            stop_server $1
             perform_setup $1
             import_database $1
             update_configuration $1
+            start_server $1
         else
             invalid_arguments
         fi

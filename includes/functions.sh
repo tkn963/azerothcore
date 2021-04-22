@@ -142,6 +142,8 @@ function build_server()
         fi
     fi
 
+    #sed -i 's/    if (!group->IsLeader(GetPlayer()->GetGUID()) || group->isLFGGroup())/    if (!group->IsLeader(GetPlayer()->GetGUID()))/g' $CORE_DIRECTORY/src/server/game/Handlers/GroupHandler.cpp
+
     echo -e "\e[0;32mCompiling source code\e[0m"
 
     mkdir -p $CORE_DIRECTORY/build && cd $_

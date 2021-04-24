@@ -354,6 +354,11 @@ DELETE FROM `creature_queststarter` WHERE `id`=@Entry AND `quest`=@Quest;
 INSERT INTO `creature_queststarter` (`id`, `quest`) VALUES (@Entry, @Quest);
 DELETE FROM `creature_questender` WHERE `id`=@Entry AND `quest`=@Quest;
 INSERT INTO `creature_questender` (`id`, `quest`) VALUES (@Entry, @Quest);
+
+-- An unholy Alliance
+SET @Quest := 14352;
+DELETE FROM `creature_questender` WHERE `id`=@Entry AND `quest`=@Quest;
+INSERT INTO `creature_questender` (`id`, `quest`) VALUES (@Entry, @Quest);
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------

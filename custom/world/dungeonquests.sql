@@ -312,18 +312,18 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `
 
 -- Crate with Holes (Blueleaf Tubers)
 DELETE FROM `gameobject` WHERE `guid`=@Entry;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES
-(@Entry, 21277, 47, 0, 0, 1941.8, 1558.89, 81.7565, 6.02563, 1);
+INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `state`) VALUES
+(@Entry, 21277, 47, 0, 0, 1941.8, 1558.89, 81.7565, 6.02563, 1, 1);
 
 -- Snufflenose Owner's Manual (Blueleaf Tubers)
 DELETE FROM `gameobject` WHERE `guid`=@Entry+1;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES
-(@Entry+1, 21530, 47, 0, 0, 1942.08, 1560.38, 81.9439, 6.10024, 1);
+INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `state`) VALUES
+(@Entry+1, 21530, 47, 0, 0, 1942.08, 1560.38, 81.9439, 6.10024, 1, 1);
 
 -- Snufflenose Command Sticks (Blueleaf Tubers)
 DELETE FROM `gameobject` WHERE `guid`=@Entry+2;
-INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`) VALUES
-(@Entry+2, 68865, 47, 0, 0, 1942.41, 1561.77, 82.1205, 6.09238, 1);
+INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `state`) VALUES
+(@Entry+2, 68865, 47, 0, 0, 1942.41, 1561.77, 82.1205, 6.09238, 1, 1);
 
 -- The Crone of the Kraul
 SET @Quest := 1101;

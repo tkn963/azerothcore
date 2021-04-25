@@ -194,7 +194,7 @@ Function Download-Data($type)
             }
 
             Write-Host -ForegroundColor Yellow "Extracting the data files"
-            Expand-Archive -LiteralPath "$root\bin\data.zip" -DestinationPath "$root\bin"
+            Expand-Archive -LiteralPath "$root\bin\data.zip" -DestinationPath "$root\bin\"
 
             Remove-Item "$root\bin\data.zip"
         }

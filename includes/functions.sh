@@ -39,6 +39,74 @@ function build_server()
     fi
 
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
+        if [ $MODULE_AHBOT_ENABLED == "true" ]; then
+            if [ ! -d $CORE_DIRECTORY/modules/ahbot ]; then
+                git clone --recursive --branch $MODULE_AHBOT_BRANCH --depth 1 $MODULE_AHBOT_URL $CORE_DIRECTORY/modules/ahbot
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/ahbot
+
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/$MODULE_AHBOT_BRANCH
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            fi
+        else
+            if [ -d $CORE_DIRECTORY/modules/ahbot ]; then
+                rm -rf $CORE_DIRECTORY/modules/ahbot
+
+                if [ -d $CORE_DIRECTORY/build ]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
+            fi
+        fi
+
+        if [ $MODULE_SKIP_DK_AREA_ENABLED == "true" ]; then
+            if [ ! -d $CORE_DIRECTORY/modules/skipdkarea ]; then
+                git clone --recursive --branch $MODULE_SKIPDKAREA_BRANCH --depth 1 $MODULE_SKIPDKAREA_URL $CORE_DIRECTORY/modules/skipdkarea
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/skipdkarea
+
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/$MODULE_SKIPDKAREA_BRANCH
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            fi
+        else
+            if [ -d $CORE_DIRECTORY/modules/skipdkarea ]; then
+                rm -rf $CORE_DIRECTORY/modules/skipdkarea
+
+                if [ -d $CORE_DIRECTORY/build ]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
+            fi
+        fi
+
         if [ $MODULE_KICKSTARTER_ENABLED == "true" ]; then
             if [ ! -d $CORE_DIRECTORY/modules/kickstarter ]; then
                 git clone --recursive --branch $MODULE_KICKSTARTER_BRANCH --depth 1 $MODULE_KICKSTARTER_URL $CORE_DIRECTORY/modules/kickstarter
@@ -298,6 +366,22 @@ function import_database()
                     done
                 fi
 
+                if  [ -d $CORE_DIRECTORY/modules/ahbot/sql/world/base ]; then
+                    for f in $CORE_DIRECTORY/modules/ahbot/sql/world/base/*.sql; do
+                        if [ ! -z `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names $MYSQL_DATABASE_WORLD -e "SHOW TABLES LIKE '$(basename $f .sql)'"` ]; then
+                            echo -e "\e[0;33mSkipping "$(basename $f)"\e[0m"
+                            continue;
+                        fi
+
+                        echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                        mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
+                        if [ $? -ne 0 ]; then
+                            rm -rf $MYSQL_CONFIG
+                            exit 1
+                        fi
+                    done
+                fi
+
                 if  [ -d $CORE_DIRECTORY/modules/kickstarter/sql/world/base ]; then
                     for f in $CORE_DIRECTORY/modules/kickstarter/sql/world/base/*.sql; do
                         echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
@@ -317,6 +401,14 @@ function import_database()
                             exit 1
                         fi
                     done
+                fi
+
+                if [ ! -z `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names $MYSQL_DATABASE_WORLD -e "SHOW TABLES LIKE 'mod_auctionhousebot'"` ]; then
+                    mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD -e "UPDATE mod_auctionhousebot SET minitems='$MODULE_AHBOT_MIN_ITEMS', maxitems='$MODULE_AHBOT_MAX_ITEMS'"
+                    if [ $? -ne 0 ]; then
+                        rm -rf $MYSQL_CONFIG
+                        exit 1
+                    fi
                 fi
 
                 mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH -e "DELETE FROM realmlist WHERE id='$WORLD_ID';INSERT INTO realmlist (id, name, address, localAddress, localSubnetMask, port) VALUES ('$WORLD_ID', '$WORLD_NAME', '$WORLD_IP', '$WORLD_IP', '255.255.255.0', '8085')"
@@ -408,6 +500,29 @@ function update_configuration()
             sed -i 's/GM.LowerSecurity =.*/GM.LowerSecurity = '$WORLD_GM_LOWER_SECURITY'/g' $CORE_DIRECTORY/etc/worldserver.conf
 
             sed -i 's/Warden.Enabled =.*/Warden.Enabled = 0/g' $CORE_DIRECTORY/etc/worldserver.conf
+
+            if [ -f $CORE_DIRECTORY/etc/modules/mod_ahbot.conf.dist ]; then
+                echo -e "\e[0;33mUpdating mod_ahbot.conf\e[0m"
+
+                cp $CORE_DIRECTORY/etc/modules/mod_ahbot.conf.dist $CORE_DIRECTORY/etc/modules/mod_ahbot.conf
+                sed -i 's/AuctionHouseBot.EnableSeller =.*/AuctionHouseBot.EnableSeller = '$MODULE_AHBOT_ENABLE_SELLER'/g' $CORE_DIRECTORY/etc/modules/mod_ahbot.conf
+                sed -i 's/AuctionHouseBot.EnableBuyer =.*/AuctionHouseBot.EnableBuyer = '$MODULE_AHBOT_ENABLE_BUYER'/g' $CORE_DIRECTORY/etc/modules/mod_ahbot.conf
+                sed -i 's/AuctionHouseBot.Account =.*/AuctionHouseBot.Account = '$MODULE_AHBOT_ACCOUNT_ID'/g' $CORE_DIRECTORY/etc/modules/mod_ahbot.conf
+                sed -i 's/AuctionHouseBot.GUID =.*/AuctionHouseBot.GUID = '$MODULE_AHBOT_CHARACTER_GUID'/g' $CORE_DIRECTORY/etc/modules/mod_ahbot.conf
+            fi
+
+            if [ -f $CORE_DIRECTORY/etc/modules/SkipDKModule.conf.dist ]; then
+                echo -e "\e[0;33mUpdating SkipDKModule.conf\e[0m"
+
+                cp $CORE_DIRECTORY/etc/modules/SkipDKModule.conf.dist $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
+                sed -i 's/GM.Skip.Deathknight.Starter.Enable =.*/GM.Skip.Deathknight.Starter.Enable = 1/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
+                sed -i 's/Skip.Deathknight.Starter.Enable =.*/Skip.Deathknight.Starter.Enable = 1/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
+                if [ $WORLD_START_LEVEL -ge 58 ]; then
+                    sed -i 's/Skip.Deathknight.Start.Level =.*/Skip.Deathknight.Start.Level = '$WORLD_START_LEVEL'/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
+                else
+                    sed -i 's/Skip.Deathknight.Start.Level =.*/Skip.Deathknight.Start.Level = 58/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
+                fi
+            fi
 
             if [ -f $CORE_DIRECTORY/etc/modules/kickstarter.conf.dist ]; then
                 echo -e "\e[0;33mUpdating kickstarter.conf\e[0m"

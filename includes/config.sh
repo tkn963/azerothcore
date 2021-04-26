@@ -7,16 +7,12 @@ MYSQL_CONFIG="$ROOT/mysql.cnf"
 if [ ! -f $ROOT/$CONFIG_FILE ]; then
     clear
     echo -e "\e[0;33mGenerating default configuration\e[0m"
-    echo "<?xml version=\"1.0\"?><config><mysql><hostname>127.0.0.1</hostname><port>3306</port><username>acore</username><password>acore</password><database><auth>acore_auth</auth><characters>acore_characters</characters><world>acore_world</world></database></mysql><core><directory>/opt/azerothcore</directory></core><world><name>AzerothCore</name><motd>Welcome to AzerothCore!</motd><id>1</id><ip>127.0.0.1</ip><game_type>1</game_type><realm_zone>8</realm_zone><player_limit>1000</player_limit><skip_cinematics>0</skip_cinematics><start_level>1</start_level><start_money>0</start_money><always_max_skill>0</always_max_skill><all_flight_paths>0</all_flight_paths><maps_explored>0</maps_explored><allow_commands>0</allow_commands><quest_ignore_raid>0</quest_ignore_raid><prevent_afk_logout>0</prevent_afk_logout><raf_max_level>60</raf_max_level><rates><experience>1</experience><rested_exp>1</rested_exp><reputation>1</reputation><money>1</money><crafting>1</crafting><gathering>1</gathering><weapon_skill>1</weapon_skill><defense_skill>1</defense_skill></rates><gm><login_state>1</login_state><visible>0</visible><chat>0</chat><whisper>0</whisper><gm_list>0</gm_list><who_list>0</who_list><allow_friend>0</allow_friend><allow_invite>0</allow_invite><lower_security>0</lower_security></gm></world><module><ahbot><enabled>false</enabled><enable_seller>0</enable_seller><enable_buyer>0</enable_buyer><account_id>1</account_id><character_guid>1</character_guid><min_items>250</min_items><max_items>250</max_items></ahbot><skip_dk_area><enabled>false</enabled></skip_dk_area><kickstarter><enabled>false</enabled><functions><equipment>1</equipment><gems>1</gems><glyphs>1</glyphs><spells>1</spells><proficiency><enabled>1</enabled><max_skill>1</max_skill></proficiency><mounts>1</mounts><utilities><enabled>1</enabled><name_change>1</name_change><race_change>1</race_change><faction_change>1</faction_change><appearance_change>1</appearance_change></utilities></functions></kickstarter></module></config>" | xmllint --format - > $ROOT/$CONFIG_FILE
+    echo "<?xml version=\"1.0\"?><config><mysql><hostname>127.0.0.1</hostname><port>3306</port><username>acore</username><password>acore</password><database><auth>acore_auth</auth><characters>acore_characters</characters><world>acore_world</world></database></mysql><core><directory>/opt/azerothcore</directory></core><world><name>AzerothCore</name><motd>Welcome to AzerothCore!</motd><id>1</id><ip>127.0.0.1</ip><game_type>1</game_type><realm_zone>8</realm_zone><player_limit>1000</player_limit><skip_cinematics>0</skip_cinematics><start_level>1</start_level><start_money>0</start_money><always_max_skill>0</always_max_skill><all_flight_paths>0</all_flight_paths><maps_explored>0</maps_explored><allow_commands>0</allow_commands><quest_ignore_raid>0</quest_ignore_raid><prevent_afk_logout>0</prevent_afk_logout><raf_max_level>60</raf_max_level><rates><experience>1</experience><rested_exp>1</rested_exp><reputation>1</reputation><money>1</money><crafting>1</crafting><gathering>1</gathering><weapon_skill>1</weapon_skill><defense_skill>1</defense_skill></rates><gm><login_state>1</login_state><visible>0</visible><chat>0</chat><whisper>0</whisper><gm_list>0</gm_list><who_list>0</who_list><allow_friend>0</allow_friend><allow_invite>0</allow_invite><lower_security>0</lower_security></gm></world><module><kickstarter><enabled>false</enabled><functions><equipment>1</equipment><gems>1</gems><glyphs>1</glyphs><spells>1</spells><proficiency><enabled>1</enabled><max_skill>1</max_skill></proficiency><mounts>1</mounts><utilities><enabled>1</enabled><name_change>1</name_change><race_change>1</race_change><faction_change>1</faction_change><appearance_change>1</appearance_change></utilities></functions></kickstarter></module></config>" | xmllint --format - > $ROOT/$CONFIG_FILE
     exit 1
 fi
 
 AZEROTHCORE_URL="https://github.com/azerothcore/azerothcore-wotlk.git"
 AZEROTHCORE_BRANCH="master"
-MODULE_AHBOT_URL="https://github.com/azerothcore/mod-ah-bot.git"
-MODULE_AHBOT_BRANCH="master"
-MODULE_SKIPDKAREA_URL="https://github.com/Crypticaz/SkipDeathKnightStartingArea.git"
-MODULE_SKIPDKAREA_BRANCH="master"
 MODULE_KICKSTARTER_URL="https://github.com/tkn963/kickstarter.git"
 MODULE_KICKSTARTER_BRANCH="main"
 
@@ -66,16 +62,6 @@ WORLD_GM_WHO_LIST="$(echo "cat /config/world/gm/who_list/text()" | xmllint --noc
 WORLD_GM_ALLOW_FRIEND="$(echo "cat /config/world/gm/allow_friend/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 WORLD_GM_ALLOW_INVITE="$(echo "cat /config/world/gm/allow_invite/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 WORLD_GM_LOWER_SECURITY="$(echo "cat /config/world/gm/lower_security/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-
-MODULE_AHBOT_ENABLED="$(echo "cat /config/module/ahbot/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_AHBOT_ENABLE_SELLER="$(echo "cat /config/module/ahbot/enable_seller/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_AHBOT_ENABLE_BUYER="$(echo "cat /config/module/ahbot/enable_buyer/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_AHBOT_ACCOUNT_ID="$(echo "cat /config/module/ahbot/account_id/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_AHBOT_CHARACTER_GUID="$(echo "cat /config/module/ahbot/character_guid/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_AHBOT_MIN_ITEMS="$(echo "cat /config/module/ahbot/min_items/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_AHBOT_MAX_ITEMS="$(echo "cat /config/module/ahbot/max_items/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-
-MODULE_SKIP_DK_AREA_ENABLED="$(echo "cat /config/module/skip_dk_area/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 
 MODULE_KICKSTARTER_ENABLED="$(echo "cat /config/module/kickstarter/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT="$(echo "cat /config/module/kickstarter/functions/equipment/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
@@ -133,14 +119,6 @@ if [[ -z $MYSQL_HOSTNAME ]] || [[ $MYSQL_HOSTNAME == "" ]] ||
    [[ -z $WORLD_GM_ALLOW_FRIEND ]] || [[ $WORLD_GM_ALLOW_FRIEND == "" ]] || 
    [[ -z $WORLD_GM_ALLOW_INVITE ]] || [[ $WORLD_GM_ALLOW_INVITE == "" ]] || 
    [[ -z $WORLD_GM_LOWER_SECURITY ]] || [[ $WORLD_GM_LOWER_SECURITY == "" ]] || 
-   [[ -z $MODULE_AHBOT_ENABLED ]] || [[ $MODULE_AHBOT_ENABLED == "" ]] || 
-   [[ -z $MODULE_AHBOT_ENABLE_SELLER ]] || [[ $MODULE_AHBOT_ENABLE_SELLER == "" ]] || 
-   [[ -z $MODULE_AHBOT_ENABLE_BUYER ]] || [[ $MODULE_AHBOT_ENABLE_BUYER == "" ]] || 
-   [[ -z $MODULE_AHBOT_ACCOUNT_ID ]] || [[ $MODULE_AHBOT_ACCOUNT_ID == "" ]] || 
-   [[ -z $MODULE_AHBOT_CHARACTER_GUID ]] || [[ $MODULE_AHBOT_CHARACTER_GUID == "" ]] || 
-   [[ -z $MODULE_AHBOT_MIN_ITEMS ]] || [[ $MODULE_AHBOT_MIN_ITEMS == "" ]] || 
-   [[ -z $MODULE_AHBOT_MAX_ITEMS ]] || [[ $MODULE_AHBOT_MAX_ITEMS == "" ]] || 
-   [[ -z $MODULE_SKIP_DK_AREA_ENABLED ]] || [[ $MODULE_SKIP_DK_AREA_ENABLED == "" ]] || 
    [[ -z $MODULE_KICKSTARTER_ENABLED ]] || [[ $MODULE_KICKSTARTER_ENABLED == "" ]] || 
    [[ -z $MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT == "" ]] || 
    [[ -z $MODULE_KICKSTARTER_FUNCTIONS_GEMS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_GEMS == "" ]] || 

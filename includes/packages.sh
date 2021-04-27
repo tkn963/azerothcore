@@ -76,23 +76,3 @@ function install_database_packages()
         fi
     fi
 }
-
-function install_backup_packages()
-{
-    if [[ $OS == "ubuntu" ]]; then
-        if [[ $VERSION == "20.04" ]] || [[ $VERSION == "20.10" ]]; then
-
-            if [ $(dpkg-query -W -f='${Status}' mysql-client 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-                apt-get --yes update
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-
-                apt-get --yes install mysql-client
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-            fi
-        fi
-    fi
-}

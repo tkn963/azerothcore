@@ -615,7 +615,7 @@ function stop_server()
 
 function backup_server()
 {
-    install_backup_packages
+    install_database_packages
 
     clear
 

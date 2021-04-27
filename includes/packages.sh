@@ -33,7 +33,11 @@ function install_build_packages()
     if [[ $OS == "ubuntu" ]]; then
         PACKAGES="${PACKAGES} cmake libmysqlclient-dev mysql-client"
     elif [[ $OS == "debian" ]]; then
-        PACKAGES="${PACKAGES} default-libmysqlclient-dev default-mysql-client"
+        if [ $(dpkg-query -W -f='${Status}' mysql-server 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
+            PACKAGES="${PACKAGES} libmysqlclient-dev mysql-client"
+        else
+            PACKAGES="${PACKAGES} default-libmysqlclient-dev default-mysql-client"
+        fi
     fi
 
     for p in "${PACKAGES[@]}"; do
@@ -96,7 +100,11 @@ function install_database_packages()
     if [[ $OS == "ubuntu" ]]; then
         PACKAGE="mysql-client"
     elif [[ $OS == "debian" ]]; then
-        PACKAGE="default-mysql-client"
+        if [ $(dpkg-query -W -f='${Status}' mysql-server 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
+            PACKAGE="mysql-client"
+        else
+            PACKAGE="default-mysql-client"
+        fi
     fi
 
     if [ $(dpkg-query -W -f='${Status}' $PACKAGE 2>/dev/null | grep -c "ok installed") -eq 0 ]; then

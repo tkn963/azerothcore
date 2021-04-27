@@ -166,26 +166,12 @@ function build_server()
     echo -e "\e[0;32mCreating scripts\e[0m"
 
     echo "#!/bin/bash" > $CORE_DIRECTORY/bin/start.sh
+    echo "#!/bin/bash" > $CORE_DIRECTORY/bin/shutdown.sh
+
     if [[ $1 == "auth" ]] || [[ $1 == "all" ]]; then
         echo "screen -AmdS auth ./auth.sh" >> $CORE_DIRECTORY/bin/start.sh
-    fi
-    if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
-        echo "screen -AmdS world ./world.sh" >> $CORE_DIRECTORY/bin/start.sh
-    fi
-
-    chmod +x $CORE_DIRECTORY/bin/start.sh
-
-    echo "#!/bin/bash" > $CORE_DIRECTORY/bin/shutdown.sh
-    if [[ $1 == "auth" ]] || [[ $1 == "all" ]]; then
         echo "screen -X -S \"auth\" quit" >> $CORE_DIRECTORY/bin/shutdown.sh
-    fi
-    if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
-        echo "screen -X -S \"world\" quit" >> $CORE_DIRECTORY/bin/shutdown.sh
-    fi
 
-    chmod +x $CORE_DIRECTORY/bin/shutdown.sh
-
-    if [[ $1 == "auth" ]] || [[ $1 == "all" ]]; then
         echo "#!/bin/sh" > $CORE_DIRECTORY/bin/auth.sh
         echo "while :; do" >> $CORE_DIRECTORY/bin/auth.sh
         echo "./authserver" >> $CORE_DIRECTORY/bin/auth.sh
@@ -200,6 +186,9 @@ function build_server()
     fi
 
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
+        echo "screen -AmdS world ./world.sh" >> $CORE_DIRECTORY/bin/start.sh
+        echo "screen -X -S \"world\" quit" >> $CORE_DIRECTORY/bin/shutdown.sh
+
         echo "#!/bin/sh" > $CORE_DIRECTORY/bin/world.sh
         echo "while :; do" >> $CORE_DIRECTORY/bin/world.sh
         echo "./worldserver" >> $CORE_DIRECTORY/bin/world.sh
@@ -213,11 +202,14 @@ function build_server()
         fi
     fi
 
+    chmod +x $CORE_DIRECTORY/bin/start.sh
+    chmod +x $CORE_DIRECTORY/bin/shutdown.sh
+
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
         if [ ! -d $CORE_DIRECTORY/bin/Cameras ] || [ ! -d $CORE_DIRECTORY/bin/dbc ] || [ ! -d $CORE_DIRECTORY/bin/maps ] || [ ! -d $CORE_DIRECTORY/bin/mmaps ] || [ ! -d $CORE_DIRECTORY/bin/vmaps ]; then
             echo -e "\n\e[0;32mDownloading data files\e[0m"
 
-            wget $CLIENT_DATA $CORE_DIRECTORY/bin/data.zip
+            wget $CLIENT_DATA -O $CORE_DIRECTORY/bin/data.zip
             if [ $? -ne 0 ]; then
                 exit 1
             fi

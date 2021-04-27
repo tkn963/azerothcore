@@ -655,7 +655,7 @@ function backup_server()
 
     if [ -d $ROOT/backup/$BACKUP_DATE ]; then
         cd $ROOT/backup/$BACKUP_DATE
-        zip -q -r -9 $ROOT/backup/$BACKUP_DATE.zip *
+        tar -czvf $ROOT/backup/$BACKUP_DATE.tar.gz *
         rm -rf $ROOT/backup/$BACKUP_DATE
     fi
 

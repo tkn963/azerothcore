@@ -296,7 +296,7 @@ function import_database()
                 fi
 
                 if [ -d $ROOT/custom/auth ]; then
-                    if [[ -z "$(ls -A $ROOT/custom/auth/)" ]]; then
+                    if [[ ! -z "$(ls -A $ROOT/custom/auth/)" ]]; then
                         for f in $ROOT/custom/auth/*.sql; do
                             echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
                             mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH < $f
@@ -395,7 +395,7 @@ function import_database()
                 fi
 
                 if [[ -d $ROOT/custom/world ]]; then
-                    if [[ -z "$(ls -A $ROOT/custom/world/)" ]]; then
+                    if [[ ! -z "$(ls -A $ROOT/custom/world/)" ]]; then
                         for f in $ROOT/custom/world/*.sql; do
                             echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
                             mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f

@@ -294,8 +294,8 @@ function import_database()
                     done
                 fi
 
-                if [ -d $ROOT/custom ]; then
-                    if [ -d $ROOT/custom/auth ]; then
+                if [ -d $ROOT/custom/auth ]; then
+                    if [[ -z "$(ls -A $ROOT/custom/auth/)" ]]; then
                         for f in $ROOT/custom/auth/*.sql; do
                             echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
                             mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH < $f

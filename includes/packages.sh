@@ -31,12 +31,12 @@ function install_build_packages()
               "unzip")
 
     if [[ $OS == "ubuntu" ]]; then
-        PACKAGES="${PACKAGES} cmake libmysqlclient-dev mysql-client"
+        PACKAGES+=("cmake" "libmysqlclient-dev" "mysql-client")
     elif [[ $OS == "debian" ]]; then
         if [ $(dpkg-query -W -f='${Status}' mysql-server 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
-            PACKAGES="${PACKAGES} libmysqlclient-dev mysql-client"
+            PACKAGES+=("libmysqlclient-dev" "mysql-client")
         else
-            PACKAGES="${PACKAGES} default-libmysqlclient-dev default-mysql-client"
+            PACKAGES+=("default-libmysqlclient-dev" "default-mysql-client")
         fi
     fi
 

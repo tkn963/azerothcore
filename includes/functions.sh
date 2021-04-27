@@ -142,6 +142,7 @@ function build_server()
         fi
     fi
 
+    # Uncomment the line below to allow changing loot mode while in a LFG group
     #sed -i 's/    if (!group->IsLeader(GetPlayer()->GetGUID()) || group->isLFGGroup())/    if (!group->IsLeader(GetPlayer()->GetGUID()))/g' $CORE_DIRECTORY/src/server/game/Handlers/GroupHandler.cpp
 
     echo -e "\e[0;32mCompiling source code\e[0m"

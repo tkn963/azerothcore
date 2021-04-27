@@ -99,7 +99,7 @@ function install_database_packages()
         PACKAGE="default-mysql-client"
     fi
 
-    if [ $(dpkg-query -W -f='${Status}' mysql-client 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+    if [ $(dpkg-query -W -f='${Status}' $PACKAGE 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
         apt-get --yes update
         if [ $? -ne 0 ]; then
             exit 1

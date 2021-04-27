@@ -5,7 +5,7 @@ The server is not public, only I play on it and I multibox so things like having
 
 The script currently supports Debian 10, Ubuntu 20.04 and Ubuntu 20.10.
 
-I never run the script as anything other than root so I won't be adding support for anything else.
+I never run the script as anything other than root so I unfortunately will not be adding support for non-root users.
 
 # Commands
 Using the script and passing it either auth, world or all will install either or all of the systems.

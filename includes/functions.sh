@@ -217,7 +217,7 @@ function build_server()
         if [ ! -d $CORE_DIRECTORY/bin/Cameras ] || [ ! -d $CORE_DIRECTORY/bin/dbc ] || [ ! -d $CORE_DIRECTORY/bin/maps ] || [ ! -d $CORE_DIRECTORY/bin/mmaps ] || [ ! -d $CORE_DIRECTORY/bin/vmaps ]; then
             echo -e "\n\e[0;32mDownloading data files\e[0m"
 
-            curl -L $CLIENT_DATA > $CORE_DIRECTORY/bin/data.zip
+            wget $CLIENT_DATA $CORE_DIRECTORY/bin/data.zip
             if [ $? -ne 0 ]; then
                 exit 1
             fi

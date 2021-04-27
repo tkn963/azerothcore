@@ -27,14 +27,14 @@ function install_build_packages()
               "libace-6.*" 
               "libace-dev" 
               "screen" 
-              "curl" 
+              "wget" 
               "unzip")
 
     if [[ $OS == "ubuntu" ]]; then
         PACKAGES+=("cmake" "libmysqlclient-dev" "mysql-client")
     elif [[ $OS == "debian" ]]; then
         if [ $(dpkg-query -W -f='${Status}' mysql-server 2>/dev/null | grep -c "ok installed") -eq 1 ]; then
-            PACKAGES+=("libmysqlclient-dev" "mysql-client")
+            PACKAGES+=("libmysqlclient-dev" "mysql-client" "zlib1g-dev")
         else
             PACKAGES+=("default-libmysqlclient-dev" "default-mysql-client")
         fi
@@ -61,7 +61,7 @@ function install_build_packages()
     if [[ $OS == "debian" ]]; then
         if ! command -v cmake &> /dev/null; then
             if [[ ! -f cmake-3.16.3.tar.gz ]]; then
-                curl -L https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3.tar.gz > $ROOT/cmake-3.16.3.tar.gz
+                wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3.tar.gz $ROOT/cmake-3.16.3.tar.gz
                 if [ $? -ne 0 ]; then
                     exit 1
                 fi

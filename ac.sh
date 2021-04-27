@@ -14,26 +14,34 @@ for i in "${INCLUDES[@]}"; do
     fi
 done
 
-if [ $# -eq 2 ]; then
-    if [[ $1 == "all" ]] || [[ $1 == "auth" ]] || [[ $1 == "world" ]]; then
-        if [[ $2 == "setup" ]] || [[ $2 == "install" ]] || [[ $2 == "update" ]]; then
-            build_server $1
-        elif [[ $2 == "database" ]] || [[ $2 == "db" ]]; then
-            import_database $1
-        elif [[ $2 == "configuration" ]] || [[ $2 == "config" ]] || [[ $2 == "conf" ]] || [[ $2 == "cfg" ]]; then
-            update_configuration $1
-        elif [ $2 == "start" ]; then
+if [ $# -gt 0 ]; then
+    if [ $# -eq 2 ]; then
+        if [[ $1 == "all" ]] || [[ $1 == "auth" ]] || [[ $1 == "world" ]]; then
+            if [[ $2 == "setup" ]] || [[ $2 == "install" ]] || [[ $2 == "update" ]]; then
+                build_server $1
+            elif [[ $2 == "database" ]] || [[ $2 == "db" ]]; then
+                import_database $1
+            elif [[ $2 == "configuration" ]] || [[ $2 == "config" ]] || [[ $2 == "conf" ]] || [[ $2 == "cfg" ]]; then
+                update_configuration $1
+            elif [ $2 == "all" ]; then
+                stop_server $1
+                build_server $1
+                import_database $1
+                update_configuration $1
+                start_server $1
+            elif [ $2 == "backup" ]; then
+                backup_server $1
+            else
+                invalid_arguments
+            fi
+        else
+            invalid_arguments
+        fi
+    elif [ $# -eq 1 ]; then
+        if [ $1 == "start" ]; then
             start_server $1
-        elif [ $2 == "stop" ]; then
+        elif [ $1 == "stop" ]; then
             stop_server $1
-        elif [ $2 == "all" ]; then
-            stop_server $1
-            build_server $1
-            import_database $1
-            update_configuration $1
-            start_server $1
-        elif [ $2 == "backup" ]; then
-            backup_server $1
         else
             invalid_arguments
         fi

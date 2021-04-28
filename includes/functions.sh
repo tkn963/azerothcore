@@ -2,7 +2,8 @@
 
 function invalid_arguments()
 {
-    echo -e "\n\e[0;32mInvalid arguments\e[0m"
+    clear
+    echo -e "\e[0;32mInvalid arguments\e[0m"
     echo -e "\e[0;33mThe supplied arguments are invalid\e[0m"
 }
 
@@ -210,10 +211,10 @@ function build_server()
     chmod +x $CORE_DIRECTORY/bin/shutdown.sh
 
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
-        if [ ! -d $CORE_DIRECTORY/bin/Cameras ] || [ ! -d $CORE_DIRECTORY/bin/dbc ] || [ ! -d $CORE_DIRECTORY/bin/maps ] || [ ! -d $CORE_DIRECTORY/bin/mmaps ] || [ ! -d $CORE_DIRECTORY/bin/vmaps ]; then
+        if [ ! -d $CORE_DIRECTORY/bin/dbc ] || [ ! -d $CORE_DIRECTORY/bin/maps ] || [ ! -d $CORE_DIRECTORY/bin/mmaps ] || [ ! -d $CORE_DIRECTORY/bin/vmaps ]; then
             clear
 
-            echo -e "\n\e[0;32mDownloading data files\e[0m"
+            echo -e "\e[0;32mDownloading data files\e[0m"
 
             curl -L $CLIENT_DATA > $CORE_DIRECTORY/bin/data.zip
             if [ $? -ne 0 ]; then

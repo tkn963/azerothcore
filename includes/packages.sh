@@ -1,15 +1,13 @@
 #!/bin/bash
-if [[ $OS == "ubuntu" ]] || [[ $OS == "debian" ]]; then
-    if [ $(dpkg-query -W -f='${Status}' libxml2-utils 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
-        apt-get --yes update
-        if [ $? -ne 0 ]; then
-            exit 1
-        fi
+if [ $(dpkg-query -W -f='${Status}' libxml2-utils 2>/dev/null | grep -c "ok installed") -eq 0 ]; then
+    apt-get --yes update
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
 
-        apt-get --yes install libxml2-utils
-        if [ $? -ne 0 ]; then
-            exit 1
-        fi
+    apt-get --yes install libxml2-utils
+    if [ $? -ne 0 ]; then
+        exit 1
     fi
 fi
 

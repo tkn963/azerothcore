@@ -145,6 +145,8 @@ function build_server()
     # Uncomment the line below to allow changing loot mode while in a LFG group
     #sed -i 's/    if (!group->IsLeader(GetPlayer()->GetGUID()) || group->isLFGGroup())/    if (!group->IsLeader(GetPlayer()->GetGUID()))/g' $CORE_DIRECTORY/src/server/game/Handlers/GroupHandler.cpp
 
+    clear
+
     echo -e "\e[0;32mCompiling source code\e[0m"
 
     mkdir -p $CORE_DIRECTORY/build && cd $_
@@ -162,6 +164,8 @@ function build_server()
     if [ $? -ne 0 ]; then
         exit 1
     fi
+
+    clear
 
     echo -e "\e[0;32mCreating scripts\e[0m"
 
@@ -207,6 +211,8 @@ function build_server()
 
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
         if [ ! -d $CORE_DIRECTORY/bin/Cameras ] || [ ! -d $CORE_DIRECTORY/bin/dbc ] || [ ! -d $CORE_DIRECTORY/bin/maps ] || [ ! -d $CORE_DIRECTORY/bin/mmaps ] || [ ! -d $CORE_DIRECTORY/bin/vmaps ]; then
+            clear
+
             echo -e "\n\e[0;32mDownloading data files\e[0m"
 
             curl -L $CLIENT_DATA > $CORE_DIRECTORY/bin/data.zip

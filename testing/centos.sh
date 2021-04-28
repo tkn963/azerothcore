@@ -1,8 +1,9 @@
 #!/bin/bash
 ROOT=$(pwd)
+CORE_DIRECTORY=/opt/azerothcore
 
 if [ $(yum list installed epel-release 2>/dev/null | wc -l) -eq 0 ]; then
-    dnf install --yes epel-release
+    yum install -y epel-release
 fi
 
 # Missing packages: libace-6.* libace-dev
@@ -13,7 +14,10 @@ PACKAGES=("git"
           "clang"
           "mysql-devel"
           "mysql"
+          "perl"
+          "perl-libs"
           "openssl-devel"
+          "compat-openssl10"
           "bzip2-devel"
           "readline-devel"
           "ncurses-devel"
@@ -29,7 +33,7 @@ for p in "${PACKAGES[@]}"; do
 done
 
 if [ ${#INSTALL[@]} -gt 0 ]; then
-    dnf --yes install ${INSTALL[*]}
+    yum install -y ${INSTALL[*]}
     if [ $? -ne 0 ]; then
         exit 1
     fi
@@ -61,6 +65,54 @@ if ! command -v cmake &> /dev/null; then
     fi
 
     make install
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+fi
+
+if [ $(yum list installed mpc 2>/dev/null | wc -l) -eq 0 ]; then
+    rpm -Uv ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/devel:/libraries:/ACE:/micro/CentOS_7/x86_64/mpc-6.5.4-75.1.x86_64.rpm
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+
+    yum install -y mpc
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+fi
+
+if [ $(yum list installed perl-Net-Telnet 2>/dev/null | wc -l) -eq 0 ]; then
+    rpm -Uv ftp://ftp.pbone.net/mirror/rnd.rajven.net/centos/8.1.1911/os/x86_64/perl-Net-Telnet-3.04-1cnt8.noarch.rpm
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+
+    yum install -y perl-Net-Telnet
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+fi
+
+if [ $(yum list installed ace 2>/dev/null | wc -l) -eq 0 ]; then
+    rpm -Uv ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/devel:/libraries:/ACE:/micro/CentOS_7/x86_64/ace-6.5.4-75.1.x86_64.rpm
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+
+    yum install -y ace
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+fi
+
+if [ $(yum list installed ace-devel 2>/dev/null | wc -l) -eq 0 ]; then
+    rpm -Uv ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/devel:/libraries:/ACE:/micro/CentOS_7/x86_64/ace-devel-6.5.4-75.1.x86_64.rpm
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
+
+    yum install -y ace-devel
     if [ $? -ne 0 ]; then
         exit 1
     fi

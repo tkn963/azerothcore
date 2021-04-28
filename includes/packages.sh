@@ -60,7 +60,7 @@ function install_build_packages()
 
     if [[ $OS == "debian" ]]; then
         if ! command -v cmake &> /dev/null; then
-            if [[ ! -f cmake-3.16.3.tar.gz ]]; then
+            if [[ ! -f $ROOT/cmake-3.16.3.tar.gz ]]; then
                 curl -L https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3.tar.gz > $ROOT/cmake-3.16.3.tar.gz
                 if [ $? -ne 0 ]; then
                     exit 1
@@ -72,7 +72,6 @@ function install_build_packages()
                 exit 1
             fi
 
-            rm -rf $ROOT/cmake-3.16.3.tar.gz
             cd $ROOT/cmake-3.16.3
 
             ./bootstrap
@@ -89,8 +88,6 @@ function install_build_packages()
             if [ $? -ne 0 ]; then
                 exit 1
             fi
-
-            rm -rf $ROOT/cmake-3.16.3
         fi
     fi
 }

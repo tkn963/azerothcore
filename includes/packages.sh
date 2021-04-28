@@ -31,13 +31,7 @@ function install_build_packages()
         fi
     fi
 
-    PACKAGES=("git" 
-              "make" 
-              "gcc" 
-              "clang" 
-              "screen" 
-              "curl" 
-              "unzip")
+    PACKAGES=("git" "make" "gcc" "clang" "screen" "curl" "unzip")
 
     if [[ $OS == "debian" ]] || [[ $OS == "ubuntu" ]]; then
         PACKAGES+=("g++" "libssl-dev" "libbz2-dev" "libreadline-dev" "libncurses-dev" "libace-6.*" "libace-dev")

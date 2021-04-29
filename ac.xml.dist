@@ -32,6 +32,7 @@
     <quest_ignore_raid>0</quest_ignore_raid>
     <prevent_afk_logout>0</prevent_afk_logout>
     <raf_max_level>60</raf_max_level>
+    <allow_lfg_lootmode>false</allow_lfg_lootmode>
     <rates>
       <experience>1</experience>
       <rested_exp>1</rested_exp>

@@ -32,8 +32,8 @@
     <quest_ignore_raid>0</quest_ignore_raid>
     <prevent_afk_logout>0</prevent_afk_logout>
     <raf_max_level>60</raf_max_level>
-    <preload_map_grids>false</preload_map_grids>
-    <set_all_waypoints_active>false</set_all_waypoints_active>
+    <preload_map_grids>0</preload_map_grids>
+    <set_all_waypoints_active>0</set_all_waypoints_active>
     <allow_lfg_lootmode>false</allow_lfg_lootmode>
     <rates>
       <experience>1</experience>

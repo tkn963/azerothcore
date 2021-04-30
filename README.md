@@ -1,9 +1,9 @@
 # AzerothCore
 This is the content I use with my World of Warcraft: Wrath of the Lich King server. The core I use is [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk).
 
-The server is not public, only I play on it and I multibox so things like having group-looted quest items for me is a must. I use the Bash script to manage the server on a few Proxmox Containers running Debian 10. The Authserver and Worldserver are run separately so the script has to handle that too. I also have a few containers specifically for MySQL-databases, so the script won't handle the MySQL-server.
+The server is not public, only I play on it and I multibox so things like having group-looted quest items for me is a must. I use the Bash script to manage the server on a few Proxmox Containers running Ubuntu 20.04. The Authserver and Worldserver are run separately so the script has to handle that too. I also have a few containers specifically for MySQL-databases, so the script won't handle the MySQL-server.
 
-The script currently supports CentOS 8, Debian 10, Ubuntu 20.04 and Ubuntu 20.10.
+The script supports Ubuntu 20.04 and Ubuntu 20.10.
 
 I never run the script as anything other than root so I unfortunately will not be adding support for non-root users.
 

@@ -28,7 +28,7 @@ if [ $# -gt 0 ]; then
                 build_server $1
                 import_database $1
                 update_configuration $1
-                start_server $1
+                start_server
             elif [ $2 == "backup" ]; then
                 backup_server $1
             else
@@ -39,7 +39,7 @@ if [ $# -gt 0 ]; then
         fi
     elif [ $# -eq 1 ]; then
         if [ $1 == "start" ]; then
-            start_server $1
+            start_server
         elif [ $1 == "stop" ]; then
             stop_server $1
         else

@@ -69,7 +69,7 @@
     </ahbot>
     <skip_dk_area>
       <enabled>false</enabled>
-    </skip_dk_area>  
+    </skip_dk_area>
     <kickstarter>
       <enabled>false</enabled>
       <functions>

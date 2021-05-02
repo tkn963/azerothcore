@@ -21,8 +21,10 @@
     <ip>127.0.0.1</ip>
     <game_type>1</game_type>
     <realm_zone>8</realm_zone>
+    <expansion>2</expansion>
     <player_limit>1000</player_limit>
     <skip_cinematics>0</skip_cinematics>
+    <max_level>80</max_level>
     <start_level>1</start_level>
     <start_money>0</start_money>
     <always_max_skill>0</always_max_skill>

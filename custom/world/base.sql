@@ -3,7 +3,7 @@ UPDATE `playercreateinfo` SET `map`=1, `zone`=1637, `position_x`=1632.663452, `p
 -- Set spawn to Stormwind for alliance
 UPDATE `playercreateinfo` SET `map`=0, `zone`=1519, `position_x`=-8831.482422, `position_y`=624.786682, `position_z`=93.901566, `orientation`=0.794381 WHERE `race` IN (1, 3, 4, 7, 11) AND `class` NOT LIKE 6;
 
--- Set class spell prices to 0
+/*-- Set class spell prices to 0
 -- Warrior
 UPDATE `npc_trainer` SET `MoneyCost`=0 WHERE `ID` IN (200001, 200002);
 -- Paladin
@@ -33,4 +33,4 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `
 -- Alliance
 DELETE FROM `creature` WHERE `guid`=9000001;
 INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(9000001, 9000000, 0, 1519, 1519, -8827.855469, 647.297913, 94.538979, 5.294718);
+(9000001, 9000000, 0, 1519, 1519, -8827.855469, 647.297913, 94.538979, 5.294718);*/

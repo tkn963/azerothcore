@@ -396,11 +396,23 @@ function import_database()
 
                 if [[ -d $ROOT/custom/world ]]; then
                     if [[ ! -z "$(ls -A $ROOT/custom/world/)" ]]; then
-                        for f in $ROOT/custom/world/*.sql; do
-                            echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
-                            mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
-                            if [ $? -ne 0 ]; then
-                                exit 1
+                        for f in $ROOT/custom/world/*; do
+                            if [ -d "$f" ]; then
+                                if [[ ! -z "$(ls -A $f)" ]]; then
+                                    for d in $f/*.sql; do
+                                        echo -e "\e[0;33mImporting "$(basename $d)"\e[0m"
+                                        mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $d
+                                        if [ $? -ne 0 ]; then
+                                            exit 1
+                                        fi
+                                    done
+                                fi
+                            else
+                                echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                                mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
+                                if [ $? -ne 0 ]; then
+                                    exit 1
+                                fi
                             fi
                         done
                     fi

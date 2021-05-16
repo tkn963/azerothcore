@@ -1,9 +1,9 @@
 -- ----------------------------------------------------------
--- Heirloom Vendor - Armor
+-- Heirloom Vendor - Weapons
 -- ----------------------------------------------------------
 DELETE FROM `creature_template` WHERE `entry`=9000010;
 INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `unit_class`) VALUES
-(9000010, 15322, 'Cenarion Emissary Blackhoof', 'Heirloom Armor', 1, 1, 35, 128, 0, 0, 0, 0, 1);
+(9000010, 15322, 'Cenarion Emissary Blackhoof', 'Heirloom Weapons', 1, 1, 35, 128, 0, 0, 0, 0, 1);
 
 -- Horde
 DELETE FROM `creature` WHERE `guid`=9000010;
@@ -35,11 +35,11 @@ INSERT INTO `npc_vendor` (`entry`, `item`) VALUES (9000010, 49177);
 -- ----------------------------------------------------------
 
 -- ----------------------------------------------------------
--- Heirloom Vendor - Weapons
+-- Heirloom Vendor - Armor
 -- ----------------------------------------------------------
 DELETE FROM `creature_template` WHERE `entry`=9000012;
 INSERT INTO `creature_template` (`entry`, `modelid1`, `name`, `subname`, `minlevel`, `maxlevel`, `faction`, `npcflag`, `trainer_type`, `trainer_spell`, `trainer_class`, `trainer_race`, `unit_class`) VALUES
-(9000012, 18648, 'Emissary Mordin', 'Heirloom Weapons', 1, 1, 35, 128, 0, 0, 0, 0, 1);
+(9000012, 18648, 'Emissary Mordin', 'Heirloom Armor', 1, 1, 35, 128, 0, 0, 0, 0, 1);
 
 -- Horde
 DELETE FROM `creature` WHERE `guid`=9000012;

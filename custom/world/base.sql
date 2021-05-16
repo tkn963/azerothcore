@@ -24,7 +24,7 @@ UPDATE `npc_trainer` SET `MoneyCost`=0 WHERE `ID` IN (200007, 200008);
 UPDATE `npc_trainer` SET `MoneyCost`=0 WHERE `ID` IN (200009, 200010);
 -- Druid
 UPDATE `npc_trainer` SET `MoneyCost`=0 WHERE `ID` IN (200005, 200006);
-
+*/
 -- Spawn Kickstarter
 -- Horde
 DELETE FROM `creature` WHERE `guid`=9000000;
@@ -33,4 +33,4 @@ INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `
 -- Alliance
 DELETE FROM `creature` WHERE `guid`=9000001;
 INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES
-(9000001, 9000000, 0, 1519, 1519, -8827.855469, 647.297913, 94.538979, 5.294718);*/
+(9000001, 9000000, 0, 1519, 1519, -8827.855469, 647.297913, 94.538979, 5.294718);

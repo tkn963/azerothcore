@@ -1,4 +1,1 @@
-0 0 * * * cd /root && ./ac.sh all backup
-0 6 * * * cd /root && ./ac.sh all backup
-0 12 * * * cd /root && ./ac.sh all backup
-0 18 * * * cd /root && ./ac.sh all backup
+0 * * * * cd /root && ./ac.sh all backup

@@ -248,8 +248,6 @@ function import_database()
     echo "port=\"$MYSQL_PORT\"" >> $MYSQL_CONFIG
     echo "user=\"$MYSQL_USERNAME\"" >> $MYSQL_CONFIG
     echo "password=\"$MYSQL_PASSWORD\"" >> $MYSQL_CONFIG
-    echo "[mysqldump]" >> $MYSQL_CONFIG
-    echo "column-statistics=0" >> $MYSQL_CONFIG
 
     if [[ $1 == "auth" ]] || [[ $1 == "all" ]]; then
         if [ ! -z `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names -e "SHOW DATABASES LIKE '$MYSQL_DATABASE_AUTH'"` ]; then
@@ -437,8 +435,6 @@ function import_database()
             exit 1
         fi
     fi
-
-    rm -rf $MYSQL_CONFIG
 }
 
 function update_configuration()
@@ -626,8 +622,6 @@ function backup_server()
     echo "port=\"$MYSQL_PORT\"" >> $MYSQL_CONFIG
     echo "user=\"$MYSQL_USERNAME\"" >> $MYSQL_CONFIG
     echo "password=\"$MYSQL_PASSWORD\"" >> $MYSQL_CONFIG
-    echo "[mysqldump]" >> $MYSQL_CONFIG
-    echo "column-statistics=0" >> $MYSQL_CONFIG
 
     BACKUP_DATE=$(date +"%Y-%m-%d_%H-%M")
 
@@ -657,7 +651,7 @@ function backup_server()
 
     if [ -d $ROOT/backup/$BACKUP_DATE ]; then
         cd $ROOT/backup/$BACKUP_DATE
-        tar -czvf $ROOT/backup/$BACKUP_DATE.tar.gz *
+        tar -czvf $ROOT/backup/$BACKUP_DATE.tar.gz * > /dev/null 2>&1
         rm -rf $ROOT/backup/$BACKUP_DATE
     fi
 

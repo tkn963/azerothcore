@@ -40,6 +40,40 @@ function build_server()
     fi
 
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
+        if [ $MODULE_ELUNA_ENABLED == "true" ]; then
+            if [ ! -d $CORE_DIRECTORY/modules/eluna ]; then
+                git clone --recursive --branch $MODULE_ELUNA_BRANCH --depth 1 $MODULE_ELUNA_URL $CORE_DIRECTORY/modules/eluna
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/eluna
+
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/$MODULE_ELUNA_BRANCH
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            fi
+        else
+            if [ -d $CORE_DIRECTORY/modules/eluna ]; then
+                rm -rf $CORE_DIRECTORY/modules/eluna
+
+                if [ -d $CORE_DIRECTORY/build ]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
+            fi
+        fi
+
         if [ $MODULE_AHBOT_ENABLED == "true" ]; then
             if [ ! -d $CORE_DIRECTORY/modules/ahbot ]; then
                 git clone --recursive --branch $MODULE_AHBOT_BRANCH --depth 1 $MODULE_AHBOT_URL $CORE_DIRECTORY/modules/ahbot
@@ -101,74 +135,6 @@ function build_server()
         else
             if [ -d $CORE_DIRECTORY/modules/skipdkarea ]; then
                 rm -rf $CORE_DIRECTORY/modules/skipdkarea
-
-                if [ -d $CORE_DIRECTORY/build ]; then
-                    rm -rf $CORE_DIRECTORY/build
-                fi
-            fi
-        fi
-
-        if [ $MODULE_KICKSTARTER_ENABLED == "true" ]; then
-            if [ ! -d $CORE_DIRECTORY/modules/kickstarter ]; then
-                git clone --recursive --branch $MODULE_KICKSTARTER_BRANCH --depth 1 $MODULE_KICKSTARTER_URL $CORE_DIRECTORY/modules/kickstarter
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-            else
-                cd $CORE_DIRECTORY/modules/kickstarter
-
-                git fetch --all
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-
-                git reset --hard origin/$MODULE_KICKSTARTER_BRANCH
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-
-                git submodule update
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-            fi
-        else
-            if [ -d $CORE_DIRECTORY/modules/kickstarter ]; then
-                rm -rf $CORE_DIRECTORY/modules/kickstarter
-
-                if [ -d $CORE_DIRECTORY/build ]; then
-                    rm -rf $CORE_DIRECTORY/build
-                fi
-            fi
-        fi
-
-        if [ $MODULE_EXPERIENCED_ENABLED == "true" ]; then
-            if [ ! -d $CORE_DIRECTORY/modules/experienced ]; then
-                git clone --recursive --branch $MODULE_EXPERIENCED_BRANCH --depth 1 $MODULE_EXPERIENCED_URL $CORE_DIRECTORY/modules/experienced
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-            else
-                cd $CORE_DIRECTORY/modules/experienced
-
-                git fetch --all
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-
-                git reset --hard origin/$MODULE_EXPERIENCED_BRANCH
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-
-                git submodule update
-                if [ $? -ne 0 ]; then
-                    exit 1
-                fi
-            fi
-        else
-            if [ -d $CORE_DIRECTORY/modules/experienced ]; then
-                rm -rf $CORE_DIRECTORY/modules/experienced
 
                 if [ -d $CORE_DIRECTORY/build ]; then
                     rm -rf $CORE_DIRECTORY/build
@@ -415,17 +381,6 @@ function import_database()
                     done
                 fi
 
-                if  [ -d $CORE_DIRECTORY/modules/kickstarter/sql/world/base ]; then
-                    for f in $CORE_DIRECTORY/modules/kickstarter/sql/world/base/*.sql; do
-                        echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
-                        mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
-                        if [ $? -ne 0 ]; then
-                            rm -rf $MYSQL_CONFIG
-                            exit 1
-                        fi
-                    done
-                fi
-
                 if [[ -d $ROOT/custom/world ]]; then
                     if [[ ! -z "$(ls -A $ROOT/custom/world/)" ]]; then
                         for f in $ROOT/custom/world/*; do
@@ -554,6 +509,12 @@ function update_configuration()
             if [ -f $CORE_DIRECTORY/etc/modules/mod_ahbot.conf.dist ]; then
                 echo -e "\e[0;33mUpdating mod_ahbot.conf\e[0m"
 
+                cp $CORE_DIRECTORY/etc/modules/mod_LuaEngine.conf.dist $CORE_DIRECTORY/etc/modules/mod_LuaEngine.conf
+            fi
+
+            if [ -f $CORE_DIRECTORY/etc/modules/mod_ahbot.conf.dist ]; then
+                echo -e "\e[0;33mUpdating mod_ahbot.conf\e[0m"
+
                 cp $CORE_DIRECTORY/etc/modules/mod_ahbot.conf.dist $CORE_DIRECTORY/etc/modules/mod_ahbot.conf
                 sed -i 's/AuctionHouseBot.EnableSeller =.*/AuctionHouseBot.EnableSeller = '$MODULE_AHBOT_ENABLE_SELLER'/g' $CORE_DIRECTORY/etc/modules/mod_ahbot.conf
                 sed -i 's/AuctionHouseBot.EnableBuyer =.*/AuctionHouseBot.EnableBuyer = '$MODULE_AHBOT_ENABLE_BUYER'/g' $CORE_DIRECTORY/etc/modules/mod_ahbot.conf
@@ -572,24 +533,6 @@ function update_configuration()
                 else
                     sed -i 's/Skip.Deathknight.Start.Level =.*/Skip.Deathknight.Start.Level = 58/g' $CORE_DIRECTORY/etc/modules/SkipDKModule.conf
                 fi
-            fi
-
-            if [ -f $CORE_DIRECTORY/etc/modules/kickstarter.conf.dist ]; then
-                echo -e "\e[0;33mUpdating kickstarter.conf\e[0m"
-
-                cp $CORE_DIRECTORY/etc/modules/kickstarter.conf.dist $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Equipment =.*/Kickstarter.Equipment = '$MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Gems =.*/Kickstarter.Gems = '$MODULE_KICKSTARTER_FUNCTIONS_GEMS'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Glyphs =.*/Kickstarter.Glyphs = '$MODULE_KICKSTARTER_FUNCTIONS_GLYPHS'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Spells =.*/Kickstarter.Spells = '$MODULE_KICKSTARTER_FUNCTIONS_SPELLS'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Proficiency =.*/Kickstarter.Proficiency = '$MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_ENABLED'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Proficiency.Max =.*/Kickstarter.Proficiency.Max = '$MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_MAX_SKILL'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Mounts =.*/Kickstarter.Mounts = '$MODULE_KICKSTARTER_FUNCTIONS_MOUNTS'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Utilities =.*/Kickstarter.Utilities = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_ENABLED'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Utilities.ChangeName =.*/Kickstarter.Utilities.ChangeName = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Utilities.ChangeRace =.*/Kickstarter.Utilities.ChangeRace = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Utilities.ChangeFaction =.*/Kickstarter.Utilities.ChangeFaction = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
-                sed -i 's/Kickstarter.Utilities.ChangeAppearance =.*/Kickstarter.Utilities.ChangeAppearance = '$MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE'/g' $CORE_DIRECTORY/etc/modules/kickstarter.conf
             fi
         fi
     fi

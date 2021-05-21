@@ -60,6 +60,9 @@
     </gm>
   </world>
   <module>
+    <eluna>
+      <enabled>false</enabled>
+    </eluna>
     <ahbot>
       <enabled>false</enabled>
       <enable_seller>0</enable_seller>
@@ -72,29 +75,5 @@
     <skip_dk_area>
       <enabled>false</enabled>
     </skip_dk_area>
-    <kickstarter>
-      <enabled>false</enabled>
-      <functions>
-        <equipment>1</equipment>
-        <gems>1</gems>
-        <glyphs>1</glyphs>
-        <spells>1</spells>
-        <proficiency>
-          <enabled>1</enabled>
-          <max_skill>1</max_skill>
-        </proficiency>
-        <mounts>1</mounts>
-        <utilities>
-          <enabled>1</enabled>
-          <name_change>1</name_change>
-          <race_change>1</race_change>
-          <faction_change>1</faction_change>
-          <appearance_change>1</appearance_change>
-        </utilities>
-      </functions>
-    </kickstarter>
-    <experienced>
-      <enabled>false</enabled>
-    </experienced>
   </module>
 </config>

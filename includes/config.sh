@@ -7,20 +7,18 @@ MYSQL_CONFIG="$ROOT/mysql.cnf"
 if [ ! -f $ROOT/$CONFIG_FILE ]; then
     clear
     echo -e "\e[0;33mGenerating default configuration\e[0m"
-    echo "<?xml version=\"1.0\"?><config><mysql><hostname>127.0.0.1</hostname> <!-- Hostname --><port>3306</port><username>acore</username><password>acore</password><database><auth>acore_auth</auth><characters>acore_characters</characters><world>acore_world</world></database></mysql><core><directory>/opt/azerothcore</directory></core><world><name>AzerothCore</name><motd>Welcome to AzerothCore!</motd><id>1</id><ip>127.0.0.1</ip><game_type>1</game_type><realm_zone>8</realm_zone><player_limit>1000</player_limit><skip_cinematics>0</skip_cinematics><start_level>1</start_level><start_money>0</start_money><always_max_skill>0</always_max_skill><all_flight_paths>0</all_flight_paths><maps_explored>0</maps_explored><allow_commands>0</allow_commands><quest_ignore_raid>0</quest_ignore_raid><prevent_afk_logout>0</prevent_afk_logout><raf_max_level>60</raf_max_level><preload_map_grids>false</preload_map_grids><set_all_waypoints_active>false</set_all_waypoints_active><allow_lfg_lootmode>false</allow_lfg_lootmode><rates><experience>1</experience><rested_exp>1</rested_exp><reputation>1</reputation><money>1</money><crafting>1</crafting><gathering>1</gathering><weapon_skill>1</weapon_skill><defense_skill>1</defense_skill></rates><gm><login_state>1</login_state><visible>0</visible><chat>0</chat><whisper>0</whisper><gm_list>0</gm_list><who_list>0</who_list><allow_friend>0</allow_friend><allow_invite>0</allow_invite><lower_security>0</lower_security></gm></world><module><ahbot><enabled>false</enabled><enable_seller>0</enable_seller><enable_buyer>0</enable_buyer><account_id>1</account_id><character_guid>1</character_guid><min_items>250</min_items><max_items>250</max_items></ahbot><skip_dk_area><enabled>false</enabled></skip_dk_area><kickstarter><enabled>false</enabled><functions><equipment>1</equipment><gems>1</gems><glyphs>1</glyphs><spells>1</spells><proficiency><enabled>1</enabled><max_skill>1</max_skill></proficiency><mounts>1</mounts><utilities><enabled>1</enabled><name_change>1</name_change><race_change>1</race_change><faction_change>1</faction_change><appearance_change>1</appearance_change></utilities></functions></kickstarter><experienced><enabled>false</enabled></experienced></module></config>" | xmllint --format - > $ROOT/$CONFIG_FILE
+    echo "<?xml version=\"1.0\"?><config><mysql><hostname>127.0.0.1</hostname> <!-- Hostname --><port>3306</port><username>acore</username><password>acore</password><database><auth>acore_auth</auth><characters>acore_characters</characters><world>acore_world</world></database></mysql><core><directory>/opt/azerothcore</directory></core><world><name>AzerothCore</name><motd>Welcome to AzerothCore!</motd><id>1</id><ip>127.0.0.1</ip><game_type>1</game_type><realm_zone>8</realm_zone><player_limit>1000</player_limit><skip_cinematics>0</skip_cinematics><start_level>1</start_level><start_money>0</start_money><always_max_skill>0</always_max_skill><all_flight_paths>0</all_flight_paths><maps_explored>0</maps_explored><allow_commands>0</allow_commands><quest_ignore_raid>0</quest_ignore_raid><prevent_afk_logout>0</prevent_afk_logout><raf_max_level>60</raf_max_level><preload_map_grids>false</preload_map_grids><set_all_waypoints_active>false</set_all_waypoints_active><allow_lfg_lootmode>false</allow_lfg_lootmode><rates><experience>1</experience><rested_exp>1</rested_exp><reputation>1</reputation><money>1</money><crafting>1</crafting><gathering>1</gathering><weapon_skill>1</weapon_skill><defense_skill>1</defense_skill></rates><gm><login_state>1</login_state><visible>0</visible><chat>0</chat><whisper>0</whisper><gm_list>0</gm_list><who_list>0</who_list><allow_friend>0</allow_friend><allow_invite>0</allow_invite><lower_security>0</lower_security></gm></world><module><eluna><enabled>false</enabled></eluna><ahbot><enabled>false</enabled><enable_seller>0</enable_seller><enable_buyer>0</enable_buyer><account_id>1</account_id><character_guid>1</character_guid><min_items>250</min_items><max_items>250</max_items></ahbot><skip_dk_area><enabled>false</enabled></skip_dk_area></module></config>" | xmllint --format - > $ROOT/$CONFIG_FILE
     exit 1
 fi
 
 AZEROTHCORE_URL="https://github.com/azerothcore/azerothcore-wotlk.git"
 AZEROTHCORE_BRANCH="master"
+MODULE_ELUNA_URL="https://github.com/azerothcore/mod-eluna-lua-engine.git"
+MODULE_ELUNA_BRANCH="master"
 MODULE_AHBOT_URL="https://github.com/azerothcore/mod-ah-bot.git"
 MODULE_AHBOT_BRANCH="master"
 MODULE_SKIPDKAREA_URL="https://github.com/Crypticaz/SkipDeathKnightStartingArea.git"
 MODULE_SKIPDKAREA_BRANCH="master"
-MODULE_KICKSTARTER_URL="https://github.com/tkn963/kickstarter.git"
-MODULE_KICKSTARTER_BRANCH="main"
-MODULE_EXPERIENCED_URL="https://github.com/tkn963/experienced.git"
-MODULE_EXPERIENCED_BRANCH="master"
 
 CLIENT_DATA="https://github.com/wowgaming/client-data/releases/download/v10/data.zip"
 
@@ -74,6 +72,8 @@ WORLD_GM_ALLOW_FRIEND="$(echo "cat /config/world/gm/allow_friend/text()" | xmlli
 WORLD_GM_ALLOW_INVITE="$(echo "cat /config/world/gm/allow_invite/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 WORLD_GM_LOWER_SECURITY="$(echo "cat /config/world/gm/lower_security/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 
+MODULE_ELUNA_ENABLED="$(echo "cat /config/module/eluna/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
+
 MODULE_AHBOT_ENABLED="$(echo "cat /config/module/ahbot/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 MODULE_AHBOT_ENABLE_SELLER="$(echo "cat /config/module/ahbot/enable_seller/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 MODULE_AHBOT_ENABLE_BUYER="$(echo "cat /config/module/ahbot/enable_buyer/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
@@ -83,22 +83,6 @@ MODULE_AHBOT_MIN_ITEMS="$(echo "cat /config/module/ahbot/min_items/text()" | xml
 MODULE_AHBOT_MAX_ITEMS="$(echo "cat /config/module/ahbot/max_items/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 
 MODULE_SKIP_DK_AREA_ENABLED="$(echo "cat /config/module/skip_dk_area/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-
-MODULE_KICKSTARTER_ENABLED="$(echo "cat /config/module/kickstarter/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT="$(echo "cat /config/module/kickstarter/functions/equipment/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_GEMS="$(echo "cat /config/module/kickstarter/functions/gems/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_GLYPHS="$(echo "cat /config/module/kickstarter/functions/glyphs/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_SPELLS="$(echo "cat /config/module/kickstarter/functions/spells/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_ENABLED="$(echo "cat /config/module/kickstarter/functions/proficiency/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_MAX_SKILL="$(echo "cat /config/module/kickstarter/functions/proficiency/max_skill/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_MOUNTS="$(echo "cat /config/module/kickstarter/functions/mounts/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_ENABLED="$(echo "cat /config/module/kickstarter/functions/utilities/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE="$(echo "cat /config/module/kickstarter/functions/utilities/name_change/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE="$(echo "cat /config/module/kickstarter/functions/utilities/race_change/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE="$(echo "cat /config/module/kickstarter/functions/utilities/faction_change/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE="$(echo "cat /config/module/kickstarter/functions/utilities/appearance_change/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
-
-MODULE_EXPERIENCED_ENABLED="$(echo "cat /config/module/experienced/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 
 if [[ -z $MYSQL_HOSTNAME ]] || [[ $MYSQL_HOSTNAME == "" ]] || 
    [[ -z $MYSQL_PORT ]] || [[ $MYSQL_PORT == "" ]] || 
@@ -147,6 +131,7 @@ if [[ -z $MYSQL_HOSTNAME ]] || [[ $MYSQL_HOSTNAME == "" ]] ||
    [[ -z $WORLD_GM_ALLOW_FRIEND ]] || [[ $WORLD_GM_ALLOW_FRIEND == "" ]] || 
    [[ -z $WORLD_GM_ALLOW_INVITE ]] || [[ $WORLD_GM_ALLOW_INVITE == "" ]] || 
    [[ -z $WORLD_GM_LOWER_SECURITY ]] || [[ $WORLD_GM_LOWER_SECURITY == "" ]] || 
+   [[ -z $MODULE_ELUNA_ENABLED ]] || [[ $MODULE_ELUNA_ENABLED == "" ]] || 
    [[ -z $MODULE_AHBOT_ENABLED ]] || [[ $MODULE_AHBOT_ENABLED == "" ]] || 
    [[ -z $MODULE_AHBOT_ENABLE_SELLER ]] || [[ $MODULE_AHBOT_ENABLE_SELLER == "" ]] || 
    [[ -z $MODULE_AHBOT_ENABLE_BUYER ]] || [[ $MODULE_AHBOT_ENABLE_BUYER == "" ]] || 
@@ -154,21 +139,7 @@ if [[ -z $MYSQL_HOSTNAME ]] || [[ $MYSQL_HOSTNAME == "" ]] ||
    [[ -z $MODULE_AHBOT_CHARACTER_GUID ]] || [[ $MODULE_AHBOT_CHARACTER_GUID == "" ]] || 
    [[ -z $MODULE_AHBOT_MIN_ITEMS ]] || [[ $MODULE_AHBOT_MIN_ITEMS == "" ]] || 
    [[ -z $MODULE_AHBOT_MAX_ITEMS ]] || [[ $MODULE_AHBOT_MAX_ITEMS == "" ]] || 
-   [[ -z $MODULE_SKIP_DK_AREA_ENABLED ]] || [[ $MODULE_SKIP_DK_AREA_ENABLED == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_ENABLED ]] || [[ $MODULE_KICKSTARTER_ENABLED == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_EQUIPMENT == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_GEMS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_GEMS == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_GLYPHS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_GLYPHS == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_SPELLS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_SPELLS == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_ENABLED ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_ENABLED == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_MAX_SKILL ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_PROFICIENCY_MAX_SKILL == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_MOUNTS ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_MOUNTS == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_ENABLED ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_ENABLED == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE == "" ]] || 
-   [[ -z $MODULE_EXPERIENCED_ENABLED ]]; then
+   [[ -z $MODULE_SKIP_DK_AREA_ENABLED ]] || [[ $MODULE_SKIP_DK_AREA_ENABLED == "" ]]; then
     clear
     echo -e "\e[0;31mAtleast one of the configuration options is missing or invalid\e[0m"
     exit 1

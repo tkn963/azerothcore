@@ -93,5 +93,8 @@
         </utilities>
       </functions>
     </kickstarter>
+    <experienced>
+      <enabled>false</enabled>
+    </experienced>
   </module>
 </config>

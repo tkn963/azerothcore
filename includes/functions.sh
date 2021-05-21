@@ -141,6 +141,40 @@ function build_server()
                 fi
             fi
         fi
+
+        if [ $MODULE_EXPERIENCED_ENABLED == "true" ]; then
+            if [ ! -d $CORE_DIRECTORY/modules/experienced ]; then
+                git clone --recursive --branch $MODULE_EXPERIENCED_BRANCH --depth 1 $MODULE_EXPERIENCED_URL $CORE_DIRECTORY/modules/experienced
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            else
+                cd $CORE_DIRECTORY/modules/experienced
+
+                git fetch --all
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git reset --hard origin/$MODULE_EXPERIENCED_BRANCH
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+
+                git submodule update
+                if [ $? -ne 0 ]; then
+                    exit 1
+                fi
+            fi
+        else
+            if [ -d $CORE_DIRECTORY/modules/experienced ]; then
+                rm -rf $CORE_DIRECTORY/modules/experienced
+
+                if [ -d $CORE_DIRECTORY/build ]; then
+                    rm -rf $CORE_DIRECTORY/build
+                fi
+            fi
+        fi
     fi
 
     if [ $WORLD_ALLOW_LFG_LOOTMODE == "true" ]; then

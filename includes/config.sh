@@ -7,7 +7,7 @@ MYSQL_CONFIG="$ROOT/mysql.cnf"
 if [ ! -f $ROOT/$CONFIG_FILE ]; then
     clear
     echo -e "\e[0;33mGenerating default configuration\e[0m"
-    echo "<?xml version=\"1.0\"?><config><mysql><hostname>127.0.0.1</hostname> <!-- Hostname --><port>3306</port><username>acore</username><password>acore</password><database><auth>acore_auth</auth><characters>acore_characters</characters><world>acore_world</world></database></mysql><core><directory>/opt/azerothcore</directory></core><world><name>AzerothCore</name><motd>Welcome to AzerothCore!</motd><id>1</id><ip>127.0.0.1</ip><game_type>1</game_type><realm_zone>8</realm_zone><player_limit>1000</player_limit><skip_cinematics>0</skip_cinematics><start_level>1</start_level><start_money>0</start_money><always_max_skill>0</always_max_skill><all_flight_paths>0</all_flight_paths><maps_explored>0</maps_explored><allow_commands>0</allow_commands><quest_ignore_raid>0</quest_ignore_raid><prevent_afk_logout>0</prevent_afk_logout><raf_max_level>60</raf_max_level><preload_map_grids>false</preload_map_grids><set_all_waypoints_active>false</set_all_waypoints_active><allow_lfg_lootmode>false</allow_lfg_lootmode><rates><experience>1</experience><rested_exp>1</rested_exp><reputation>1</reputation><money>1</money><crafting>1</crafting><gathering>1</gathering><weapon_skill>1</weapon_skill><defense_skill>1</defense_skill></rates><gm><login_state>1</login_state><visible>0</visible><chat>0</chat><whisper>0</whisper><gm_list>0</gm_list><who_list>0</who_list><allow_friend>0</allow_friend><allow_invite>0</allow_invite><lower_security>0</lower_security></gm></world><module><ahbot><enabled>false</enabled><enable_seller>0</enable_seller><enable_buyer>0</enable_buyer><account_id>1</account_id><character_guid>1</character_guid><min_items>250</min_items><max_items>250</max_items></ahbot><skip_dk_area><enabled>false</enabled></skip_dk_area><kickstarter><enabled>false</enabled><functions><equipment>1</equipment><gems>1</gems><glyphs>1</glyphs><spells>1</spells><proficiency><enabled>1</enabled><max_skill>1</max_skill></proficiency><mounts>1</mounts><utilities><enabled>1</enabled><name_change>1</name_change><race_change>1</race_change><faction_change>1</faction_change><appearance_change>1</appearance_change></utilities></functions></kickstarter></module></config>" | xmllint --format - > $ROOT/$CONFIG_FILE
+    echo "<?xml version=\"1.0\"?><config><mysql><hostname>127.0.0.1</hostname> <!-- Hostname --><port>3306</port><username>acore</username><password>acore</password><database><auth>acore_auth</auth><characters>acore_characters</characters><world>acore_world</world></database></mysql><core><directory>/opt/azerothcore</directory></core><world><name>AzerothCore</name><motd>Welcome to AzerothCore!</motd><id>1</id><ip>127.0.0.1</ip><game_type>1</game_type><realm_zone>8</realm_zone><player_limit>1000</player_limit><skip_cinematics>0</skip_cinematics><start_level>1</start_level><start_money>0</start_money><always_max_skill>0</always_max_skill><all_flight_paths>0</all_flight_paths><maps_explored>0</maps_explored><allow_commands>0</allow_commands><quest_ignore_raid>0</quest_ignore_raid><prevent_afk_logout>0</prevent_afk_logout><raf_max_level>60</raf_max_level><preload_map_grids>false</preload_map_grids><set_all_waypoints_active>false</set_all_waypoints_active><allow_lfg_lootmode>false</allow_lfg_lootmode><rates><experience>1</experience><rested_exp>1</rested_exp><reputation>1</reputation><money>1</money><crafting>1</crafting><gathering>1</gathering><weapon_skill>1</weapon_skill><defense_skill>1</defense_skill></rates><gm><login_state>1</login_state><visible>0</visible><chat>0</chat><whisper>0</whisper><gm_list>0</gm_list><who_list>0</who_list><allow_friend>0</allow_friend><allow_invite>0</allow_invite><lower_security>0</lower_security></gm></world><module><ahbot><enabled>false</enabled><enable_seller>0</enable_seller><enable_buyer>0</enable_buyer><account_id>1</account_id><character_guid>1</character_guid><min_items>250</min_items><max_items>250</max_items></ahbot><skip_dk_area><enabled>false</enabled></skip_dk_area><kickstarter><enabled>false</enabled><functions><equipment>1</equipment><gems>1</gems><glyphs>1</glyphs><spells>1</spells><proficiency><enabled>1</enabled><max_skill>1</max_skill></proficiency><mounts>1</mounts><utilities><enabled>1</enabled><name_change>1</name_change><race_change>1</race_change><faction_change>1</faction_change><appearance_change>1</appearance_change></utilities></functions></kickstarter><experienced><enabled>false</enabled></experienced></module></config>" | xmllint --format - > $ROOT/$CONFIG_FILE
     exit 1
 fi
 
@@ -19,6 +19,8 @@ MODULE_SKIPDKAREA_URL="https://github.com/Crypticaz/SkipDeathKnightStartingArea.
 MODULE_SKIPDKAREA_BRANCH="master"
 MODULE_KICKSTARTER_URL="https://github.com/tkn963/kickstarter.git"
 MODULE_KICKSTARTER_BRANCH="main"
+MODULE_EXPERIENCED_URL="https://github.com/tkn963/experienced.git"
+MODULE_EXPERIENCED_BRANCH="main"
 
 CLIENT_DATA="https://github.com/wowgaming/client-data/releases/download/v10/data.zip"
 
@@ -96,6 +98,8 @@ MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE="$(echo "cat /config/module/k
 MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE="$(echo "cat /config/module/kickstarter/functions/utilities/faction_change/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE="$(echo "cat /config/module/kickstarter/functions/utilities/appearance_change/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 
+MODULE_EXPERIENCED_ENABLED="$(echo "cat /config/module/experienced/enabled/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
+
 if [[ -z $MYSQL_HOSTNAME ]] || [[ $MYSQL_HOSTNAME == "" ]] || 
    [[ -z $MYSQL_PORT ]] || [[ $MYSQL_PORT == "" ]] || 
    [[ -z $MYSQL_USERNAME ]] || [[ $MYSQL_USERNAME == "" ]] || 
@@ -163,7 +167,8 @@ if [[ -z $MYSQL_HOSTNAME ]] || [[ $MYSQL_HOSTNAME == "" ]] ||
    [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_NAME_CHANGE == "" ]] || 
    [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_RACE_CHANGE == "" ]] || 
    [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_FACTION_CHANGE == "" ]] || 
-   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE == "" ]]; then
+   [[ -z $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE ]] || [[ $MODULE_KICKSTARTER_FUNCTIONS_UTILITIES_APPEARANCE_CHANGE == "" ]] || 
+   [[ -z $MODULE_EXPERIENCED_ENABLED ]]; then
     clear
     echo -e "\e[0;31mAtleast one of the configuration options is missing or invalid\e[0m"
     exit 1

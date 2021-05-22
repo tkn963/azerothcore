@@ -86,17 +86,17 @@ local function onFirstLogin(event, player)
         end
     end
 
-    if not (player:GetClass() == CLASS_DEATH_KNIGHT) then
-        if (player:GetClass() == CLASS_HUNTER) then
-            player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG2);
-            player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG3);
-            player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG4);
-        else
-            player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG1);
-            player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG2);
-            player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG3);
-            player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG4);
-        end
+    if (player:GetClass() == CLASS_HUNTER) then
+        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG2);
+        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG3);
+        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG4);
+    elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
+        player:AddItem(INVENTORY_CONTAINER, 4);
+    else
+        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG1);
+        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG2);
+        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG3);
+        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG4);
     end
 
     if (player:GetClass() == CLASS_WARRIOR) then

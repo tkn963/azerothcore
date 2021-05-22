@@ -16,7 +16,7 @@ function build_server()
     echo -e "\e[0;32mDownloading source code\e[0m"
 
     if [ ! -d $CORE_DIRECTORY ]; then
-        git clone --recursive --branch $AZEROTHCORE_BRANCH --depth 1 $AZEROTHCORE_URL $CORE_DIRECTORY
+        git clone --recursive --branch $AZEROTHCORE_BRANCH $AZEROTHCORE_URL $CORE_DIRECTORY
         if [ $? -ne 0 ]; then
             exit 1
         fi
@@ -39,10 +39,18 @@ function build_server()
         fi
     fi
 
+    if [ "$GIT_COMMIT" != "main" ]; then
+        cd $CORE_DIRECTORY
+        git reset $GIT_COMMIT
+        if [ $? -ne 0 ]; then
+            exit 1
+        fi
+    fi
+
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then
         if [ $MODULE_ELUNA_ENABLED == "true" ]; then
             if [ ! -d $CORE_DIRECTORY/modules/eluna ]; then
-                git clone --recursive --branch $MODULE_ELUNA_BRANCH --depth 1 $MODULE_ELUNA_URL $CORE_DIRECTORY/modules/eluna
+                git clone --recursive --branch $MODULE_ELUNA_BRANCH $MODULE_ELUNA_URL $CORE_DIRECTORY/modules/eluna
                 if [ $? -ne 0 ]; then
                     exit 1
                 fi
@@ -76,7 +84,7 @@ function build_server()
 
         if [ $MODULE_AHBOT_ENABLED == "true" ]; then
             if [ ! -d $CORE_DIRECTORY/modules/ahbot ]; then
-                git clone --recursive --branch $MODULE_AHBOT_BRANCH --depth 1 $MODULE_AHBOT_URL $CORE_DIRECTORY/modules/ahbot
+                git clone --recursive --branch $MODULE_AHBOT_BRANCH $MODULE_AHBOT_URL $CORE_DIRECTORY/modules/ahbot
                 if [ $? -ne 0 ]; then
                     exit 1
                 fi
@@ -110,7 +118,7 @@ function build_server()
 
         if [ $MODULE_SKIP_DK_AREA_ENABLED == "true" ]; then
             if [ ! -d $CORE_DIRECTORY/modules/skipdkarea ]; then
-                git clone --recursive --branch $MODULE_SKIPDKAREA_BRANCH --depth 1 $MODULE_SKIPDKAREA_URL $CORE_DIRECTORY/modules/skipdkarea
+                git clone --recursive --branch $MODULE_SKIPDKAREA_BRANCH $MODULE_SKIPDKAREA_URL $CORE_DIRECTORY/modules/skipdkarea
                 if [ $? -ne 0 ]; then
                     exit 1
                 fi

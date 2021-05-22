@@ -13,6 +13,7 @@
   </mysql>
   <core>
     <directory>/opt/azerothcore</directory>
+    <git_commit>main</git_commit>
   </core>
   <world>
     <name>AzerothCore</name>

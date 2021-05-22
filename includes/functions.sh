@@ -514,8 +514,8 @@ function update_configuration()
 
             sed -i 's/Warden.Enabled =.*/Warden.Enabled = 0/g' $CORE_DIRECTORY/etc/worldserver.conf
 
-            if [ -f $CORE_DIRECTORY/etc/modules/mod_ahbot.conf.dist ]; then
-                echo -e "\e[0;33mUpdating mod_ahbot.conf\e[0m"
+            if [ -f $CORE_DIRECTORY/etc/modules/mod_LuaEngine.conf.dist ]; then
+                echo -e "\e[0;33mUpdating mod_LuaEngine.conf\e[0m"
 
                 cp $CORE_DIRECTORY/etc/modules/mod_LuaEngine.conf.dist $CORE_DIRECTORY/etc/modules/mod_LuaEngine.conf
             fi

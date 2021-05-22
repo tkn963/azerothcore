@@ -2,6 +2,7 @@ local EVENT_ON_GIVE_XP           = 12
 local EVENT_ON_MONEY_CHANGE      = 14
 local EVENT_ON_REPUTATION_CHANGE = 15
 local EVENT_ON_FIRST_LOGIN       = 30
+local EVENT_ON_COMMAND           = 42
 
 local TEAM_ALLIANCE              = 0
 local TEAM_HORDE                 = 1
@@ -34,6 +35,11 @@ local EQUIPMENT_SLOT_BAG3        = 21
 local EQUIPMENT_SLOT_BAG4        = 22
 
 local INVENTORY_CONTAINER        = 23162
+
+local AT_LOGIN_RENAME            = 0x01
+local AT_LOGIN_CUSTOMIZE         = 0x08
+local AT_LOGIN_CHANGE_FACTION    = 0x40
+local AT_LOGIN_CHANGE_RACE       = 0x80
 
 local function onGiveXP(event, player, amount, victim)
     if (player:GetLevel() < 60) then
@@ -93,9 +99,159 @@ local function onFirstLogin(event, player)
         end
     end
 
-    --if (player:GetClass() == CLASS_WARRIOR) then
-        --player:AddItem(42943);
-    --end
+    if (player:GetClass() == CLASS_WARRIOR) then
+        player:AddItem(42943);
+        player:AddItem(42945);
+        player:AddItem(42946);
+        player:AddItem(44092);
+        player:AddItem(44093);
+        player:AddItem(44096, 2);
+        player:AddItem(42949);
+        player:AddItem(44099);
+        player:AddItem(48685);
+    elseif (player:GetClass() == CLASS_PALADIN) then
+        player:AddItem(42943);
+        player:AddItem(42945);
+        player:AddItem(42948);
+        player:AddItem(44092);
+        player:AddItem(44094);
+        player:AddItem(44096);
+        player:AddItem(42949);
+        player:AddItem(44099);
+        player:AddItem(44100);
+        player:AddItem(48685);
+        player:AddItem(42992);
+    elseif (player:GetClass() == CLASS_HUNTER) then
+        player:AddItem(42944, 2);
+        player:AddItem(42946);
+        player:AddItem(44091, 2);
+        player:AddItem(44093);
+        player:AddItem(44096, 2);
+        player:AddItem(42950);
+        player:AddItem(44101);
+        player:AddItem(48677);
+    elseif (player:GetClass() == CLASS_ROGUE) then
+        player:AddItem(42944, 2);
+        player:AddItem(42946);
+        player:AddItem(44091, 2);
+        player:AddItem(44093);
+        player:AddItem(44096, 2);
+        player:AddItem(48716, 2);
+        player:AddItem(42952);
+        player:AddItem(44103);
+        player:AddItem(48689);
+    elseif (player:GetClass() == CLASS_PRIEST) then
+        player:AddItem(42947);
+        player:AddItem(42948);
+        player:AddItem(44094);
+        player:AddItem(44095);
+        player:AddItem(42985);
+        player:AddItem(44107);
+        player:AddItem(48691);
+        player:AddItem(42992);
+    elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
+        player:AddItem(42943);
+        player:AddItem(44092);
+        player:AddItem(44096, 2);
+        player:AddItem(42949);
+        player:AddItem(44099);
+        player:AddItem(48685);
+    elseif (player:GetClass() == CLASS_SHAMAN) then
+        player:AddItem(42944, 2);
+        player:AddItem(42947);
+        player:AddItem(42948);
+        player:AddItem(44091);
+        player:AddItem(44094);
+        player:AddItem(44095);
+        player:AddItem(48716, 2);
+        player:AddItem(48718);
+        player:AddItem(42950);
+        player:AddItem(42951);
+        player:AddItem(44101);
+        player:AddItem(44102);
+        player:AddItem(48677);
+        player:AddItem(48683);
+        player:AddItem(42992);
+    elseif (player:GetClass() == CLASS_MAGE) then
+        player:AddItem(42945);
+        player:AddItem(42947);
+        player:AddItem(44091);
+        player:AddItem(44095);
+        player:AddItem(44096);
+        player:AddItem(42985);
+        player:AddItem(44107);
+        player:AddItem(48691);
+        player:AddItem(42992);
+    elseif (player:GetClass() == CLASS_WARLOCK) then
+        player:AddItem(42945);
+        player:AddItem(42947);
+        player:AddItem(44091);
+        player:AddItem(44095);
+        player:AddItem(44096);
+        player:AddItem(42985);
+        player:AddItem(44107);
+        player:AddItem(48691);
+        player:AddItem(42992);
+    elseif (player:GetClass() == CLASS_DRUID) then
+        player:AddItem(42944);
+        player:AddItem(42947);
+        player:AddItem(42948);
+        player:AddItem(44094);
+        player:AddItem(44095);
+        player:AddItem(48716);
+        player:AddItem(48718);
+        player:AddItem(42952);
+        player:AddItem(42984);
+        player:AddItem(44103);
+        player:AddItem(44105);
+        player:AddItem(48687);
+        player:AddItem(48689);
+        player:AddItem(42992);
+    end
+
+    player:AddItem(42991);
+    player:AddItem(50255);
+
+    if (player:GetTeam() == TEAM_ALLIANCE) then
+        player:AddItem(44098);
+    elseif (player:GetTeam() == TEAM_HORDE) then
+        player:AddItem(44097);
+    end
 end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
+
+local commands = {}
+commands.List = {
+    "aurora rename",
+    "aurora customize",
+    "aurora change faction",
+    "aurora change race"
+}
+
+function onCommand(event, player, command)
+    for index, value in pairs(commands.List) do
+        commands.c = string.lower(command)
+        commands.v = string.lower(value)
+
+        if (string.match(commands.c, commands.v .. "?")) then
+            if (index == 1) then
+                player:SetAtLoginFlag(AT_LOGIN_RENAME)
+                player:SendBroadcastMessage("You may now log out to apply the name change")
+            elseif (index == 2) then
+                player:SetAtLoginFlag(AT_LOGIN_CUSTOMIZE)
+                player:SendBroadcastMessage("You may now log out to apply the customization")
+            elseif (index == 3) then
+                player:SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION)
+                player:SendBroadcastMessage("You may now log out to apply the faction change")
+            elseif (index == 4) then
+                player:SetAtLoginFlag(AT_LOGIN_CHANGE_RACE)
+                player:SendBroadcastMessage("You may now log out to apply the race change")
+            end
+
+            return false
+        end
+    end
+end
+
+RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)

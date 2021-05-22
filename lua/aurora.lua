@@ -236,22 +236,22 @@ function onCommand(event, player, command)
 
         if (string.match(commands.c, commands.v .. "?")) then
             if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
-                player:SendBroadcastMessage("You already have a queued feature")
+                player:SendBroadcastMessage("You have to complete the previously activated function before trying to perform another.")
                 return false
             end
 
             if (index == 1) then
                 player:SetAtLoginFlag(AT_LOGIN_RENAME)
-                player:SendBroadcastMessage("You may now log out to apply the name change")
+                player:SendBroadcastMessage("You can now log out to apply the name change.")
             elseif (index == 2) then
                 player:SetAtLoginFlag(AT_LOGIN_CUSTOMIZE)
-                player:SendBroadcastMessage("You may now log out to apply the customization")
+                player:SendBroadcastMessage("You can now log out to apply the customization.")
             elseif (index == 3) then
                 player:SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION)
-                player:SendBroadcastMessage("You may now log out to apply the faction change")
+                player:SendBroadcastMessage("You can now log out to apply the faction change.")
             elseif (index == 4) then
                 player:SetAtLoginFlag(AT_LOGIN_CHANGE_RACE)
-                player:SendBroadcastMessage("You may now log out to apply the race change")
+                player:SendBroadcastMessage("You can now log out to apply the race change.")
             end
 
             return false

@@ -53,7 +53,7 @@ end
 
 RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
 
-local function onMoneyChange(player, amount)
+local function onMoneyChange(event, player, amount)
     if (player:GetLevel() < 60) then
         return amount * 3;
     elseif (player:GetLevel() < 70) then
@@ -65,7 +65,7 @@ end
 
 RegisterPlayerEvent(EVENT_ON_MONEY_CHANGE, onMoneyChange)
 
-local function onReputationChange(player, factionId, standing, incremenetal)
+local function onReputationChange(event, player, factionId, standing, incremenetal)
     if (player:GetLevel() < 60) then
         return standing * 3;
     elseif (player:GetLevel() < 70) then
@@ -223,10 +223,10 @@ RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
 
 local commands = {}
 commands.List = {
-    "aurora rename",
-    "aurora customize",
-    "aurora change faction",
-    "aurora change race"
+    "change name",
+    "change appearance",
+    "change faction",
+    "change race"
 }
 
 function onCommand(event, player, command)
@@ -235,6 +235,11 @@ function onCommand(event, player, command)
         commands.v = string.lower(value)
 
         if (string.match(commands.c, commands.v .. "?")) then
+            if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
+                player:SendBroadcastMessage("You already have a queued feature")
+                return false
+            end
+
             if (index == 1) then
                 player:SetAtLoginFlag(AT_LOGIN_RENAME)
                 player:SendBroadcastMessage("You may now log out to apply the name change")

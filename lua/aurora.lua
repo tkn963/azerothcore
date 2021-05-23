@@ -43,9 +43,11 @@ local AT_LOGIN_CHANGE_RACE       = 0x80
 
 local function onGiveXP(event, player, amount, victim)
     if (player:GetLevel() < 60) then
-        return amount * 3;
+        return amount * 5;
     elseif (player:GetLevel() < 70) then
-        return amount * 2;
+        return amount * 4;
+    elseif (player:GetLevel() < 80) then
+        return amount * 3;
     else
         return amount * 1;
     end
@@ -55,9 +57,11 @@ RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
 
 local function onMoneyChange(event, player, amount)
     if (player:GetLevel() < 60) then
-        return amount * 3;
+        return amount * 5;
     elseif (player:GetLevel() < 70) then
-        return amount * 2;
+        return amount * 4;
+    elseif (player:GetLevel() < 80) then
+        return amount * 3;
     else
         return amount * 1;
     end
@@ -67,9 +71,11 @@ RegisterPlayerEvent(EVENT_ON_MONEY_CHANGE, onMoneyChange)
 
 local function onReputationChange(event, player, factionId, standing, incremenetal)
     if (player:GetLevel() < 60) then
-        return standing * 3;
+        return standing * 5;
     elseif (player:GetLevel() < 70) then
-        return standing * 2;
+        return standing * 4;
+    elseif (player:GetLevel() < 80) then
+        return standing * 3;
     else
         return standing * 1;
     end

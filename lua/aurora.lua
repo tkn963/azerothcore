@@ -104,125 +104,6 @@ local function onFirstLogin(event, player)
         player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG3);
         player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG4);
     end
-
-    if (player:GetClass() == CLASS_WARRIOR) then
-        player:AddItem(42943);
-        player:AddItem(42945);
-        player:AddItem(42946);
-        player:AddItem(44092);
-        player:AddItem(44093);
-        player:AddItem(44096, 2);
-        player:AddItem(42949);
-        player:AddItem(44099);
-        player:AddItem(48685);
-    elseif (player:GetClass() == CLASS_PALADIN) then
-        player:AddItem(42943);
-        player:AddItem(42945);
-        player:AddItem(42948);
-        player:AddItem(44092);
-        player:AddItem(44094);
-        player:AddItem(44096);
-        player:AddItem(42949);
-        player:AddItem(44099);
-        player:AddItem(44100);
-        player:AddItem(48685);
-        player:AddItem(42992);
-    elseif (player:GetClass() == CLASS_HUNTER) then
-        player:AddItem(42944, 2);
-        player:AddItem(42946);
-        player:AddItem(44091, 2);
-        player:AddItem(44093);
-        player:AddItem(44096, 2);
-        player:AddItem(42950);
-        player:AddItem(44101);
-        player:AddItem(48677);
-    elseif (player:GetClass() == CLASS_ROGUE) then
-        player:AddItem(42944, 2);
-        player:AddItem(42946);
-        player:AddItem(44091, 2);
-        player:AddItem(44093);
-        player:AddItem(44096, 2);
-        player:AddItem(48716, 2);
-        player:AddItem(42952);
-        player:AddItem(44103);
-        player:AddItem(48689);
-    elseif (player:GetClass() == CLASS_PRIEST) then
-        player:AddItem(42947);
-        player:AddItem(42948);
-        player:AddItem(44094);
-        player:AddItem(44095);
-        player:AddItem(42985);
-        player:AddItem(44107);
-        player:AddItem(48691);
-        player:AddItem(42992);
-    elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
-        player:AddItem(42943);
-        player:AddItem(44092);
-        player:AddItem(44096, 2);
-        player:AddItem(42949);
-        player:AddItem(44099);
-        player:AddItem(48685);
-    elseif (player:GetClass() == CLASS_SHAMAN) then
-        player:AddItem(42944, 2);
-        player:AddItem(42947);
-        player:AddItem(42948);
-        player:AddItem(44091);
-        player:AddItem(44094);
-        player:AddItem(44095);
-        player:AddItem(48716, 2);
-        player:AddItem(48718);
-        player:AddItem(42950);
-        player:AddItem(42951);
-        player:AddItem(44101);
-        player:AddItem(44102);
-        player:AddItem(48677);
-        player:AddItem(48683);
-        player:AddItem(42992);
-    elseif (player:GetClass() == CLASS_MAGE) then
-        player:AddItem(42945);
-        player:AddItem(42947);
-        player:AddItem(44091);
-        player:AddItem(44095);
-        player:AddItem(44096);
-        player:AddItem(42985);
-        player:AddItem(44107);
-        player:AddItem(48691);
-        player:AddItem(42992);
-    elseif (player:GetClass() == CLASS_WARLOCK) then
-        player:AddItem(42945);
-        player:AddItem(42947);
-        player:AddItem(44091);
-        player:AddItem(44095);
-        player:AddItem(44096);
-        player:AddItem(42985);
-        player:AddItem(44107);
-        player:AddItem(48691);
-        player:AddItem(42992);
-    elseif (player:GetClass() == CLASS_DRUID) then
-        player:AddItem(42944);
-        player:AddItem(42947);
-        player:AddItem(42948);
-        player:AddItem(44094);
-        player:AddItem(44095);
-        player:AddItem(48716);
-        player:AddItem(48718);
-        player:AddItem(42952);
-        player:AddItem(42984);
-        player:AddItem(44103);
-        player:AddItem(44105);
-        player:AddItem(48687);
-        player:AddItem(48689);
-        player:AddItem(42992);
-    end
-
-    player:AddItem(42991);
-    player:AddItem(50255);
-
-    if (player:GetTeam() == TEAM_ALLIANCE) then
-        player:AddItem(44098);
-    elseif (player:GetTeam() == TEAM_HORDE) then
-        player:AddItem(44097);
-    end
 end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
@@ -232,7 +113,9 @@ commands.List = {
     "change name",
     "change appearance",
     "change faction",
-    "change race"
+    "change race",
+    "heirloom weapons",
+    "heirloom armor"
 }
 
 function onCommand(event, player, command)
@@ -258,6 +141,141 @@ function onCommand(event, player, command)
             elseif (index == 4) then
                 player:SetAtLoginFlag(AT_LOGIN_CHANGE_RACE)
                 player:SendBroadcastMessage("You can now log out to apply the race change.")
+            elseif (index == 5) then
+                if (player:GetClass() == CLASS_WARRIOR) then
+                    player:AddItem(42943);
+                    player:AddItem(42945);
+                    player:AddItem(42946);
+                    player:AddItem(44092);
+                    player:AddItem(44093);
+                    player:AddItem(44096, 2);
+                elseif (player:GetClass() == CLASS_PALADIN) then
+                    player:AddItem(42943);
+                    player:AddItem(42945);
+                    player:AddItem(42948);
+                    player:AddItem(44092);
+                    player:AddItem(44094);
+                    player:AddItem(44096);
+                elseif (player:GetClass() == CLASS_HUNTER) then
+                    player:AddItem(42944, 2);
+                    player:AddItem(42946);
+                    player:AddItem(44091, 2);
+                    player:AddItem(44093);
+                    player:AddItem(44096, 2);
+                elseif (player:GetClass() == CLASS_ROGUE) then
+                    player:AddItem(42944, 2);
+                    player:AddItem(42946);
+                    player:AddItem(44091, 2);
+                    player:AddItem(44093);
+                    player:AddItem(44096, 2);
+                    player:AddItem(48716, 2);
+                elseif (player:GetClass() == CLASS_PRIEST) then
+                    player:AddItem(42947);
+                    player:AddItem(42948);
+                    player:AddItem(44094);
+                    player:AddItem(44095);
+                elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
+                    player:AddItem(42943);
+                    player:AddItem(44092);
+                    player:AddItem(44096, 2);
+                elseif (player:GetClass() == CLASS_SHAMAN) then
+                    player:AddItem(42944, 2);
+                    player:AddItem(42947);
+                    player:AddItem(42948);
+                    player:AddItem(44091);
+                    player:AddItem(44094);
+                    player:AddItem(44095);
+                    player:AddItem(48716, 2);
+                    player:AddItem(48718);
+                elseif (player:GetClass() == CLASS_MAGE) then
+                    player:AddItem(42945);
+                    player:AddItem(42947);
+                    player:AddItem(44091);
+                    player:AddItem(44095);
+                    player:AddItem(44096);
+                elseif (player:GetClass() == CLASS_WARLOCK) then
+                    player:AddItem(42945);
+                    player:AddItem(42947);
+                    player:AddItem(44091);
+                    player:AddItem(44095);
+                    player:AddItem(44096);
+                elseif (player:GetClass() == CLASS_DRUID) then
+                    player:AddItem(42944);
+                    player:AddItem(42947);
+                    player:AddItem(42948);
+                    player:AddItem(44094);
+                    player:AddItem(44095);
+                    player:AddItem(48716);
+                    player:AddItem(48718);
+                end
+
+                player:SendBroadcastMessage("Enjoy these heirlooms!")
+            elseif (index == 6) then
+                if (player:GetClass() == CLASS_WARRIOR) then
+                    player:AddItem(42949);
+                    player:AddItem(44099);
+                    player:AddItem(48685);
+                elseif (player:GetClass() == CLASS_PALADIN) then
+                    player:AddItem(42949);
+                    player:AddItem(44099);
+                    player:AddItem(44100);
+                    player:AddItem(48685);
+                    player:AddItem(42992);
+                elseif (player:GetClass() == CLASS_HUNTER) then
+                    player:AddItem(42950);
+                    player:AddItem(44101);
+                    player:AddItem(48677);
+                elseif (player:GetClass() == CLASS_ROGUE) then
+                    player:AddItem(42952);
+                    player:AddItem(44103);
+                    player:AddItem(48689);
+                elseif (player:GetClass() == CLASS_PRIEST) then
+                    player:AddItem(42985);
+                    player:AddItem(44107);
+                    player:AddItem(48691);
+                    player:AddItem(42992);
+                elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
+                    player:AddItem(42949);
+                    player:AddItem(44099);
+                    player:AddItem(48685);
+                elseif (player:GetClass() == CLASS_SHAMAN) then
+                    player:AddItem(42950);
+                    player:AddItem(42951);
+                    player:AddItem(44101);
+                    player:AddItem(44102);
+                    player:AddItem(48677);
+                    player:AddItem(48683);
+                    player:AddItem(42992);
+                elseif (player:GetClass() == CLASS_MAGE) then
+                    player:AddItem(42985);
+                    player:AddItem(44107);
+                    player:AddItem(48691);
+                    player:AddItem(42992);
+                elseif (player:GetClass() == CLASS_WARLOCK) then
+                    player:AddItem(42985);
+                    player:AddItem(44107);
+                    player:AddItem(48691);
+                    player:AddItem(42992);
+                elseif (player:GetClass() == CLASS_DRUID) then
+                    player:AddItem(42952);
+                    player:AddItem(42984);
+                    player:AddItem(44103);
+                    player:AddItem(44105);
+                    player:AddItem(48687);
+                    player:AddItem(48689);
+                    player:AddItem(42992);
+                end
+
+                player:AddItem(42991);
+                player:AddItem(50255);
+
+                if (player:GetTeam() == TEAM_ALLIANCE) then
+                    player:AddItem(44098);
+                elseif (player:GetTeam() == TEAM_HORDE) then
+                    player:AddItem(44097);
+                end
+
+                player:SendBroadcastMessage("Enjoy these heirlooms!")
             end
 
             return false

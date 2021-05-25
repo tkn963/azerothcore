@@ -45,6 +45,17 @@ function build_server()
         if [ $? -ne 0 ]; then
             exit 1
         fi
+    elif [ "$PULL_REQUEST" != "none" ]; then
+        cd $CORE_DIRECTORY
+        git checkout -b pr-$PULL_REQUEST
+        if [ $? -ne 0 ]; then
+            exit 1
+        fi
+
+        git pull origin pull/$PULL_REQUEST/head
+        if [ $? -ne 0 ]; then
+            exit 1
+        fi
     fi
 
     if [[ $1 == "world" ]] || [[ $1 == "all" ]]; then

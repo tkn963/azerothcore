@@ -14,6 +14,7 @@
   <core>
     <directory>/opt/azerothcore</directory>
     <git_commit>main</git_commit>
+    <pull_request>none</pull_request>
   </core>
   <world>
     <name>AzerothCore</name>

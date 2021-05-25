@@ -29,8 +29,6 @@ if [ $# -gt 0 ]; then
                 import_database $1
                 update_configuration $1
                 start_server
-            elif [ $2 == "backup" ]; then
-                backup_server $1
             else
                 invalid_arguments
             fi

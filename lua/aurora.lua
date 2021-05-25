@@ -1,89 +1,126 @@
-local EVENT_ON_GIVE_XP           = 12
-local EVENT_ON_MONEY_CHANGE      = 14
-local EVENT_ON_REPUTATION_CHANGE = 15
-local EVENT_ON_FIRST_LOGIN       = 30
-local EVENT_ON_COMMAND           = 42
+-- Events
+local EVENT_ON_LOGIN                  = 3
+local EVENT_ON_GIVE_XP                = 12
+local EVENT_ON_MONEY_CHANGE           = 14
+local EVENT_ON_REPUTATION_CHANGE      = 15
+local EVENT_ON_FIRST_LOGIN            = 30
+local EVENT_ON_COMMAND                = 42
 
-local TEAM_ALLIANCE              = 0
-local TEAM_HORDE                 = 1
+-- Teams
+local TEAM_ALLIANCE                   = 0
+local TEAM_HORDE                      = 1
 
-local RACE_HUMAN                 = 1
-local RACE_ORC                   = 2
-local RACE_DWARF                 = 3
-local RACE_NIGHTELF              = 4
-local RACE_UNDEAD                = 5
-local RACE_TAUREN                = 6
-local RACE_GNOME                 = 7
-local RACE_TROLL                 = 8
-local RACE_BLOODELF              = 10
-local RACE_DRAENEI               = 11
+-- Races
+local RACE_HUMAN                      = 1
+local RACE_ORC                        = 2
+local RACE_DWARF                      = 3
+local RACE_NIGHTELF                   = 4
+local RACE_UNDEAD                     = 5
+local RACE_TAUREN                     = 6
+local RACE_GNOME                      = 7
+local RACE_TROLL                      = 8
+local RACE_BLOODELF                   = 10
+local RACE_DRAENEI                    = 11
 
-local CLASS_WARRIOR              = 1
-local CLASS_PALADIN              = 2
-local CLASS_HUNTER               = 3
-local CLASS_ROGUE                = 4
-local CLASS_PRIEST               = 5
-local CLASS_DEATH_KNIGHT         = 6
-local CLASS_SHAMAN               = 7
-local CLASS_MAGE                 = 8
-local CLASS_WARLOCK              = 9
-local CLASS_DRUID                = 11
+-- Classes
+local CLASS_WARRIOR                   = 1
+local CLASS_PALADIN                   = 2
+local CLASS_HUNTER                    = 3
+local CLASS_ROGUE                     = 4
+local CLASS_PRIEST                    = 5
+local CLASS_DEATH_KNIGHT              = 6
+local CLASS_SHAMAN                    = 7
+local CLASS_MAGE                      = 8
+local CLASS_WARLOCK                   = 9
+local CLASS_DRUID                     = 11
 
-local EQUIPMENT_SLOT_BAG1        = 19
-local EQUIPMENT_SLOT_BAG2        = 20
-local EQUIPMENT_SLOT_BAG3        = 21
-local EQUIPMENT_SLOT_BAG4        = 22
+-- Login flags
+local AT_LOGIN_RENAME                 = 0x01
+local AT_LOGIN_CUSTOMIZE              = 0x08
+local AT_LOGIN_CHANGE_FACTION         = 0x40
+local AT_LOGIN_CHANGE_RACE            = 0x80
 
-local INVENTORY_CONTAINER        = 23162
+-- Bag slots
+local EQUIPMENT_SLOT_BAG1             = 19
+local EQUIPMENT_SLOT_BAG2             = 20
+local EQUIPMENT_SLOT_BAG3             = 21
+local EQUIPMENT_SLOT_BAG4             = 22
 
-local AT_LOGIN_RENAME            = 0x01
-local AT_LOGIN_CUSTOMIZE         = 0x08
-local AT_LOGIN_CHANGE_FACTION    = 0x40
-local AT_LOGIN_CHANGE_RACE       = 0x80
+-- Bag all characters start with
+local INVENTORY_CONTAINER             = 23162
 
-local function onGiveXP(event, player, amount, victim)
+-- Experience, money and reputation rates
+local MULTIPLIER_1                    = 4 -- Multiplier for rates level 1-59
+local MULTIPLIER_2                    = 3 -- Multiplier for rates level 60-69
+local MULTIPLIER_3                    = 2 -- Multiplier for rates level 70-79
+local MULTIPLIER_4                    = 1 -- Mutliplier for rates at level 80
+
+-- Required copper values
+local UTILITIES_COPPER_RENAME         = 100000 -- Money required in copper to perform a name change
+local UTILITIES_COPPER_CUSTOMIZE      = 500000 -- Money required in copper to perform a change of appearance
+local UTILITIES_COPPER_CHANGE_FACTION = 10000000 -- Money required in copper to perform a faction change
+local UTILITIES_COPPER_CHANGE_RACE    = 5000000 -- Money required in copper to perform a race change
+
+-- Gossip (Select)
+local INT_GLYPHS                      = 100
+local INT_GEMS                        = 200
+local INT_HEIRLOOMS                   = 300
+local INT_UTILITIES                   = 400
+
+-- When a character enters the world
+function onLogin(event, player)
+    player:SendBroadcastMessage("This server uses an assistant to aid players. Type .assistant to access this feature.")
+end
+
+RegisterPlayerEvent(EVENT_ON_LOGIN, onLogin)
+
+-- When a character gains experience
+function onGiveXP(event, player, amount, victim)
     if (player:GetLevel() < 60) then
-        return amount * 5;
+        return amount * MULTIPLIER_1;
     elseif (player:GetLevel() < 70) then
-        return amount * 4;
+        return amount * MULTIPLIER_2;
     elseif (player:GetLevel() < 80) then
-        return amount * 3;
+        return amount * MULTIPLIER_3;
     else
-        return amount * 1;
+        return amount * MULTIPLIER_4;
     end
 end
 
 RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
 
-local function onMoneyChange(event, player, amount)
+-- When a character gains money
+function onMoneyChange(event, player, amount)
     if (player:GetLevel() < 60) then
-        return amount * 5;
+        return amount * MULTIPLIER_1;
     elseif (player:GetLevel() < 70) then
-        return amount * 4;
+        return amount * MULTIPLIER_2;
     elseif (player:GetLevel() < 80) then
-        return amount * 3;
+        return amount * MULTIPLIER_3;
     else
-        return amount * 1;
+        return amount * MULTIPLIER_4;
     end
 end
 
 RegisterPlayerEvent(EVENT_ON_MONEY_CHANGE, onMoneyChange)
 
-local function onReputationChange(event, player, factionId, standing, incremenetal)
+-- When a character gains reputation
+function onReputationChange(event, player, factionId, standing, incremenetal)
     if (player:GetLevel() < 60) then
-        return standing * 5;
+        return standing * MULTIPLIER_1;
     elseif (player:GetLevel() < 70) then
-        return standing * 4;
+        return standing * MULTIPLIER_2;
     elseif (player:GetLevel() < 80) then
-        return standing * 3;
+        return standing * MULTIPLIER_3;
     else
-        return standing * 1;
+        return standing * MULTIPLIER_4;
     end
 end
 
 RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, onReputationChange)
 
-local function onFirstLogin(event, player)
+-- When a character logs in for the first time
+function onFirstLogin(event, player)
     if not (player:GetClass() == CLASS_DEATH_KNIGHT) then
         if (player:GetTeam() == TEAM_ALLIANCE) then
             player:Teleport(0, -8830.438477, 626.666199, 93.982887, 0.682076);
@@ -108,179 +145,89 @@ end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
 
-local commands = {}
-commands.List = {
-    "change name",
-    "change appearance",
-    "change faction",
-    "change race",
-    "heirloom weapons",
-    "heirloom armor"
-}
-
+-- When a character performs a command
 function onCommand(event, player, command)
-    for index, value in pairs(commands.List) do
-        commands.c = string.lower(command)
-        commands.v = string.lower(value)
-
-        if (string.match(commands.c, commands.v .. "?")) then
-            if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
-                player:SendBroadcastMessage("You have to complete the previously activated function before trying to perform another.")
-                return false
-            end
-
-            if (index == 1) then
-                player:SetAtLoginFlag(AT_LOGIN_RENAME)
-                player:SendBroadcastMessage("You can now log out to apply the name change.")
-            elseif (index == 2) then
-                player:SetAtLoginFlag(AT_LOGIN_CUSTOMIZE)
-                player:SendBroadcastMessage("You can now log out to apply the customization.")
-            elseif (index == 3) then
-                player:SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION)
-                player:SendBroadcastMessage("You can now log out to apply the faction change.")
-            elseif (index == 4) then
-                player:SetAtLoginFlag(AT_LOGIN_CHANGE_RACE)
-                player:SendBroadcastMessage("You can now log out to apply the race change.")
-            elseif (index == 5) then
-                if (player:GetClass() == CLASS_WARRIOR) then
-                    player:AddItem(42943);
-                    player:AddItem(42945);
-                    player:AddItem(42946);
-                    player:AddItem(44092);
-                    player:AddItem(44093);
-                    player:AddItem(44096, 2);
-                elseif (player:GetClass() == CLASS_PALADIN) then
-                    player:AddItem(42943);
-                    player:AddItem(42945);
-                    player:AddItem(42948);
-                    player:AddItem(44092);
-                    player:AddItem(44094);
-                    player:AddItem(44096);
-                elseif (player:GetClass() == CLASS_HUNTER) then
-                    player:AddItem(42944, 2);
-                    player:AddItem(42946);
-                    player:AddItem(44091, 2);
-                    player:AddItem(44093);
-                    player:AddItem(44096, 2);
-                elseif (player:GetClass() == CLASS_ROGUE) then
-                    player:AddItem(42944, 2);
-                    player:AddItem(42946);
-                    player:AddItem(44091, 2);
-                    player:AddItem(44093);
-                    player:AddItem(44096, 2);
-                    player:AddItem(48716, 2);
-                elseif (player:GetClass() == CLASS_PRIEST) then
-                    player:AddItem(42947);
-                    player:AddItem(42948);
-                    player:AddItem(44094);
-                    player:AddItem(44095);
-                elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
-                    player:AddItem(42943);
-                    player:AddItem(44092);
-                    player:AddItem(44096, 2);
-                elseif (player:GetClass() == CLASS_SHAMAN) then
-                    player:AddItem(42944, 2);
-                    player:AddItem(42947);
-                    player:AddItem(42948);
-                    player:AddItem(44091);
-                    player:AddItem(44094);
-                    player:AddItem(44095);
-                    player:AddItem(48716, 2);
-                    player:AddItem(48718);
-                elseif (player:GetClass() == CLASS_MAGE) then
-                    player:AddItem(42945);
-                    player:AddItem(42947);
-                    player:AddItem(44091);
-                    player:AddItem(44095);
-                    player:AddItem(44096);
-                elseif (player:GetClass() == CLASS_WARLOCK) then
-                    player:AddItem(42945);
-                    player:AddItem(42947);
-                    player:AddItem(44091);
-                    player:AddItem(44095);
-                    player:AddItem(44096);
-                elseif (player:GetClass() == CLASS_DRUID) then
-                    player:AddItem(42944);
-                    player:AddItem(42947);
-                    player:AddItem(42948);
-                    player:AddItem(44094);
-                    player:AddItem(44095);
-                    player:AddItem(48716);
-                    player:AddItem(48718);
-                end
-
-                player:SendBroadcastMessage("Enjoy these heirlooms!")
-            elseif (index == 6) then
-                if (player:GetClass() == CLASS_WARRIOR) then
-                    player:AddItem(42949);
-                    player:AddItem(44099);
-                    player:AddItem(48685);
-                elseif (player:GetClass() == CLASS_PALADIN) then
-                    player:AddItem(42949);
-                    player:AddItem(44099);
-                    player:AddItem(44100);
-                    player:AddItem(48685);
-                    player:AddItem(42992);
-                elseif (player:GetClass() == CLASS_HUNTER) then
-                    player:AddItem(42950);
-                    player:AddItem(44101);
-                    player:AddItem(48677);
-                elseif (player:GetClass() == CLASS_ROGUE) then
-                    player:AddItem(42952);
-                    player:AddItem(44103);
-                    player:AddItem(48689);
-                elseif (player:GetClass() == CLASS_PRIEST) then
-                    player:AddItem(42985);
-                    player:AddItem(44107);
-                    player:AddItem(48691);
-                    player:AddItem(42992);
-                elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
-                    player:AddItem(42949);
-                    player:AddItem(44099);
-                    player:AddItem(48685);
-                elseif (player:GetClass() == CLASS_SHAMAN) then
-                    player:AddItem(42950);
-                    player:AddItem(42951);
-                    player:AddItem(44101);
-                    player:AddItem(44102);
-                    player:AddItem(48677);
-                    player:AddItem(48683);
-                    player:AddItem(42992);
-                elseif (player:GetClass() == CLASS_MAGE) then
-                    player:AddItem(42985);
-                    player:AddItem(44107);
-                    player:AddItem(48691);
-                    player:AddItem(42992);
-                elseif (player:GetClass() == CLASS_WARLOCK) then
-                    player:AddItem(42985);
-                    player:AddItem(44107);
-                    player:AddItem(48691);
-                    player:AddItem(42992);
-                elseif (player:GetClass() == CLASS_DRUID) then
-                    player:AddItem(42952);
-                    player:AddItem(42984);
-                    player:AddItem(44103);
-                    player:AddItem(44105);
-                    player:AddItem(48687);
-                    player:AddItem(48689);
-                    player:AddItem(42992);
-                end
-
-                player:AddItem(42991);
-                player:AddItem(50255);
-
-                if (player:GetTeam() == TEAM_ALLIANCE) then
-                    player:AddItem(44098);
-                elseif (player:GetTeam() == TEAM_HORDE) then
-                    player:AddItem(44097);
-                end
-
-                player:SendBroadcastMessage("Enjoy these heirlooms!")
-            end
-
-            return false
-        end
+    if command == 'assistant' then
+        onGossipHello(event, player, player)
+        return false
     end
 end
 
 RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)
+
+-- Gossip (Hello)
+function onGossipHello(event, player, object)
+    player:GossipClearMenu()
+    player:GossipMenuAddItem(0, "I want glyphs", 1, INT_GLYPHS)
+    player:GossipMenuAddItem(0, "I want gems", 1, INT_GEMS)
+    player:GossipMenuAddItem(0, "I want heirlooms", 1, INT_HEIRLOOMS)
+    player:GossipMenuAddItem(0, "What utilities can I get?", 1, INT_UTILITIES)
+    player:GossipSendMenu(0x7FFFFFFF, object, 1)
+end
+
+RegisterPlayerGossipEvent(1, 1, onGossipHello)
+
+-- Gossip (Select)
+function onGossipSelect(event, player, object, sender, intid, code)
+    if (intid == INT_HEIRLOOMS) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(1, "I want some armor", 1, INT_HEIRLOOMS+1, false, "", 0)
+        player:GossipMenuAddItem(1, "I want some weapons", 1, INT_HEIRLOOMS+2, false, "", 0)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_HEIRLOOMS+1) then
+        player:SendBroadcastMessage("This feature is unfortunately not yet implemented.")
+        player:GossipComplete()
+    elseif (intid == INT_HEIRLOOMS+2) then
+        player:SendBroadcastMessage("This feature is unfortunately not yet implemented.")
+        player:GossipComplete()
+    elseif (intid == INT_UTILITIES) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(6, "I want to change my name", 1, INT_UTILITIES+1, false, "Do you wish to continue the transaction?", UTILITIES_COPPER_RENAME)
+        player:GossipMenuAddItem(6, "I want to change my appearance", 1, INT_UTILITIES+2, false, "Do you wish to continue the transaction?", UTILITIES_COPPER_CUSTOMIZE)
+        player:GossipMenuAddItem(6, "I want to change my faction", 1, INT_UTILITIES+3, false, "Do you wish to continue the transaction?", UTILITIES_COPPER_CHANGE_FACTION)
+        player:GossipMenuAddItem(6, "I want to change my race", 1, INT_UTILITIES+4, false, "Do you wish to continue the transaction?", UTILITIES_COPPER_CHANGE_RACE)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_UTILITIES+1) then
+        if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
+            player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
+            player:GossipComplete()
+        else
+            player:ModifyMoney(-UTILITIES_COPPER_RENAME);
+            player:SetAtLoginFlag(AT_LOGIN_RENAME)
+            player:SendBroadcastMessage("You can now log out to apply the name change.")
+            player:GossipComplete()
+        end
+    elseif (intid == INT_UTILITIES+2) then
+        if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
+            player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
+            player:GossipComplete()
+        else
+            player:ModifyMoney(-UTILITIES_COPPER_CUSTOMIZE);
+            player:SetAtLoginFlag(AT_LOGIN_CUSTOMIZE)
+            player:SendBroadcastMessage("You can now log out to apply the customization.")
+            player:GossipComplete()
+        end
+    elseif (intid == INT_UTILITIES+3) then
+        if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
+            player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
+            player:GossipComplete()
+        else
+            player:ModifyMoney(-UTILITIES_COPPER_CHANGE_FACTION);
+            player:SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION)
+            player:SendBroadcastMessage("You can now log out to apply the faction change.")
+            player:GossipComplete()
+        end
+    elseif (intid == INT_UTILITIES+4) then
+        if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
+            player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
+            player:GossipComplete()
+        else
+            player:ModifyMoney(-UTILITIES_COPPER_CHANGE_RACE);
+            player:SetAtLoginFlag(AT_LOGIN_CHANGE_RACE)
+            player:SendBroadcastMessage("You can now log out to apply the race change.")
+            player:GossipComplete()
+        end
+    end
+end
+
+RegisterPlayerGossipEvent(1, 2, onGossipSelect)

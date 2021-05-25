@@ -14,3 +14,5 @@ UPDATE `item_template` SET `Flags`=3136 WHERE `entry` IN (33778, 33779, 33780);
 UPDATE `item_template` SET `Flags`=3136 WHERE `entry` IN (36849, 36850, 36851);
 -- Grizzly Hide
 UPDATE `item_template` SET `Flags`=2048 WHERE `entry`=37020;
+-- Grizzly Flank
+UPDATE `item_template` SET `Flags`=2048 WHERE `entry`=37200;

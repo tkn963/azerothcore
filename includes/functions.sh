@@ -55,6 +55,17 @@ function build_server()
             fi
 
             git pull origin pull/$PULL_REQUEST/head
+        fi
+    else
+        if [ $(git branch --show-current) != "$AZEROTHCORE_BRANCH" ]; then
+            cd $CORE_DIRECTORY
+
+            git switch -C $AZEROTHCORE_BRANCH origin/$AZEROTHCORE_BRANCH
+            if [ $? -ne 0 ]; then
+                exit 1
+            fi
+
+            git reset --hard origin/$AZEROTHCORE_BRANCH
             if [ $? -ne 0 ]; then
                 exit 1
             fi

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+  <mysql>
+    <hostname>127.0.0.1</hostname>
+    <port>3306</port>
+    <username>acore</username>
+    <password>acore</password>
+  </mysql>
+</config>

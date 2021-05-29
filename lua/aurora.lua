@@ -1,3 +1,9 @@
+-- Features
+local ENABLE_GLYPHS                   = true
+local ENABLE_GEMS                     = true
+local ENABLE_HEIRLOOMS                = true
+local ENABLE_UTILITIES                = true
+
 -- Events
 local EVENT_ON_LOGIN                  = 3
 local EVENT_ON_GIVE_XP                = 12
@@ -171,10 +177,18 @@ RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)
 -- Gossip (Hello)
 function onGossipHello(event, player, object)
     player:GossipClearMenu()
-    player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want glyphs", 1, INT_GLYPHS)
-    player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want gems", 1, INT_GEMS)
-    player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want heirlooms", 1, INT_HEIRLOOMS)
-    player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want utilities", 1, INT_UTILITIES)
+    if (ENABLE_GLYPHS) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want glyphs", 1, INT_GLYPHS)
+    end
+    if (ENABLE_GEMS) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want gems", 1, INT_GEMS)
+    end
+    if (ENABLE_HEIRLOOMS) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want heirlooms", 1, INT_HEIRLOOMS)
+    end
+    if (ENABLE_UTILITIES) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want utilities", 1, INT_UTILITIES)
+    end
     player:GossipSendMenu(0x7FFFFFFF, object, 1)
 end
 

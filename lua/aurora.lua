@@ -186,10 +186,38 @@ function onGossipSelect(event, player, object, sender, intid, code)
         onGossipHello(event, player, player)
     elseif (intid == INT_GLYPHS) then
         player:GossipClearMenu()
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some major glyphs", 1, INT_GLYPHS, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some minor glyphs", 1, INT_GLYPHS, false, "", 0)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some major glyphs", 1, INT_GLYPHS+1, false, "", 0)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some minor glyphs", 1, INT_GLYPHS+2, false, "", 0)
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN, false, "", 0)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_GLYPHS+1) then
+        player:GossipClearMenu()
+
+        if (player:GetClass() == CLASS_WARRIOR) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(43412, 0), 1, INT_GLYPHS+3, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(43415, 0), 1, INT_GLYPHS+4, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(43419, 0), 1, INT_GLYPHS+5, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(43421, 0), 1, INT_GLYPHS+6, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45790, 0), 1, INT_GLYPHS+7, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45792, 0), 1, INT_GLYPHS+8, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45793, 0), 1, INT_GLYPHS+9, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45794, 0), 1, INT_GLYPHS+10, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45795, 0), 1, INT_GLYPHS+11, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45797, 0), 1, INT_GLYPHS+12, false, "", 0)
+        elseif (player:GetClass() == CLASS_PALADIN) then
+        elseif (player:GetClass() == CLASS_HUNTER) then
+        elseif (player:GetClass() == CLASS_ROGUE) then
+        elseif (player:GetClass() == CLASS_PRIEST) then
+        elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
+        elseif (player:GetClass() == CLASS_SHAMAN) then
+        elseif (player:GetClass() == CLASS_MAGE) then
+        elseif (player:GetClass() == CLASS_WARLOCK) then
+        elseif (player:GetClass() == CLASS_DRUID) then
+        end
+
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_GLYPHS, false, "", 0)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_GLYPHS+2) then
     elseif (intid == INT_GEMS) then
         player:GossipClearMenu()
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some meta gems", 1, INT_GEMS, false, "", 0)
@@ -261,20 +289,50 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
     elseif (intid == INT_HEIRLOOMS+2) then
         player:GossipClearMenu()
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_axe_09:25:25:-19|t"..GetItemLink(42943, 0), 1, INT_HEIRLOOMS+28, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_17:25:25:-19|t"..GetItemLink(42944, 0), 1, INT_HEIRLOOMS+29, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_43:25:25:-19|t"..GetItemLink(42945, 0), 1, INT_HEIRLOOMS+30, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_bow_08:25:25:-19|t"..GetItemLink(42946, 0), 1, INT_HEIRLOOMS+31, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_12:25:25:-19|t"..GetItemLink(42947, 0), 1, INT_HEIRLOOMS+32, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_05:25:25:-19|t"..GetItemLink(42948, 0), 1, INT_HEIRLOOMS+33, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_shortblade_03:25:25:-19|t"..GetItemLink(44091, 0), 1, INT_HEIRLOOMS+34, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_19:25:25:-19|t"..GetItemLink(44092, 0), 1, INT_HEIRLOOMS+35, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_rifle_09:25:25:-19|t"..GetItemLink(44093, 0), 1, INT_HEIRLOOMS+36, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_07:25:25:-19|t"..GetItemLink(44094, 0), 1, INT_HEIRLOOMS+37, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_staff_13:25:25:-19|t"..GetItemLink(44095, 0), 1, INT_HEIRLOOMS+38, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_36:25:25:-19|t"..GetItemLink(44096, 0), 1, INT_HEIRLOOMS+39, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_17:25:25:-19|t"..GetItemLink(48716, 0), 1, INT_HEIRLOOMS+40, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_gizmo_02:25:25:-19|t"..GetItemLink(48718, 0), 1, INT_HEIRLOOMS+41, false, "", 0)
+
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_axe_09:25:25:-19|t"..GetItemLink(42943, 0), 1, INT_HEIRLOOMS+28, false, "", 0) -- Warrior, Paladin, Death Knight
+        end
+        if (player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_17:25:25:-19|t"..GetItemLink(42944, 0), 1, INT_HEIRLOOMS+29, false, "", 0) -- Hunter, Rogue, Shaman
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DEATH_KNIGHT) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_43:25:25:-19|t"..GetItemLink(42945, 0), 1, INT_HEIRLOOMS+30, false, "", 0) -- Warrior, Paladin, Hunter, Rogue, Death Knight
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_bow_08:25:25:-19|t"..GetItemLink(42946, 0), 1, INT_HEIRLOOMS+31, false, "", 0) -- Warrior, Hunter, Rogue
+        end
+        if (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_12:25:25:-19|t"..GetItemLink(42947, 0), 1, INT_HEIRLOOMS+32, false, "", 0) -- Priest, Shaman, Mage, Warlock, Druid
+        end
+        if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_05:25:25:-19|t"..GetItemLink(42948, 0), 1, INT_HEIRLOOMS+33, false, "", 0) -- Paladin, Priest, Shaman, Druid
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_shortblade_03:25:25:-19|t"..GetItemLink(44091, 0), 1, INT_HEIRLOOMS+34, false, "", 0) -- Warrior, Hunter, Rogue, Shaman
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_19:25:25:-19|t"..GetItemLink(44092, 0), 1, INT_HEIRLOOMS+35, false, "", 0) -- Warrior, Paladin, Death Knight
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_rifle_09:25:25:-19|t"..GetItemLink(44093, 0), 1, INT_HEIRLOOMS+36, false, "", 0) -- Warrior, Hunter, Rogue
+        end
+        if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_07:25:25:-19|t"..GetItemLink(44094, 0), 1, INT_HEIRLOOMS+37, false, "", 0) -- Paladin, Priest, Shaman, Druid
+        end
+        if (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_staff_13:25:25:-19|t"..GetItemLink(44095, 0), 1, INT_HEIRLOOMS+38, false, "", 0) -- Priest, Shaman, Mage, Warlock, Druid
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DEATH_KNIGHT or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_36:25:25:-19|t"..GetItemLink(44096, 0), 1, INT_HEIRLOOMS+39, false, "", 0) -- Warrior, Paladin, Hunter, Rogue, Death Knight, Mage, Warlock
+        end
+        if (player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_17:25:25:-19|t"..GetItemLink(48716, 0), 1, INT_HEIRLOOMS+40, false, "", 0) -- Rogue, Shaman
+        end
+        if (player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_gizmo_02:25:25:-19|t"..GetItemLink(48718, 0), 1, INT_HEIRLOOMS+41, false, "", 0) -- Shaman, Druid
+        end
+
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS, false, "", 0)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
     elseif (intid == INT_HEIRLOOMS+28) then

@@ -208,27 +208,27 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if (player:GetClass() == CLASS_WARRIOR) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(43412, 0), 1, INT_GLYPHS+3, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(43415, 0), 1, INT_GLYPHS+4, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(43419, 0), 1, INT_GLYPHS+5, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(43421, 0), 1, INT_GLYPHS+6, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45790, 0), 1, INT_GLYPHS+7, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45792, 0), 1, INT_GLYPHS+8, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45793, 0), 1, INT_GLYPHS+9, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45794, 0), 1, INT_GLYPHS+10, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45795, 0), 1, INT_GLYPHS+11, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|t"..GetItemLink(45797, 0), 1, INT_GLYPHS+12, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Bloodthirst", 1, INT_GLYPHS+3, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Devastate", 1, INT_GLYPHS+4, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Intervene", 1, INT_GLYPHS+5, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Mortal Strike", 1, INT_GLYPHS+6, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Bladestorm", 1, INT_GLYPHS+7, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Shockwave", 1, INT_GLYPHS+8, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Vigilance", 1, INT_GLYPHS+9, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Enraged Regeneration", 1, INT_GLYPHS+10, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Spell Reflection", 1, INT_GLYPHS+11, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorwarrior:25:25:-19|tGlyph of Shield Wall", 1, INT_GLYPHS+12, false, "", 0)
         elseif (player:GetClass() == CLASS_PALADIN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(41097, 0), 1, INT_GLYPHS+13, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(41107, 0), 1, INT_GLYPHS+14, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(41101, 0), 1, INT_GLYPHS+15, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(43867, 0), 1, INT_GLYPHS+16, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(43868, 0), 1, INT_GLYPHS+17, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(43869, 0), 1, INT_GLYPHS+18, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(45741, 0), 1, INT_GLYPHS+19, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(45742, 0), 1, INT_GLYPHS+20, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(45743, 0), 1, INT_GLYPHS+21, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|t"..GetItemLink(45744, 0), 1, INT_GLYPHS+22, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Hammer of Wrath", 1, INT_GLYPHS+13, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Avenging Wrath", 1, INT_GLYPHS+14, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Avenger's Shield", 1, INT_GLYPHS+15, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Holy Wrath", 1, INT_GLYPHS+16, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Seal of Righteousness", 1, INT_GLYPHS+17, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Seal of Vengeance", 1, INT_GLYPHS+18, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Beacon of Light", 1, INT_GLYPHS+19, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Hammer of the Righteous", 1, INT_GLYPHS+20, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Divine Storm", 1, INT_GLYPHS+21, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpaladin:25:25:-19|tGlyph of Shield of Righteousness", 1, INT_GLYPHS+22, false, "", 0)
         elseif (player:GetClass() == CLASS_HUNTER) then
             player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorhunter:25:25:-19|t"..GetItemLink(42902, 0), 1, INT_GLYPHS+23, false, "", 0)
             player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorhunter:25:25:-19|t"..GetItemLink(42913, 0), 1, INT_GLYPHS+24, false, "", 0)
@@ -403,6 +403,66 @@ function onGossipSelect(event, player, object, sender, intid, code)
 
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_GLYPHS, false, "", 0)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_GLYPHS+3) then
+        player:AddItem(43412)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+4) then
+        player:AddItem(43415)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+5) then
+        player:AddItem(43419)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+6) then
+        player:AddItem(43421)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+7) then
+        player:AddItem(45790)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+8) then
+        player:AddItem(45792)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+9) then
+        player:AddItem(45793)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+10) then
+        player:AddItem(45794)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+11) then
+        player:AddItem(45795)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+12) then
+        player:AddItem(45797)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+13) then
+        player:AddItem(41097)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+14) then
+        player:AddItem(41107)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+15) then
+        player:AddItem(41101)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+16) then
+        player:AddItem(43867)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+17) then
+        player:AddItem(43868)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+18) then
+        player:AddItem(43869)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+19) then
+        player:AddItem(45741)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+20) then
+        player:AddItem(45742)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+21) then
+        player:AddItem(45743)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+22) then
+        player:AddItem(45744)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
     elseif (intid == INT_GEMS) then
         player:GossipClearMenu()
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some meta gems", 1, INT_GEMS, false, "", 0)
@@ -425,49 +485,49 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_30:25:25:-19|t"..GetItemLink(42949, 0), 1, INT_HEIRLOOMS+4, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_plate03:25:25:-19|t"..GetItemLink(48685, 0), 1, INT_HEIRLOOMS+5, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_20:25:25:-19|t"..GetItemLink(44099, 0), 1, INT_HEIRLOOMS+6, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_30:25:25:-19|tPolished Spaulders of Valor", 1, INT_HEIRLOOMS+4, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_plate03:25:25:-19|tPolished Breastplate of Valor", 1, INT_HEIRLOOMS+5, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_20:25:25:-19|tStrengthened Stockade Pauldrons", 1, INT_HEIRLOOMS+6, false, "", 0)
 
             if (player:GetClass() == CLASS_PALADIN) then
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_10:25:25:-19|t"..GetItemLink(44100, 0), 1, INT_HEIRLOOMS+7, false, "", 0)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_10:25:25:-19|tPristine Lightforge Spaulders", 1, INT_HEIRLOOMS+7, false, "", 0)
             end
         elseif (player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_01:25:25:-19|t"..GetItemLink(42950, 0), 1, INT_HEIRLOOMS+8, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_chain_07:25:25:-19|t"..GetItemLink(48677, 0), 1, INT_HEIRLOOMS+9, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_10:25:25:-19|t"..GetItemLink(44101, 0), 1, INT_HEIRLOOMS+10, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_01:25:25:-19|tChampion Herod's Shoulder", 1, INT_HEIRLOOMS+8, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_chain_07:25:25:-19|tChampion's Deathdealer Breastplate", 1, INT_HEIRLOOMS+9, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_10:25:25:-19|tPrized Beastmaster's Mantle", 1, INT_HEIRLOOMS+10, false, "", 0)
             if (player:GetClass() == CLASS_SHAMAN) then
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_29:25:25:-19|t"..GetItemLink(42951, 0), 1, INT_HEIRLOOMS+11, false, "", 0)
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_chain_11:25:25:-19|t"..GetItemLink(48683, 0), 1, INT_HEIRLOOMS+12, false, "", 0)
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_29:25:25:-19|t"..GetItemLink(44102, 0), 1, INT_HEIRLOOMS+13, false, "", 0)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_29:25:25:-19|tMystical Pauldrons of Elements", 1, INT_HEIRLOOMS+11, false, "", 0)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_chain_11:25:25:-19|tMystical Vest of Elements", 1, INT_HEIRLOOMS+12, false, "", 0)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_29:25:25:-19|tAged Pauldrons of The Five Thunders", 1, INT_HEIRLOOMS+13, false, "", 0)
             end
         elseif (player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_07:25:25:-19|t"..GetItemLink(42952, 0), 1, INT_HEIRLOOMS+14, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_leather_07:25:25:-19|t"..GetItemLink(48689, 0), 1, INT_HEIRLOOMS+15, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_05:25:25:-19|t"..GetItemLink(44103, 0), 1, INT_HEIRLOOMS+16, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_07:25:25:-19|tStained Shadowcraft Spaulders", 1, INT_HEIRLOOMS+14, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_leather_07:25:25:-19|tStained Shadowcraft Tunic", 1, INT_HEIRLOOMS+15, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_05:25:25:-19|tExceptional Stormshroud Shoulders", 1, INT_HEIRLOOMS+16, false, "", 0)
 
             if (player:GetClass() == CLASS_DRUID) then
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_06:25:25:-19|t"..GetItemLink(42984, 0), 1, INT_HEIRLOOMS+17, false, "", 0)
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_leather_06:25:25:-19|t"..GetItemLink(48687, 0), 1, INT_HEIRLOOMS+18, false, "", 0)
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_01:25:25:-19|t"..GetItemLink(44105, 0), 1, INT_HEIRLOOMS+19, false, "", 0)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_06:25:25:-19|tPreened Ironfeather Shoulders", 1, INT_HEIRLOOMS+17, false, "", 0)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_leather_06:25:25:-19|tPreened Ironfeather Breastplate", 1, INT_HEIRLOOMS+18, false, "", 0)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_01:25:25:-19|tLasting Feralheart Spaulders", 1, INT_HEIRLOOMS+19, false, "", 0)
             end
         elseif (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_misc_bone_taurenskull_01:25:25:-19|t"..GetItemLink(42985, 0), 1, INT_HEIRLOOMS+20, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_cloth_49:25:25:-19|t"..GetItemLink(48691, 0), 1, INT_HEIRLOOMS+21, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_02:25:25:-19|t"..GetItemLink(44107, 0), 1, INT_HEIRLOOMS+22, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_misc_bone_taurenskull_01:25:25:-19|tTattered Dreadmist Mantle", 1, INT_HEIRLOOMS+20, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_cloth_49:25:25:-19|tTattered Dreadmist Robe", 1, INT_HEIRLOOMS+21, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_02:25:25:-19|tExquisite Sunderseer Mantle", 1, INT_HEIRLOOMS+22, false, "", 0)
         end
 
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_ring_39:25:25:-19|t"..GetItemLink(50255, 0), 1, INT_HEIRLOOMS+23, false, "", 0)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_01:25:25:-19|t"..GetItemLink(42991, 0), 1, INT_HEIRLOOMS+24, false, "", 0)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_ring_39:25:25:-19|tDread Pirate Ring", 1, INT_HEIRLOOMS+23, false, "", 0)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_01:25:25:-19|tSwift Hand of Justice", 1, INT_HEIRLOOMS+24, false, "", 0)
 
         if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_08:25:25:-19|t"..GetItemLink(42992, 0), 1, INT_HEIRLOOMS+25, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_08:25:25:-19|tDiscerning Eye of the Beast", 1, INT_HEIRLOOMS+25, false, "", 0)
         end
 
         if (player:GetTeam() == TEAM_ALLIANCE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_trinketpvp_01:25:25:-19|t"..GetItemLink(44098, 0), 1, INT_HEIRLOOMS+26, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_trinketpvp_01:25:25:-19|tInherited Insignia of the Alliance", 1, INT_HEIRLOOMS+26, false, "", 0)
         elseif (player:GetTeam() == TEAM_HORDE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_trinketpvp_02:25:25:-19|t"..GetItemLink(44097, 0), 1, INT_HEIRLOOMS+27, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_trinketpvp_02:25:25:-19|tInherited Insignia of the Horde", 1, INT_HEIRLOOMS+27, false, "", 0)
         end
 
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS, false, "", 0)
@@ -476,50 +536,127 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_axe_09:25:25:-19|t"..GetItemLink(42943, 0), 1, INT_HEIRLOOMS+28, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_axe_09:25:25:-19|tBloodied Arcanite Reaper", 1, INT_HEIRLOOMS+28, false, "", 0)
         end
         if (player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_17:25:25:-19|t"..GetItemLink(42944, 0), 1, INT_HEIRLOOMS+29, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_17:25:25:-19|tBalanced Heartseeker", 1, INT_HEIRLOOMS+29, false, "", 0)
         end
         if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_43:25:25:-19|t"..GetItemLink(42945, 0), 1, INT_HEIRLOOMS+30, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_43:25:25:-19|tVenerable Dal'Rend's Sacred Charge", 1, INT_HEIRLOOMS+30, false, "", 0)
         end
         if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_bow_08:25:25:-19|t"..GetItemLink(42946, 0), 1, INT_HEIRLOOMS+31, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_bow_08:25:25:-19|tCharmed Ancient Bone Bow", 1, INT_HEIRLOOMS+31, false, "", 0)
         end
         if (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_12:25:25:-19|t"..GetItemLink(42947, 0), 1, INT_HEIRLOOMS+32, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_12:25:25:-19|tDignified Headmaster's Charge", 1, INT_HEIRLOOMS+32, false, "", 0)
         end
         if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_05:25:25:-19|t"..GetItemLink(42948, 0), 1, INT_HEIRLOOMS+33, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_05:25:25:-19|tDevout Aurastone Hammer", 1, INT_HEIRLOOMS+33, false, "", 0)
         end
         if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_shortblade_03:25:25:-19|t"..GetItemLink(44091, 0), 1, INT_HEIRLOOMS+34, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_shortblade_03:25:25:-19|tSharpened Scarlet Kris", 1, INT_HEIRLOOMS+34, false, "", 0)
         end
         if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_19:25:25:-19|t"..GetItemLink(44092, 0), 1, INT_HEIRLOOMS+35, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_19:25:25:-19|tReforged Truesilver Champion", 1, INT_HEIRLOOMS+35, false, "", 0)
         end
         if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_rifle_09:25:25:-19|t"..GetItemLink(44093, 0), 1, INT_HEIRLOOMS+36, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_rifle_09:25:25:-19|tUpgraded Dwarven Hand Cannon", 1, INT_HEIRLOOMS+36, false, "", 0)
         end
         if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_07:25:25:-19|t"..GetItemLink(44094, 0), 1, INT_HEIRLOOMS+37, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_07:25:25:-19|tThe Blessed Hammer of Grace", 1, INT_HEIRLOOMS+37, false, "", 0)
         end
         if (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_staff_13:25:25:-19|t"..GetItemLink(44095, 0), 1, INT_HEIRLOOMS+38, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_staff_13:25:25:-19|tGrand Staff of Jordan", 1, INT_HEIRLOOMS+38, false, "", 0)
         end
         if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DEATH_KNIGHT or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_36:25:25:-19|t"..GetItemLink(44096, 0), 1, INT_HEIRLOOMS+39, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_36:25:25:-19|tBattleworn Thrash Blade", 1, INT_HEIRLOOMS+39, false, "", 0)
         end
         if (player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_17:25:25:-19|t"..GetItemLink(48716, 0), 1, INT_HEIRLOOMS+40, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_17:25:25:-19|tVenerable Mass of McGowan", 1, INT_HEIRLOOMS+40, false, "", 0)
         end
         if (player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_gizmo_02:25:25:-19|t"..GetItemLink(48718, 0), 1, INT_HEIRLOOMS+41, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_gizmo_02:25:25:-19|tRepurposed Lava Dredger", 1, INT_HEIRLOOMS+41, false, "", 0)
         end
 
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS, false, "", 0)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_HEIRLOOMS+3) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_misc_book_11:25:25:-19|tTome of Cold Weather Flight", 1, INT_HEIRLOOMS+42, false, "Do you wish to continue the transaction?", 10000000)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS, false, "", 0)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_HEIRLOOMS+4) then
+        player:AddItem(42949)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+5) then
+        player:AddItem(48685)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+6) then
+        player:AddItem(44099)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+7) then
+        player:AddItem(44100)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+8) then
+        player:AddItem(42950)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+9) then
+        player:AddItem(48677)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+10) then
+        player:AddItem(44101)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+11) then
+        player:AddItem(42951)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+12) then
+        player:AddItem(48683)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+13) then
+        player:AddItem(44102)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+14) then
+        player:AddItem(42952)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+15) then
+        player:AddItem(48689)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+16) then
+        player:AddItem(44103)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+17) then
+        player:AddItem(42984)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+18) then
+        player:AddItem(48687)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+19) then
+        player:AddItem(44105)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+20) then
+        player:AddItem(42985)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+21) then
+        player:AddItem(48691)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+22) then
+        player:AddItem(44107)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+23) then
+        player:AddItem(50255)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+24) then
+        player:AddItem(42991)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+25) then
+        player:AddItem(42992)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+26) then
+        player:AddItem(44098)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+27) then
+        player:AddItem(44097)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
     elseif (intid == INT_HEIRLOOMS+28) then
         player:AddItem(42943)
         onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
@@ -562,11 +699,6 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_HEIRLOOMS+41) then
         player:AddItem(48718)
         onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+3) then
-        player:GossipClearMenu()
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_misc_book_11:25:25:-19|t"..GetItemLink(49177, 0), 1, INT_HEIRLOOMS+42, false, "Do you wish to continue the transaction?", 10000000)
-        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS, false, "", 0)
-        player:GossipSendMenu(0x7FFFFFFF, object, 1)
     elseif (intid == INT_HEIRLOOMS+42) then
         player:ModifyMoney(-10000000)
         player:AddItem(49177)

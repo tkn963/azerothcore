@@ -166,9 +166,11 @@ RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
 
 -- When a character performs a command
 function onCommand(event, player, command)
-    if command == 'assistant' then
-        onGossipHello(event, player, player)
-        return false
+    if (ENABLE_GLYPHS or ENABLE_GEMS or ENABLE_HEIRLOOMS or ENABLE_UTILITIES) then
+        if command == 'assistant' then
+            onGossipHello(event, player, player)
+            return false
+        end
     end
 end
 

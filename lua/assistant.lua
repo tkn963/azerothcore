@@ -956,7 +956,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_UTILITIES+1) then
         if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
-            player:GossipComplete()
+            onGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
             player:ModifyMoney(-COPPER_UTILITIES_RENAME)
             player:SetAtLoginFlag(AT_LOGIN_RENAME)
@@ -966,7 +966,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_UTILITIES+2) then
         if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
-            player:GossipComplete()
+            onGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
             player:ModifyMoney(-COPPER_UTILITIES_CUSTOMIZE)
             player:SetAtLoginFlag(AT_LOGIN_CUSTOMIZE)
@@ -976,7 +976,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_UTILITIES+3) then
         if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
-            player:GossipComplete()
+            onGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
             player:ModifyMoney(-COPPER_UTILITIES_FACTION_CHANGE)
             player:SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION)
@@ -986,7 +986,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_UTILITIES+4) then
         if (player:HasAtLoginFlag(AT_LOGIN_RENAME) or player:HasAtLoginFlag(AT_LOGIN_CUSTOMIZE) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_FACTION) or player:HasAtLoginFlag(AT_LOGIN_CHANGE_RACE)) then
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
-            player:GossipComplete()
+            onGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
             player:ModifyMoney(-COPPER_UTILITIES_RACE_CHANGE)
             player:SetAtLoginFlag(AT_LOGIN_CHANGE_RACE)

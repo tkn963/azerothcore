@@ -75,11 +75,11 @@ local MULTIPLIER_4                    = 1 -- Mutliplier for rates at level 80
 
 -- Required copper values
 local COPPER_UTILITIES_RENAME         = 100000 -- Money required in copper to perform a name change
-local COPPER_UTILITIES_CUSTOMIZE      = 500000 -- Money required in copper to perform a change of appearance
+local COPPER_UTILITIES_CUSTOMIZE      = 500000 -- Money required in copper to perform a customization
 local COPPER_UTILITIES_FACTION_CHANGE = 10000000 -- Money required in copper to perform a faction change
 local COPPER_UTILITIES_RACE_CHANGE    = 5000000 -- Money required in copper to perform a race change
 
--- Gossip (Select)
+-- Ids for gossip selects
 local INT_GLYPHS                      = 100
 local INT_GEMS                        = 300
 local INT_HEIRLOOMS                   = 400
@@ -93,7 +93,7 @@ end
 
 RegisterPlayerEvent(EVENT_ON_LOGIN, onLogin)
 
--- When a character gains experience
+-- Character gains experience
 function onGiveXP(event, player, amount, victim)
     if (player:GetLevel() < 60) then
         return amount * MULTIPLIER_1
@@ -108,7 +108,7 @@ end
 
 RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
 
--- When a character gains money
+-- Character gains money
 function onMoneyChange(event, player, amount)
     if (player:GetLevel() < 60) then
         return amount * MULTIPLIER_1
@@ -123,7 +123,7 @@ end
 
 RegisterPlayerEvent(EVENT_ON_MONEY_CHANGE, onMoneyChange)
 
--- When a character gains reputation
+-- Character gains reputation
 function onReputationChange(event, player, factionId, standing, incremenetal)
     if (player:GetLevel() < 60) then
         return standing * MULTIPLIER_1
@@ -138,7 +138,7 @@ end
 
 RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, onReputationChange)
 
--- When a character logs in for the first time
+-- Character logs in for the first time
 function onFirstLogin(event, player)
     if not (player:GetClass() == CLASS_DEATH_KNIGHT) then
         if (player:GetTeam() == TEAM_ALLIANCE) then
@@ -164,7 +164,7 @@ end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
 
--- When a character performs a command
+-- Character performs a command
 function onCommand(event, player, command)
     if (ENABLE_GLYPHS or ENABLE_GEMS or ENABLE_HEIRLOOMS or ENABLE_UTILITIES) then
         if command == 'assistant' then
@@ -176,7 +176,7 @@ end
 
 RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)
 
--- Gossip (Hello)
+-- Gossip: Hello
 function onGossipHello(event, player, object)
     player:GossipClearMenu()
     if (ENABLE_GLYPHS) then
@@ -196,7 +196,7 @@ end
 
 RegisterPlayerGossipEvent(1, 1, onGossipHello)
 
--- Gossip (Select)
+-- Gossip: Select
 function onGossipSelect(event, player, object, sender, intid, code)
     if (intid == INT_RETURN) then
         onGossipHello(event, player, player)

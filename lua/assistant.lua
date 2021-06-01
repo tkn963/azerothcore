@@ -243,16 +243,16 @@ function onGossipSelect(event, player, object, sender, intid, code)
             player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorhunter:25:25:-19|tGlyph of Kill Shot", 1, INT_GLYPHS+31, false, "", 0)
             player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorhunter:25:25:-19|tGlyph of Explosive Trap", 1, INT_GLYPHS+32, false, "", 0)
         elseif (player:GetClass() == CLASS_ROGUE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(42954, 0), 1, INT_GLYPHS+33, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(42959, 0), 1, INT_GLYPHS+34, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(42971, 0), 1, INT_GLYPHS+35, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(45761, 0), 1, INT_GLYPHS+36, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(45762, 0), 1, INT_GLYPHS+37, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(45764, 0), 1, INT_GLYPHS+38, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(45766, 0), 1, INT_GLYPHS+39, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(45767, 0), 1, INT_GLYPHS+40, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(45768, 0), 1, INT_GLYPHS+41, false, "", 0)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|t"..GetItemLink(45769, 0), 1, INT_GLYPHS+42, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Adrenaline Rush", 1, INT_GLYPHS+33, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Deadly Throw", 1, INT_GLYPHS+34, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Vigor", 1, INT_GLYPHS+35, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Hunger for Blood", 1, INT_GLYPHS+36, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Killing Spree", 1, INT_GLYPHS+37, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Shadow Dance", 1, INT_GLYPHS+38, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Fan of Knives", 1, INT_GLYPHS+39, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Tricks of the Trade", 1, INT_GLYPHS+40, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Mutilate", 1, INT_GLYPHS+41, false, "", 0)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorrogue:25:25:-19|tGlyph of Cloak of Shadows", 1, INT_GLYPHS+42, false, "", 0)
         elseif (player:GetClass() == CLASS_PRIEST) then
             player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpriest:25:25:-19|t"..GetItemLink(42396, 0), 1, INT_GLYPHS+43, false, "", 0)
             player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_glyph_majorpriest:25:25:-19|t"..GetItemLink(42403, 0), 1, INT_GLYPHS+44, false, "", 0)
@@ -494,6 +494,36 @@ function onGossipSelect(event, player, object, sender, intid, code)
         onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
     elseif (intid == INT_GLYPHS+32) then
         player:AddItem(45733)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+33) then
+        player:AddItem(42954)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+34) then
+        player:AddItem(42959)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+35) then
+        player:AddItem(42971)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+36) then
+        player:AddItem(45761)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+37) then
+        player:AddItem(45762)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+38) then
+        player:AddItem(45764)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+39) then
+        player:AddItem(45766)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+40) then
+        player:AddItem(45767)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+41) then
+        player:AddItem(45768)
+        onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
+    elseif (intid == INT_GLYPHS+42) then
+        player:AddItem(45769)
         onGossipSelect(event, player, object, sender, INT_GLYPHS+1, code)
     elseif (intid == INT_GEMS) then
         player:GossipClearMenu()

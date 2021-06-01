@@ -49,6 +49,8 @@ function build_server()
         cd $CORE_DIRECTORY
 
         if [ $(git branch --show-current) != "pr-$PULL_REQUEST" ]; then
+            rm -rf $CORE_DIRECTORY/build
+
             git checkout -b pr-$PULL_REQUEST
             if [ $? -ne 0 ]; then
                 exit 1

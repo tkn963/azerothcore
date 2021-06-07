@@ -13,11 +13,13 @@ I should note that everything is tested on Containers (LXC) and might not work p
 Using the script and passing it either auth, world or all will install either or all of the systems.
 
 After the selected first parameter, use either install/setup/update, database/db, configuration/config/cfg or all to perform specific actions.
-The setup/install/update command will download the source code, compile it and if world or all is used will download and unpack the client data files.
-The database/db command will import the database files to the specified database server.
-The configuration/config/cfg command will update the configuration files with the values specified in the xml-file.
-The backup command will perform a full backup of the specified type.
-You can use the parameter all instead to perform all, except backup, of the actions.
+
+The setup/install/update command will download the source code, compile it and if required download and unpack the client data files.  
+The database/db command will import the database files to the specified database server.  
+The configuration/config/cfg command will update the configuration files with the values specified in the xml-file.  
+You can use the parameter all instead to perform all of the actions.  
+
+Example: ./ac.sh [auth/world/all] [start/stop/setup/database/config/all]
 
 # First time
 Running the script for the first time will generate a default configuration file called ac.xml that you edit. Make sure to edit it or the script will fail at some point. You can also copy the ac.xml.dist to ac.xml and edit it before running the script.

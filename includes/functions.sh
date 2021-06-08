@@ -328,6 +328,23 @@ function import_database()
                     done
                 fi
 
+                if [ "$PULL_REQUEST" != "none" ]; then
+                    if [ -d $CORE_DIRECTORY/data/sql/updates/pending_db_auth ]; then
+                        count=`ls -l $CORE_DIRECTORY/data/sql/updates/pending_db_auth/*.sql 2>/dev/null | wc -l`
+
+                        if [ $count != 0 ]; then
+                            for f in $CORE_DIRECTORY/data/sql/updates/pending_db_auth/*.sql; do
+                                echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                                mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH < $f
+                                if [ $? -ne 0 ]; then
+                                    rm -rf $MYSQL_CONFIG
+                                    exit 1
+                                fi
+                            done
+                        fi
+                    fi
+                fi
+
                 if [ -d $ROOT/custom/auth ]; then
                     if [[ ! -z "$(ls -A $ROOT/custom/auth/)" ]]; then
                         for f in $ROOT/custom/auth/*.sql; do
@@ -389,6 +406,23 @@ function import_database()
                     done
                 fi
 
+                if [ "$PULL_REQUEST" != "none" ]; then
+                    if [ -d $CORE_DIRECTORY/data/sql/updates/pending_db_characters ]; then
+                        count=`ls -l $CORE_DIRECTORY/data/sql/updates/pending_db_characters/*.sql 2>/dev/null | wc -l`
+
+                        if [ $count != 0 ]; then
+                            for f in $CORE_DIRECTORY/data/sql/updates/pending_db_characters/*.sql; do
+                                echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                                mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_CHARACTERS < $f
+                                if [ $? -ne 0 ]; then
+                                    rm -rf $MYSQL_CONFIG
+                                    exit 1
+                                fi
+                            done
+                        fi
+                    fi
+                fi
+
                 if [ -d $CORE_DIRECTORY/data/sql/updates/db_world ]; then
                     for f in $CORE_DIRECTORY/data/sql/updates/db_world/*.sql; do
                         echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
@@ -398,6 +432,23 @@ function import_database()
                             exit 1
                         fi
                     done
+                fi
+
+                if [ "$PULL_REQUEST" != "none" ]; then
+                    if [ -d $CORE_DIRECTORY/data/sql/updates/pending_db_world ]; then
+                        count=`ls -l $CORE_DIRECTORY/data/sql/updates/pending_db_world/*.sql 2>/dev/null | wc -l`
+
+                        if [ $count != 0 ]; then
+                            for f in $CORE_DIRECTORY/data/sql/updates/pending_db_world/*.sql; do
+                                echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                                mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
+                                if [ $? -ne 0 ]; then
+                                    rm -rf $MYSQL_CONFIG
+                                    exit 1
+                                fi
+                            done
+                        fi
+                    fi
                 fi
 
                 if  [ -d $CORE_DIRECTORY/modules/ahbot/sql/world/base ]; then

@@ -74,10 +74,10 @@ local MULTIPLIER_3                    = 2 -- Multiplier for rates level 70-79
 local MULTIPLIER_4                    = 1 -- Mutliplier for rates at level 80
 
 -- Required copper values
-local COPPER_UTILITIES_RENAME         = 100000 -- Money required in copper to perform a name change
-local COPPER_UTILITIES_CUSTOMIZE      = 500000 -- Money required in copper to perform a customization
-local COPPER_UTILITIES_FACTION_CHANGE = 10000000 -- Money required in copper to perform a faction change
-local COPPER_UTILITIES_RACE_CHANGE    = 5000000 -- Money required in copper to perform a race change
+local UTILITIES_COST_RENAME           = 10 -- Money required in gold to perform a name change
+local UTILITIES_COST_CUSTOMIZE        = 50 -- Money required in gold to perform a customization
+local UTILITIES_COST_FACTION_CHANGE   = 1000 -- Money required in gold to perform a faction change
+local UTILITIES_COST_RACE_CHANGE      = 500 -- Money required in gold to perform a race change
 
 -- Ids for gossip selects
 local INT_GLYPHS                      = 100
@@ -1142,10 +1142,10 @@ function onGossipSelect(event, player, object, sender, intid, code)
         onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+3, code)
     elseif (intid == INT_UTILITIES) then
         player:GossipClearMenu()
-        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my name", 1, INT_UTILITIES+1, false, "Do you wish to continue the transaction?", COPPER_UTILITIES_RENAME)
-        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my appearance", 1, INT_UTILITIES+2, false, "Do you wish to continue the transaction?", COPPER_UTILITIES_CUSTOMIZE)
-        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my faction", 1, INT_UTILITIES+3, false, "Do you wish to continue the transaction?", COPPER_UTILITIES_FACTION_CHANGE)
-        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my race", 1, INT_UTILITIES+4, false, "Do you wish to continue the transaction?", COPPER_UTILITIES_RACE_CHANGE)
+        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my name", 1, INT_UTILITIES+1, false, "Do you wish to continue the transaction?", (UTILITIES_COST_RENAME * 10000))
+        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my appearance", 1, INT_UTILITIES+2, false, "Do you wish to continue the transaction?", (UTILITIES_COST_CUSTOMIZE * 10000))
+        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my faction", 1, INT_UTILITIES+3, false, "Do you wish to continue the transaction?", (UTILITIES_COST_FACTION_CHANGE * 10000))
+        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my race", 1, INT_UTILITIES+4, false, "Do you wish to continue the transaction?", (UTILITIES_COST_RACE_CHANGE * 10000))
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN, false, "", 0)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
     elseif (intid == INT_UTILITIES+1) then
@@ -1153,7 +1153,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
             onGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
-            player:ModifyMoney(-COPPER_UTILITIES_RENAME)
+            player:ModifyMoney(-(UTILITIES_COST_RENAME * 10000))
             player:SetAtLoginFlag(AT_LOGIN_RENAME)
             player:SendBroadcastMessage("You can now log out to apply the name change.")
             player:GossipComplete()
@@ -1163,7 +1163,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
             onGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
-            player:ModifyMoney(-COPPER_UTILITIES_CUSTOMIZE)
+            player:ModifyMoney(-(UTILITIES_COST_CUSTOMIZE * 10000))
             player:SetAtLoginFlag(AT_LOGIN_CUSTOMIZE)
             player:SendBroadcastMessage("You can now log out to apply the customization.")
             player:GossipComplete()
@@ -1173,7 +1173,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
             onGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
-            player:ModifyMoney(-COPPER_UTILITIES_FACTION_CHANGE)
+            player:ModifyMoney(-(UTILITIES_COST_FACTION_CHANGE * 10000))
             player:SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION)
             player:SendBroadcastMessage("You can now log out to apply the faction change.")
             player:GossipComplete()
@@ -1183,7 +1183,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
             onGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
-            player:ModifyMoney(-COPPER_UTILITIES_RACE_CHANGE)
+            player:ModifyMoney(-(UTILITIES_COST_RACE_CHANGE * 10000))
             player:SetAtLoginFlag(AT_LOGIN_CHANGE_RACE)
             player:SendBroadcastMessage("You can now log out to apply the race change.")
             player:GossipComplete()

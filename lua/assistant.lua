@@ -911,6 +911,124 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some orange gems", 1, INT_GEMS+7, false, "", 0)
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN, false, "", 0)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
+
+        --[[
+        -- Meta Gems
+        41285
+        41307
+        41333
+        41335
+        41339
+        41375
+        41376
+        41377
+        41378
+        41379
+        41380
+        41381
+        41382
+        41385
+        41389
+        41395
+        41396
+        41397
+        41398
+        41400
+        41401
+        25890
+        25893
+        25894
+        25895
+        25896
+        25897
+        25898
+        25899
+        25901
+        32409
+        32410
+        34220
+        35501
+        35503
+        -- Red Gems
+        40111
+        40112
+        40113
+        40114
+        40115
+        40116
+        40117
+        40118
+        -- Blue Gems
+        40119
+        40120
+        40121
+        40122
+        -- Yellow Gems
+        40123
+        40124
+        40125
+        40126
+        40127
+        40128
+        -- Purple Gems
+        40129
+        40130
+        40131
+        40132
+        40133
+        40134
+        40135
+        40136
+        40137
+        40138
+        40139
+        40140
+        40141
+        -- Green Gems
+        40164
+        40165
+        40166
+        40167
+        40168
+        40169
+        40170
+        40171
+        40172
+        40173
+        40174
+        40175
+        40176
+        40177
+        40178
+        40179
+        40180
+        40181
+        40182
+        -- Orange Gems
+        40142
+        40143
+        40144
+        40145
+        40146
+        40147
+        40148
+        40149
+        40150
+        40151
+        40152
+        40153
+        40154
+        40155
+        40156
+        40157
+        40158
+        40159
+        40160
+        40161
+        40162
+        40163
+        --]]
+
     elseif (intid == INT_HEIRLOOMS) then
         player:GossipClearMenu()
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some armor", 1, INT_HEIRLOOMS+1, false, "", 0)

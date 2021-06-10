@@ -1,4 +1,5 @@
 -- Features
+local ENABLE_CONTAINERS               = true
 local ENABLE_GLYPHS                   = true
 local ENABLE_GEMS                     = true
 local ENABLE_HEIRLOOMS                = true
@@ -46,12 +47,6 @@ local AT_LOGIN_CUSTOMIZE              = 0x08
 local AT_LOGIN_CHANGE_FACTION         = 0x40
 local AT_LOGIN_CHANGE_RACE            = 0x80
 
--- Bag slots
-local EQUIPMENT_SLOT_BAG1             = 19
-local EQUIPMENT_SLOT_BAG2             = 20
-local EQUIPMENT_SLOT_BAG3             = 21
-local EQUIPMENT_SLOT_BAG4             = 22
-
 -- Gossip icons
 local GOSSIP_ICON_CHAT                = 0 -- white chat bubble
 local GOSSIP_ICON_VENDOR              = 1 -- brown bag
@@ -64,8 +59,7 @@ local GOSSIP_ICON_TABARD              = 8 -- white tabard
 local GOSSIP_ICON_BATTLE              = 9 -- two crossed swords
 local GOSSIP_ICON_DOT                 = 10 -- yellow dot/point
 
--- Bag all characters start with
-local INVENTORY_CONTAINER             = 23162
+local CONTAINER_BAG                   = 23162 -- Foror's Crate of Endless Resist Gear Storage (36 slot)
 
 -- Experience, money and reputation rates
 local MULTIPLIER_1                    = 4 -- Multiplier for rates level 1-59
@@ -80,11 +74,12 @@ local UTILITIES_COST_FACTION_CHANGE   = 1000 -- Money required in gold to perfor
 local UTILITIES_COST_RACE_CHANGE      = 500 -- Money required in gold to perform a race change
 
 -- Ids for gossip selects
-local INT_GLYPHS                      = 100
+local INT_CONTAINERS                  = 100
+local INT_GLYPHS                      = 200
 local INT_GEMS                        = 300
 local INT_HEIRLOOMS                   = 400
-local INT_UTILITIES                   = 500
-local INT_RETURN                      = 600
+local INT_UTILITIES                   = 600
+local INT_RETURN                      = 700
 
 -- When a character enters the world
 function onLogin(event, player)
@@ -147,19 +142,6 @@ function onFirstLogin(event, player)
             player:Teleport(1, 1630.776001, -4412.993652, 16.567701, 0.080535)
         end
     end
-
-    if (player:GetClass() == CLASS_HUNTER) then
-        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG2)
-        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG3)
-        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG4)
-    elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
-        player:AddItem(INVENTORY_CONTAINER, 4)
-    else
-        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG1)
-        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG2)
-        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG3)
-        player:EquipItem(INVENTORY_CONTAINER, EQUIPMENT_SLOT_BAG4)
-    end
 end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
@@ -179,6 +161,9 @@ RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)
 -- Gossip: Hello
 function onGossipHello(event, player, object)
     player:GossipClearMenu()
+    if (ENABLE_CONTAINERS) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want containers", 1, INT_CONTAINERS)
+    end
     if (ENABLE_GLYPHS) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want glyphs", 1, INT_GLYPHS)
     end
@@ -200,6 +185,14 @@ RegisterPlayerGossipEvent(1, 1, onGossipHello)
 function onGossipSelect(event, player, object, sender, intid, code)
     if (intid == INT_RETURN) then
         onGossipHello(event, player, player)
+    elseif (intid == INT_CONTAINERS) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_crate_04:25:25:-19|tForor's Crate of Endless Resist Gear Storage", 1, INT_CONTAINERS+1, false, "", 0)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN, false, "", 0)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)        
+    elseif (intid == INT_CONTAINERS+1) then
+        player:AddItem(CONTAINER_BAG)
+        onGossipSelect(event, player, object, sender, INT_CONTAINERS, code)        
     elseif (intid == INT_GLYPHS) then
         player:GossipClearMenu()
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some major glyphs", 1, INT_GLYPHS+1, false, "", 0)

@@ -76,10 +76,10 @@ local UTILITIES_COST_RACE_CHANGE      = 500 -- Money required in gold to perform
 -- Ids for gossip selects
 local INT_CONTAINERS                  = 100
 local INT_GLYPHS                      = 200
-local INT_GEMS                        = 300
-local INT_HEIRLOOMS                   = 400
-local INT_UTILITIES                   = 600
-local INT_RETURN                      = 700
+local INT_GEMS                        = 400
+local INT_HEIRLOOMS                   = 500
+local INT_UTILITIES                   = 700
+local INT_RETURN                      = 800
 
 -- When a character enters the world
 function onLogin(event, player)

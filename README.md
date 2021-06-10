@@ -19,7 +19,7 @@ The database/db command will import the database files to the specified database
 The configuration/config/cfg command will update the configuration files with the values specified in the xml-file.  
 You can use the parameter all instead to perform all of the actions.  
 
-Example: ./ac.sh [auth/world/all] [start/stop/setup/database/config/all]
+Example: ./ac.sh [auth/world/all/start/stop] [setup/database/config/all]
 
 # First time
 Running the script for the first time will generate a default configuration file called ac.xml that you edit. Make sure to edit it or the script will fail at some point. You can also copy the ac.xml.dist to ac.xml and edit it before running the script.

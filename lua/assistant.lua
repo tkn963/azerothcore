@@ -9,9 +9,9 @@ local ENABLE_UTILITIES                = true
 local EVENT_ON_LOGIN                  = 3
 local EVENT_ON_GIVE_XP                = 12
 local EVENT_ON_LEVEL_CHANGED          = 13
-local EVENT_ON_MONEY_CHANGE           = 14
 local EVENT_ON_REPUTATION_CHANGE      = 15
 local EVENT_ON_FIRST_LOGIN            = 30
+local EVENT_ON_LOOT_MONEY             = 37
 local EVENT_ON_COMMAND                = 42
 
 -- Teams
@@ -137,13 +137,6 @@ end
 
 RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, onLevelChanged)
 
--- Character gains money
-function onMoneyChange(event, player, amount)
-    return amount * rateMultiplier(event, player)
-end
-
-RegisterPlayerEvent(EVENT_ON_MONEY_CHANGE, onMoneyChange)
-
 -- Character gains reputation
 function onReputationChange(event, player, factionId, standing, incremenetal)
     return standing * rateMultiplier(event, player)
@@ -163,6 +156,12 @@ function onFirstLogin(event, player)
 end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
+
+function onLootMoney(event, player, amount)
+    return amount * rateMultiplier(event, player)
+end
+
+RegisterPlayerEvent(EVENT_ON_LOOT_MONEY, onLootMoney)
 
 -- Character performs a command
 function onCommand(event, player, command)

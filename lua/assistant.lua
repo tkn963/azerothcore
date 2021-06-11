@@ -8,6 +8,7 @@ local ENABLE_UTILITIES                = true
 -- Events
 local EVENT_ON_LOGIN                  = 3
 local EVENT_ON_GIVE_XP                = 12
+local EVENT_ON_LEVEL_CHANGED          = 13
 local EVENT_ON_MONEY_CHANGE           = 14
 local EVENT_ON_REPUTATION_CHANGE      = 15
 local EVENT_ON_FIRST_LOGIN            = 30
@@ -62,10 +63,16 @@ local GOSSIP_ICON_DOT                 = 10 -- yellow dot/point
 local CONTAINER_BAG                   = 23162 -- Foror's Crate of Endless Resist Gear Storage (36 slot)
 
 -- Experience, money and reputation rates
+local ENABLE_WEEKEND_MULTIPLIER       = true -- Changes the multiplier on friday, saturday and sunday
+local MULTIPLIER_WEEKEND              = 2 -- Multiplier for all rates on weekends
 local MULTIPLIER_1                    = 4 -- Multiplier for rates level 1-59
 local MULTIPLIER_2                    = 3 -- Multiplier for rates level 60-69
 local MULTIPLIER_3                    = 2 -- Multiplier for rates level 70-79
 local MULTIPLIER_4                    = 1 -- Mutliplier for rates at level 80
+
+-- Weapon skills
+local ENABLE_MAX_SKILL_ON_LEVEL       = true -- Set weapon skills to thier maximum value when leveling up
+local MAX_SKILL_MAX_LEVEL             = 70 -- Last level when a players skills will be set to their maximum value
 
 -- Required copper values
 local UTILITIES_COST_RENAME           = 10 -- Money required in gold to perform a name change
@@ -88,47 +95,58 @@ end
 
 RegisterPlayerEvent(EVENT_ON_LOGIN, onLogin)
 
+-- Calculate multiplier
+function rateMultiplier(event, player)
+    local multiplier = MULTIPLIER_4
+
+    if (player:GetLevel() < 60) then
+        multiplier = MULTIPLIER_1
+    elseif (player:GetLevel() < 70) then
+        multiplier = MULTIPLIER_2
+    elseif (player:GetLevel() < 80) then
+        multiplier = MULTIPLIER_3
+    end
+
+    if (ENABLE_WEEKEND_MULTIPLIER) then
+        if (os.date("*t").wday == 6 or os.date("*t").wday == 7 or os.date("*t").wday == 8) then
+            if not (EVENT == EVENT_ON_GIVE_XP and player:GetLevel() == 80) then
+                multiplier = multiplier * MULTIPLIER_WEEKEND
+            end
+        end
+    end
+
+    return multiplier
+end
+
 -- Character gains experience
 function onGiveXP(event, player, amount, victim)
-    if (player:GetLevel() < 60) then
-        return amount * MULTIPLIER_1
-    elseif (player:GetLevel() < 70) then
-        return amount * MULTIPLIER_2
-    elseif (player:GetLevel() < 80) then
-        return amount * MULTIPLIER_3
-    else
-        return amount * MULTIPLIER_4
-    end
+    return amount * rateMultiplier(event, player)
 end
 
 RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
 
+function onLevelChanged(event, player, oldLevel)
+    if (ENABLE_MAX_SKILL_ON_LEVEL) then
+        if (player:GetLevel() <= MAX_SKILL_MAX_LEVEL) then
+            player:AdvanceSkillsToMax()
+        end
+    end
+
+    return 0
+end
+
+RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, onLevelChanged)
+
 -- Character gains money
 function onMoneyChange(event, player, amount)
-    if (player:GetLevel() < 60) then
-        return amount * MULTIPLIER_1
-    elseif (player:GetLevel() < 70) then
-        return amount * MULTIPLIER_2
-    elseif (player:GetLevel() < 80) then
-        return amount * MULTIPLIER_3
-    else
-        return amount * MULTIPLIER_4
-    end
+    return amount * rateMultiplier(event, player)
 end
 
 RegisterPlayerEvent(EVENT_ON_MONEY_CHANGE, onMoneyChange)
 
 -- Character gains reputation
 function onReputationChange(event, player, factionId, standing, incremenetal)
-    if (player:GetLevel() < 60) then
-        return standing * MULTIPLIER_1
-    elseif (player:GetLevel() < 70) then
-        return standing * MULTIPLIER_2
-    elseif (player:GetLevel() < 80) then
-        return standing * MULTIPLIER_3
-    else
-        return standing * MULTIPLIER_4
-    end
+    return standing * rateMultiplier(event, player)
 end
 
 RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, onReputationChange)

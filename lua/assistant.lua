@@ -109,7 +109,7 @@ end
 RegisterPlayerEvent(EVENT_ON_LOGIN, onLogin)
 
 -- Calculate multiplier
-function rateMultiplier(event, player)
+function rateMultiplier(player)
     local multiplier = MULTIPLIER_4
 
     if (player:GetLevel() < 60) then
@@ -122,9 +122,7 @@ function rateMultiplier(event, player)
 
     if (ENABLE_WEEKEND_MULTIPLIER) then
         if (os.date("*t").wday == 6 or os.date("*t").wday == 7 or os.date("*t").wday == 8) then
-            if not (EVENT == EVENT_ON_GIVE_XP and player:GetLevel() == 80) then
-                multiplier = multiplier * MULTIPLIER_WEEKEND
-            end
+            multiplier = multiplier * MULTIPLIER_WEEKEND
         end
     end
 
@@ -133,7 +131,7 @@ end
 
 -- Character gains experience
 function onGiveXP(event, player, amount, victim)
-    return amount * rateMultiplier(event, player)
+    return amount * rateMultiplier(player)
 end
 
 RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
@@ -180,7 +178,7 @@ RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, onLevelChanged)
 
 -- Character gains reputation
 function onReputationChange(event, player, factionId, standing, incremenetal)
-    return standing * rateMultiplier(event, player)
+    return standing * rateMultiplier(player)
 end
 
 RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, onReputationChange)
@@ -199,7 +197,7 @@ end
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
 
 function onLootMoney(event, player, amount)
-    return amount * rateMultiplier(event, player)
+    return amount * rateMultiplier(player)
 end
 
 RegisterPlayerEvent(EVENT_ON_LOOT_MONEY, onLootMoney)

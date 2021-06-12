@@ -90,15 +90,25 @@ local MONEY_PER_KILL = { -- Money in copper to give to the player when they kill
     1000  -- Level 80
 }
 
+-- When a creature is killed
 function onCreatureKill(event, killer, killed)
+    -- If the player is in a group and giving money to the group is enabled
     if (GIVE_MONEY_TO_GROUP and killer:IsInGroup()) then
+        -- Loop through each member of the group
         for _, v in ipairs(killer:GetGroup():GetMembers()) do
+            -- Make sure the member is online
             if v:IsInWorld() then
+                -- Check that the member is at most MAX_LEVEL_ABOVE_CREATURE above the creature
                 if (killed:GetLevel() >= v:GetLevel()-MAX_LEVEL_ABOVE_CREATURE and killed:GetLevel() >= killer:GetLevel()-MAX_LEVEL_ABOVE_CREATURE) then
+                    -- Check that the member is at most MAX_DISTANCE_FROM_KILLER from the player who killed the creature
                     if (killer:GetDistance(v) <= MAX_DISTANCE_FROM_KILLER) then
+                        -- If a member is in a raid group and giving money to the raid group is enabled
                         if (GIVE_MONEY_TO_RAID and killer:GetGroup():IsRaidGroup()) then
+                            -- Add money to the member
                             v:ModifyMoney(MONEY_PER_KILL[v:GetLevel()])
+                        -- Loop through the members of the same sub-group of the raid
                         elseif (killer:GetGroup():SameSubGroup(killer, v)) then
+                            -- Add money to the member
                             v:ModifyMoney(MONEY_PER_KILL[v:GetLevel()])
                         end
                     end
@@ -106,10 +116,13 @@ function onCreatureKill(event, killer, killed)
             end
         end
     else
+        -- Check that hte player is at most MAX_LEVEL_ABOVE_CREATURE above the creature
         if (killed:GetLevel() >= killer:GetLevel()-MAX_LEVEL_ABOVE_CREATURE) then
+            -- Add money to the player
             killer:ModifyMoney(MONEY_PER_KILL[killer:GetLevel()])
         end
     end
 end
 
+-- Register the event
 RegisterPlayerEvent(EVENT_ON_CREATURE_KILL, onCreatureKill)

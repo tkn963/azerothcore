@@ -4,6 +4,7 @@ local ENABLE_GLYPHS                   = true
 local ENABLE_GEMS                     = true
 local ENABLE_HEIRLOOMS                = true
 local ENABLE_UTILITIES                = true
+local ENABLE_MISCELLANEOUS            = true
 
 -- Events
 local EVENT_ON_LOGIN                  = 3
@@ -97,7 +98,8 @@ local INT_GLYPHS                      = 200
 local INT_GEMS                        = 400
 local INT_HEIRLOOMS                   = 500
 local INT_UTILITIES                   = 700
-local INT_RETURN                      = 800
+local INT_MISCELLANEOUS               = 800
+local INT_RETURN                      = 900
 
 -- When a character enters the world
 function onLogin(event, player)
@@ -232,6 +234,10 @@ function onGossipHello(event, player, object)
     if (ENABLE_UTILITIES) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want utilities", 1, INT_UTILITIES)
     end
+    if (ENABLE_MISCELLANEOUS) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "What else can I get?", 1, INT_MISCELLANEOUS)
+    end
+
     player:GossipSendMenu(0x7FFFFFFF, object, 1)
 end
 
@@ -1355,6 +1361,41 @@ function onGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You can now log out to apply the race change.")
             player:GossipComplete()
         end
+    elseif (intid == INT_MISCELLANEOUS) then
+        player:GossipClearMenu()
+
+        if (player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want totems", 1, INT_MISCELLANEOUS+1)
+        end
+
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN, false, "", 0)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_MISCELLANEOUS+1) then
+        local TOTEM_EARTHEN_RING = 46978
+        local TOTEM_EARTH        = 5175
+        local TOTEM_FIRE         = 5176
+        local TOTEM_WATER        = 5177
+        local TOTEM_AIR          = 5178
+
+        if not (player:HasItem(TOTEM_EARTHEN_RING, 1, true)) then
+            if not (player:HasItem(TOTEM_EARTH, 1, true)) then
+                player:AddItem(TOTEM_EARTH)
+            end
+
+            if not (player:HasItem(TOTEM_FIRE, 1, true)) then
+                player:AddItem(TOTEM_FIRE)
+            end
+
+            if not (player:HasItem(TOTEM_WATER, 1, true)) then
+                player:AddItem(TOTEM_WATER)
+            end
+
+            if not (player:HasItem(TOTEM_AIR, 1, true)) then
+                player:AddItem(TOTEM_AIR)
+            end
+        end
+
+        onGossipSelect(event, player, object, sender, INT_MISCELLANEOUS, code)
     end
 end
 

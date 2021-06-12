@@ -96,7 +96,7 @@ function onCreatureKill(event, killer, killed)
             if v:IsInWorld() then
                 if (killed:GetLevel() >= v:GetLevel()-MAX_LEVEL_ABOVE_CREATURE and killed:GetLevel() >= killer:GetLevel()-MAX_LEVEL_ABOVE_CREATURE) then
                     if (killer:GetDistance(v) <= MAX_DISTANCE_FROM_KILLER) then
-                        if (GIVE_MONEY_TO_RAID) then
+                        if (GIVE_MONEY_TO_RAID and killer:GetGroup():IsRaidGroup()) then
                             v:ModifyMoney(MONEY_PER_KILL[v:GetLevel()])
                         elseif (killer:GetGroup():SameSubGroup(killer, v)) then
                             v:ModifyMoney(MONEY_PER_KILL[v:GetLevel()])

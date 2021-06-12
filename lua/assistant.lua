@@ -74,7 +74,7 @@ local MULTIPLIER_4                    = 1 -- Mutliplier for rates at level 80
 -- Money to give to players when they reach certain levels
 local ENABLE_PLAYER_LEVEL_REWARD      = true -- Enable giving players reward money for reaching specific levels
 local PLAYER_LEVEL_REWARD             = {
---    Level, Money,       Text sent to the player
+--    Level  Money        Text sent to the player
     { 10,    10 * 10000,  "Congratulations on reaching level 10! Take this gift of gold, let it aid you in your travels." },
     { 20,    15 * 10000,  "Congratulations on reaching level 20! Take this gift of gold, let it aid you in your travels." },
     { 30,    20 * 10000,  "Congratulations on reaching level 30! Take this gift of gold, let it aid you in your travels." },

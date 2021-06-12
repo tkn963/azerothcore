@@ -116,7 +116,7 @@ function onCreatureKill(event, killer, killed)
             end
         end
     else
-        -- Check that hte player is at most MAX_LEVEL_ABOVE_CREATURE above the creature
+        -- Check that the player is at most MAX_LEVEL_ABOVE_CREATURE above the creature
         if (killed:GetLevel() >= killer:GetLevel()-MAX_LEVEL_ABOVE_CREATURE) then
             -- Add money to the player
             killer:ModifyMoney(MONEY_PER_KILL[killer:GetLevel()])

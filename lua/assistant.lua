@@ -72,15 +72,18 @@ local MULTIPLIER_3                    = 2 -- Multiplier for rates level 70-79
 local MULTIPLIER_4                    = 1 -- Mutliplier for rates at level 80
 
 -- Money to give to players when they reach certain levels
-local ENABLE_MONEY_LEVEL_REWARDS      = true -- Enable giving players reward money for reaching specific levels
-local MONEY_LEVEL_REWARD_10           = 10 -- Money in gold to give to the player when they reach level 10
-local MONEY_LEVEL_REWARD_20           = 15 -- Money in gold to give to the player when they reach level 20
-local MONEY_LEVEL_REWARD_30           = 20 -- Money in gold to give to the player when they reach level 30
-local MONEY_LEVEL_REWARD_40           = 25 -- Money in gold to give to the player when they reach level 40
-local MONEY_LEVEL_REWARD_50           = 30 -- Money in gold to give to the player when they reach level 50
-local MONEY_LEVEL_REWARD_60           = 50 -- Money in gold to give to the player when they reach level 60
-local MONEY_LEVEL_REWARD_70           = 100 -- Money in gold to give to the player when they reach level 70
-local MONEY_LEVEL_REWARD_80           = 250 -- Money in gold to give to the player when they reach level 80
+local ENABLE_PLAYER_LEVEL_REWARD      = true -- Enable giving players reward money for reaching specific levels
+local PLAYER_LEVEL_REWARD             = {
+--    Level, Money,       Text sent to the player
+    { 10,    10 * 10000,  "Congratulations on reaching level 10! Take this gift of gold, let it aid you in your travels." },
+    { 20,    15 * 10000,  "Congratulations on reaching level 20! Take this gift of gold, let it aid you in your travels." },
+    { 30,    20 * 10000,  "Congratulations on reaching level 30! Take this gift of gold, let it aid you in your travels." },
+    { 40,    25 * 10000,  "Congratulations on reaching level 40! Take this gift of gold, let it aid you in your travels." },
+    { 50,    30 * 10000,  "Congratulations on reaching level 50! Take this gift of gold, let it aid you in your travels." },
+    { 60,    50 * 10000,  "Congratulations on reaching level 60! Take this gift of gold, let it aid you in your travels." },
+    { 70,    100 * 10000, "Congratulations on reaching level 70! Take this gift of gold, let it aid you in your travels." },
+    { 80,    250 * 10000, "Congratulations on reaching level 80! Take this gift of gold, let it aid you in your travels." },
+}
 
 -- Weapon skills
 local ENABLE_MAX_SKILL_ON_LEVEL       = true -- Set weapon skills to thier maximum value when leveling up
@@ -136,38 +139,23 @@ end
 
 RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
 
+-- Player levels up
 function onLevelChanged(event, player, oldLevel)
-    if (ENABLE_MAX_SKILL_ON_LEVEL) then
-        if (player:GetLevel() <= MAX_SKILL_MAX_LEVEL) then
-            player:AdvanceSkillsToMax()
+    if (ENABLE_PLAYER_LEVEL_REWARD) then
+        local count = 0
+        for _ in pairs(PLAYER_LEVEL_REWARD) do count = count + 1 end
+
+        for i=1,count do
+            if (player:GetLevel() == PLAYER_LEVEL_REWARD[i][1]) then
+                player:SendBroadcastMessage(PLAYER_LEVEL_REWARD[i][3])
+                player:ModifyMoney(PLAYER_LEVEL_REWARD[i][2])
+            end
         end
     end
 
-    if (ENABLE_MONEY_LEVEL_REWARDS) then
-        if (player:GetLevel() == 10) then
-            player:SendBroadcastMessage("Congratulations on reaching level 10! Take this gift of gold, let it aid you in your travels.")
-            player:ModifyMoney(MONEY_LEVEL_REWARD_10 * 10000)
-        elseif (player:GetLevel() == 20) then
-            player:SendBroadcastMessage("Congratulations on reaching level 20! Take this gift of gold, let it aid you in your travels.")
-            player:ModifyMoney(MONEY_LEVEL_REWARD_20 * 10000)
-        elseif (player:GetLevel() == 30) then
-            player:SendBroadcastMessage("Congratulations on reaching level 30! Take this gift of gold, let it aid you in your travels.")
-            player:ModifyMoney(MONEY_LEVEL_REWARD_30 * 10000)
-        elseif (player:GetLevel() == 40) then
-            player:SendBroadcastMessage("Congratulations on reaching level 40! Take this gift of gold, let it aid you in your travels.")
-            player:ModifyMoney(MONEY_LEVEL_REWARD_40 * 10000)
-        elseif (player:GetLevel() == 50) then
-            player:SendBroadcastMessage("Congratulations on reaching level 50! Take this gift of gold, let it aid you in your travels.")
-            player:ModifyMoney(MONEY_LEVEL_REWARD_50 * 10000)
-        elseif (player:GetLevel() == 60) then
-            player:SendBroadcastMessage("Congratulations on reaching level 60! Take this gift of gold, let it aid you in your travels.")
-            player:ModifyMoney(MONEY_LEVEL_REWARD_60 * 10000)
-        elseif (player:GetLevel() == 70) then
-            player:SendBroadcastMessage("Congratulations on reaching level 70! Take this gift of gold, let it aid you in your travels.")
-            player:ModifyMoney(MONEY_LEVEL_REWARD_70 * 10000)
-        elseif (player:GetLevel() == 80) then
-            player:SendBroadcastMessage("Congratulations on reaching level 80! Take this gift of gold, let it aid you in your travels.")
-            player:ModifyMoney(MONEY_LEVEL_REWARD_80 * 10000)
+    if (ENABLE_MAX_SKILL_ON_LEVEL) then
+        if (player:GetLevel() <= MAX_SKILL_MAX_LEVEL) then
+            player:AdvanceSkillsToMax()
         end
     end
 

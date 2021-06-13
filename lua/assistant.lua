@@ -64,6 +64,9 @@ local GOSSIP_ICON_DOT                 = 10 -- yellow dot/point
 local CONTAINER_BAG                   = 23162 -- Foror's Crate of Endless Resist Gear Storage (36 slot)
 
 -- Experience, money and reputation rates
+local ENABLE_EXPERIENCE_MULTIPLIER    = true -- Enable the experience multiplier
+local ENABLE_REPUTATION_MULTIPLIER    = true -- Enable the reputation multiplier
+local ENABLE_MONEY_LOOT_MULTIPLIER    = true -- Enable the money loot multiplier
 local ENABLE_WEEKEND_MULTIPLIER       = true -- Changes the multiplier on friday, saturday and sunday
 local MULTIPLIER_WEEKEND              = 2 -- Multiplier for all rates on weekends
 local MULTIPLIER_1                    = 4 -- Multiplier for rates level 1-59
@@ -134,7 +137,9 @@ end
 
 -- Character gains experience
 function onGiveXP(event, player, amount, victim)
-    return amount * rateMultiplier(player)
+    if (ENABLE_EXPERIENCE_MULTIPLIER) then
+        return amount * rateMultiplier(player)
+    end
 end
 
 RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
@@ -166,7 +171,9 @@ RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, onLevelChanged)
 
 -- Character gains reputation
 function onReputationChange(event, player, factionId, standing, incremenetal)
-    return standing * rateMultiplier(player)
+    if (ENABLE_REPUTATION_MULTIPLIER) then
+        return standing * rateMultiplier(player)
+    end
 end
 
 RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, onReputationChange)
@@ -185,7 +192,9 @@ end
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
 
 function onLootMoney(event, player, amount)
-    return amount * rateMultiplier(player)
+    if (ENABLE_MONEY_LOOT_MULTIPLIER) then
+        return amount * rateMultiplier(player)
+    end
 end
 
 RegisterPlayerEvent(EVENT_ON_LOOT_MONEY, onLootMoney)

@@ -1,13 +1,14 @@
-local EVENT_ON_CREATURE_KILL = 7
+local EVENT_ON_CREATURE_KILL             = 7
 
-local MAX_LEVEL_ABOVE_CREATURE = 4 -- A creature can not be more levels below the player than this number in order to give the player money on kill
+local MAX_LEVEL_ABOVE_CREATURE           = 4 -- A creature can not be more levels below the player than this number in order to give the player money on kill
 
-local GIVE_MONEY_TO_GROUP = true -- Give money to every member of the killers party, if any
-local GIVE_MONEY_TO_RAID = false -- Give money to all of the raid, if any, if GIVE_MONEY_TO_GROUP is enabled
+local GIVE_MONEY_TO_GROUP                = true -- Give money to every member of the killers party, if any
+local GIVE_MONEY_TO_RAID                 = false -- Give money to all of the raid, if any, if GIVE_MONEY_TO_GROUP is enabled
+local GIVE_MONEY_BASED_ON_CREATURE_LEVEL = false -- Give money from the list below based on the creatures level instead of the players level
 
-local MAX_DISTANCE_FROM_KILLER = 50 -- Max distance a member of the party or raid can be from the killer in order to get money for the kill
+local MAX_DISTANCE_FROM_KILLER           = 50 -- Max distance a member of the party or raid can be from the killer in order to get money for the kill
 
-local MONEY_PER_KILL = { -- Money in copper to give to the player when they kill a creature
+local MONEY_PER_KILL                     = { -- Money in copper to give to the player when they kill a creature
     1000, -- Level 1
     1000, -- Level 2
     1000, -- Level 3
@@ -87,7 +88,14 @@ local MONEY_PER_KILL = { -- Money in copper to give to the player when they kill
     1000, -- Level 77
     1000, -- Level 78
     1000, -- Level 79
-    1000  -- Level 80
+    1000, -- Level 80
+    1000, -- Level 81
+    1000, -- Level 82
+    1000, -- Level 83
+    1000, -- Level 84
+    1000, -- Level 85
+    1000, -- Level 86
+    1000  -- Level 87
 }
 
 -- When a creature is killed
@@ -104,12 +112,22 @@ function onCreatureKill(event, killer, killed)
                     if (killer:GetDistance(v) <= MAX_DISTANCE_FROM_KILLER) then
                         -- If a member is in a raid group and giving money to the raid group is enabled
                         if (GIVE_MONEY_TO_RAID and killer:GetGroup():IsRaidGroup()) then
-                            -- Add money to the member
-                            v:ModifyMoney(MONEY_PER_KILL[v:GetLevel()])
+                            if (GIVE_MONEY_BASED_ON_CREATURE_LEVEL) then
+                                -- Add money to the member
+                                v:ModifyMoney(MONEY_PER_KILL[killed:GetLevel()])
+                            else
+                                -- Add money to the member
+                                v:ModifyMoney(MONEY_PER_KILL[v:GetLevel()])
+                            end
                         -- Loop through the members of the same sub-group of the raid
                         elseif (killer:GetGroup():SameSubGroup(killer, v)) then
-                            -- Add money to the member
-                            v:ModifyMoney(MONEY_PER_KILL[v:GetLevel()])
+                            if (GIVE_MONEY_BASED_ON_CREATURE_LEVEL) then
+                                -- Add money to the member
+                                v:ModifyMoney(MONEY_PER_KILL[killed:GetLevel()])
+                            else
+                                -- Add money to the member
+                                v:ModifyMoney(MONEY_PER_KILL[v:GetLevel()])
+                            end
                         end
                     end
                 end
@@ -118,8 +136,13 @@ function onCreatureKill(event, killer, killed)
     else
         -- Check that the player is at most MAX_LEVEL_ABOVE_CREATURE above the creature
         if (killed:GetLevel() >= killer:GetLevel()-MAX_LEVEL_ABOVE_CREATURE) then
-            -- Add money to the player
-            killer:ModifyMoney(MONEY_PER_KILL[killer:GetLevel()])
+            if (GIVE_MONEY_BASED_ON_CREATURE_LEVEL) then
+                -- Add money to the player
+                killer:ModifyMoney(MONEY_PER_KILL[killed:GetLevel()])
+            else
+                -- Add money to the player
+                killer:ModifyMoney(MONEY_PER_KILL[killer:GetLevel()])
+            end
         end
     end
 end

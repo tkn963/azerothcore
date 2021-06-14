@@ -79,11 +79,11 @@ local ENABLE_PLAYER_LEVEL_REWARD      = true -- Enable giving players reward mon
 local PLAYER_LEVEL_REWARD             = {
 --    Level  Money        Text sent to the player
     { 10,    10 * 10000,  "Congratulations on reaching level 10! Take this gift of gold, let it aid you in your travels." },
-    { 20,    15 * 10000,  "Congratulations on reaching level 20! Take this gift of gold, let it aid you in your travels." },
-    { 30,    20 * 10000,  "Congratulations on reaching level 30! Take this gift of gold, let it aid you in your travels." },
-    { 40,    25 * 10000,  "Congratulations on reaching level 40! Take this gift of gold, let it aid you in your travels." },
-    { 50,    30 * 10000,  "Congratulations on reaching level 50! Take this gift of gold, let it aid you in your travels." },
-    { 60,    50 * 10000,  "Congratulations on reaching level 60! Take this gift of gold, let it aid you in your travels." },
+    { 20,    25 * 10000,  "Congratulations on reaching level 20! Take this gift of gold, let it aid you in your travels." },
+    { 30,    40 * 10000,  "Congratulations on reaching level 30! Take this gift of gold, let it aid you in your travels." },
+    { 40,    55 * 10000,  "Congratulations on reaching level 40! Take this gift of gold, let it aid you in your travels." },
+    { 50,    70 * 10000,  "Congratulations on reaching level 50! Take this gift of gold, let it aid you in your travels." },
+    { 60,    85 * 10000,  "Congratulations on reaching level 60! Take this gift of gold, let it aid you in your travels." },
     { 70,    100 * 10000, "Congratulations on reaching level 70! Take this gift of gold, let it aid you in your travels." },
     { 80,    250 * 10000, "Congratulations on reaching level 80! Take this gift of gold, let it aid you in your travels." },
 }

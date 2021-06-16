@@ -18,3 +18,5 @@ UPDATE `item_template` SET `Flags`=2048 WHERE `entry`=37020;
 UPDATE `item_template` SET `Flags`=2048 WHERE `entry`=37200;
 -- Demonic Rune Stone
 UPDATE `item_template` SET `Flags`=2048 WHERE `entry`=28513;
+-- Bleeding Hollow Blood
+UPDATE `item_template` SET `Flags`=2112 WHERE `entry`=30425;

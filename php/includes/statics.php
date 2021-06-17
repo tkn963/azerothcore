@@ -10,9 +10,9 @@ abstract class expansion
 abstract class maptype
 {
     const world = 0;
-    const battleground = 1;
-    const arena = 2;
-    const dungeon = 3;
-    const raid = 4;
+    const dungeon = 1;
+    const raid = 2;
+    const battleground = 3;
+    const arena = 4;
 };
 ?>

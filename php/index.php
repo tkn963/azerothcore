@@ -1,6 +1,7 @@
 <?php
-include("includes/config.php");
-include("includes/maps.php");
+include('includes/statics.php');
+include('includes/config.php');
+include('includes/maps.php');
 
 if ($enable_debug)
 {
@@ -12,7 +13,7 @@ for ($id = 0; $id < count($maps); $id++)
 {
     if ($map_expansion[$id] <= $expansion)
     {
-        echo $map_name[$id]."<br>";
+        echo $map_name[$id].'<br>';
     }
 }
 ?>

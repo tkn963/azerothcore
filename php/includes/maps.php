@@ -1,129 +1,124 @@
 <?php
-// type: 0 (world)
-// type: 1 (dungeon)
-// type: 2 (raid)
-// type: 3 (battleground)
-// type: 4 (arena)
 $maps = array(
     array(
         'name' => 'Eastern Kingdoms',
         'id' => 0,
-        'type' => 0,
-        'expansion' => 0
+        'type' => maptype::world,
+        'expansion' => expansion::none
     ),
     array(
         'name' => 'Kalimdor',
         'id' => 1,
-        'type' => 0,
-        'expansion' => 0
+        'type' => maptype::world,
+        'expansion' => expansion::none
     ),
     array(
         'name' => 'Alterac Valley',
         'id' => 30,
-        'type' => 3,
-        'expansion' => 0
+        'type' => maptype::battleground,
+        'expansion' => expansion::none
     ),
     array(
         'name' => 'Warsong Gulch',
         'id' => 489,
-        'type' => 3,
-        'expansion' => 0
+        'type' => maptype::battleground,
+        'expansion' => expansion::none
     ),
     array(
         'name' => 'Arathi Basin',
         'id' => 529,
-        'type' => 3,
-        'expansion' => 0
+        'type' => maptype::battleground,
+        'expansion' => expansion::none
     ),
     array(
         'name' => 'Outland',
         'id' => 530,
-        'type' => 0,
-        'expansion' => 1
+        'type' => maptype::world,
+        'expansion' => expansion::theburningcrusade
     ),
     array(
         'name' => 'Eye of the Storm',
         'id' => 566,
-        'type' => 3,
-        'expansion' => 1
+        'type' => maptype::battleground,
+        'expansion' => expansion::theburningcrusade
     ),
     array(
         'name' => 'Northrend',
         'id' => 571,
-        'type' => 0,
-        'expansion' => 2
+        'type' => maptype::world,
+        'expansion' => expansion::wrathofthelichking
     ),
     array(
         'name' => 'Ruins of Lordaeron',
         'id' => 572,
-        'type' => 4,
-        'expansion' => 1
+        'type' => maptype::arena,
+        'expansion' => expansion::theburningcrusade
     ),
     array(
         'name' => 'Strand of the Ancients',
         'id' => 607,
-        'type' => 3,
-        'expansion' => 2
+        'type' => maptype::battleground,
+        'expansion' => expansion::wrathofthelichking
     ),
     array(
         'name' => 'Dalaran Arena',
         'id' => 617,
-        'type' => 4,
-        'expansion' => 2
+        'type' => maptype::arena,
+        'expansion' => expansion::wrathofthelichking
     ),
     array(
         'name' => 'The Ring of Valor',
         'id' => 618,
-        'type' => 4,
-        'expansion' => 2
+        'type' => maptype::arena,
+        'expansion' => expansion::wrathofthelichking
     ),
     array(
         'name' => 'Isle of Conquest',
         'id' => 628,
-        'type' => 3,
-        'expansion' => 2
+        'type' => maptype::battleground,
+        'expansion' => expansion::wrathofthelichking
     ),
     array(
         'name' => 'Deepholm',
         'id' => 646,
-        'type' => 0,
-        'expansion' => 3
+        'type' => maptype::world,
+        'expansion' => expansion::cataclysm
     ),
     array(
         'name' => 'Twin Peaks',
         'id' => 726,
-        'type' => 3,
-        'expansion' => 3
+        'type' => maptype::battleground,
+        'expansion' => expansion::cataclysm
     ),
     array(
         'name' => 'Maelstrom Zone',
         'id' => 730,
-        'type' => 0,
-        'expansion' => 3
+        'type' => maptype::world,
+        'expansion' => expansion::cataclysm
     ),
     array(
         'name' => 'Tol Barad',
         'id' => 732,
-        'type' => 0,
-        'expansion' => 3
+        'type' => maptype::world,
+        'expansion' => expansion::cataclysm
     ),
     array(
         'name' => 'The Battle for Gilneas',
         'id' => 761,
-        'type' => 3,
-        'expansion' => 3
+        'type' => maptype::battleground,
+        'expansion' => expansion::cataclysm
     ),
     array(
         'name' => 'Nagrand Arena',
         'id' => 1505,
-        'type' => 4,
-        'expansion' => 1
+        'type' => maptype::arena,
+        'expansion' => expansion::theburningcrusade
     ),
     array(
         'name' => 'Blade\'s Edge Arena',
         'id' => 1672,
-        'type' => 4,
-        'expansion' => 1
+        'type' => maptype::arena,
+        'expansion' => expansion::theburningcrusade
     )
 );
 

@@ -2,6 +2,7 @@
 include('includes/statics.php');
 include('includes/config.php');
 include('includes/maps.php');
+include('includes/zones.php');
 
 if ($enable_debug)
 {

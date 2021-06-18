@@ -6,6 +6,6 @@ $mysql = array(
     'pass' => 'acore'
 );
 
-$expansion = expansion::wrathofthelichking; // Up to and including set expansion
+$expansion = expansion::wrathofthelichking; // Up to and including this expansion
 $enable_debug = true; // enable php warnings and errors
 ?>

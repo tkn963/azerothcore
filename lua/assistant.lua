@@ -8,11 +8,7 @@ local ENABLE_MISCELLANEOUS            = true
 
 -- Events
 local EVENT_ON_LOGIN                  = 3
-local EVENT_ON_GIVE_XP                = 12
-local EVENT_ON_LEVEL_CHANGED          = 13
-local EVENT_ON_REPUTATION_CHANGE      = 15
 local EVENT_ON_FIRST_LOGIN            = 30
-local EVENT_ON_LOOT_MONEY             = 37
 local EVENT_ON_COMMAND                = 42
 
 -- Teams
@@ -63,38 +59,6 @@ local GOSSIP_ICON_DOT                 = 10 -- yellow dot/point
 
 local CONTAINER_BAG                   = 23162 -- Foror's Crate of Endless Resist Gear Storage (36 slot)
 
--- Experience, money and reputation rates
-local ENABLE_EXPERIENCE_MULTIPLIER    = true -- Enable the experience multiplier
-local ENABLE_REPUTATION_MULTIPLIER    = true -- Enable the reputation multiplier
-local ENABLE_MONEY_LOOT_MULTIPLIER    = true -- Enable the money loot multiplier
-local ENABLE_WEEKEND_MULTIPLIER       = true -- Changes the multiplier on friday, saturday and sunday
-local MULTIPLIER_WEEKEND              = 2 -- Multiplier for all rates on weekends
-local RATE_MULTIPLIER                 = { -- Multiplier for specific levels. It's modular so you can set your own level ranges
---    Min level  Max level  Multiplier
-    { 1,         59,        4 },
-    { 60,        69,        3 },
-    { 70,        79,        2 },
-    { 80,        80,        1 },
-}
-
--- Money to give to players when they reach certain levels
-local ENABLE_PLAYER_LEVEL_REWARD      = true -- Enable giving players reward money for reaching specific levels
-local PLAYER_LEVEL_REWARD             = {
---    Level  Money        Text sent to the player
-    { 10,    10 * 10000,  "Congratulations on reaching level 10! Take this gift of gold, let it aid you in your travels." },
-    { 20,    25 * 10000,  "Congratulations on reaching level 20! Take this gift of gold, let it aid you in your travels." },
-    { 30,    40 * 10000,  "Congratulations on reaching level 30! Take this gift of gold, let it aid you in your travels." },
-    { 40,    55 * 10000,  "Congratulations on reaching level 40! Take this gift of gold, let it aid you in your travels." },
-    { 50,    70 * 10000,  "Congratulations on reaching level 50! Take this gift of gold, let it aid you in your travels." },
-    { 60,    85 * 10000,  "Congratulations on reaching level 60! Take this gift of gold, let it aid you in your travels." },
-    { 70,    100 * 10000, "Congratulations on reaching level 70! Take this gift of gold, let it aid you in your travels." },
-    { 80,    250 * 10000, "Congratulations on reaching level 80! Take this gift of gold, let it aid you in your travels." },
-}
-
--- Weapon skills
-local ENABLE_MAX_SKILL_ON_LEVEL       = true -- Set weapon skills to thier maximum value when leveling up
-local MAX_SKILL_MAX_LEVEL             = 70 -- Last level when a players skills will be set to their maximum value
-
 -- Required copper values
 local UTILITIES_COST_RENAME           = 10 -- Money required in gold to perform a name change
 local UTILITIES_COST_CUSTOMIZE        = 50 -- Money required in gold to perform a customization
@@ -117,72 +81,6 @@ end
 
 RegisterPlayerEvent(EVENT_ON_LOGIN, onLogin)
 
--- Calculate multiplier
-function rateMultiplier(player)
-    local multiplier = 1
-
-    local count = 0
-    for _ in pairs(RATE_MULTIPLIER) do count = count + 1 end
-
-    for i=1,count do
-        if (player:GetLevel() >= RATE_MULTIPLIER[i][1] and player:GetLevel() <= RATE_MULTIPLIER[i][2]) then
-            multiplier = RATE_MULTIPLIER[3]
-            break
-        end
-    end
-
-    if (ENABLE_WEEKEND_MULTIPLIER) then
-        if (os.date("*t").wday == 6 or os.date("*t").wday == 7 or os.date("*t").wday == 8) then
-            multiplier = multiplier * MULTIPLIER_WEEKEND
-        end
-    end
-
-    return multiplier
-end
-
--- Character gains experience
-function onGiveXP(event, player, amount, victim)
-    if (ENABLE_EXPERIENCE_MULTIPLIER) then
-        return amount * rateMultiplier(player)
-    end
-end
-
-RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
-
--- Player levels up
-function onLevelChanged(event, player, oldLevel)
-    if (ENABLE_PLAYER_LEVEL_REWARD) then
-        local count = 0
-        for _ in pairs(PLAYER_LEVEL_REWARD) do count = count + 1 end
-
-        for i=1,count do
-            if (player:GetLevel() == PLAYER_LEVEL_REWARD[i][1]) then
-                player:SendBroadcastMessage(PLAYER_LEVEL_REWARD[i][3])
-                player:ModifyMoney(PLAYER_LEVEL_REWARD[i][2])
-            end
-        end
-    end
-
-    if (ENABLE_MAX_SKILL_ON_LEVEL) then
-        if (player:GetLevel() <= MAX_SKILL_MAX_LEVEL) then
-            player:AdvanceSkillsToMax()
-        end
-    end
-
-    return 0
-end
-
-RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, onLevelChanged)
-
--- Character gains reputation
-function onReputationChange(event, player, factionId, standing, incremenetal)
-    if (ENABLE_REPUTATION_MULTIPLIER) then
-        return standing * rateMultiplier(player)
-    end
-end
-
-RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, onReputationChange)
-
 -- Character logs in for the first time
 function onFirstLogin(event, player)
     if not (player:GetClass() == CLASS_DEATH_KNIGHT) then
@@ -195,14 +93,6 @@ function onFirstLogin(event, player)
 end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
-
-function onLootMoney(event, player, amount)
-    if (ENABLE_MONEY_LOOT_MULTIPLIER) then
-        return amount * rateMultiplier(player)
-    end
-end
-
-RegisterPlayerEvent(EVENT_ON_LOOT_MONEY, onLootMoney)
 
 -- Character performs a command
 function onCommand(event, player, command)

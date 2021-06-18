@@ -69,10 +69,13 @@ local ENABLE_REPUTATION_MULTIPLIER    = true -- Enable the reputation multiplier
 local ENABLE_MONEY_LOOT_MULTIPLIER    = true -- Enable the money loot multiplier
 local ENABLE_WEEKEND_MULTIPLIER       = true -- Changes the multiplier on friday, saturday and sunday
 local MULTIPLIER_WEEKEND              = 2 -- Multiplier for all rates on weekends
-local MULTIPLIER_1                    = 4 -- Multiplier for rates level 1-59
-local MULTIPLIER_2                    = 3 -- Multiplier for rates level 60-69
-local MULTIPLIER_3                    = 2 -- Multiplier for rates level 70-79
-local MULTIPLIER_4                    = 1 -- Mutliplier for rates at level 80
+local RATE_MULTIPLIER                 = { -- Multiplier for specific levels. It's modular so you can set your own level ranges
+--    Min level  Max level  Multiplier
+    { 1,         59,        4 },
+    { 60,        69,        3 },
+    { 70,        79,        2 },
+    { 80,        80,        1 },
+}
 
 -- Money to give to players when they reach certain levels
 local ENABLE_PLAYER_LEVEL_REWARD      = true -- Enable giving players reward money for reaching specific levels
@@ -116,14 +119,16 @@ RegisterPlayerEvent(EVENT_ON_LOGIN, onLogin)
 
 -- Calculate multiplier
 function rateMultiplier(player)
-    local multiplier = MULTIPLIER_4
+    local multiplier = 1
 
-    if (player:GetLevel() < 60) then
-        multiplier = MULTIPLIER_1
-    elseif (player:GetLevel() < 70) then
-        multiplier = MULTIPLIER_2
-    elseif (player:GetLevel() < 80) then
-        multiplier = MULTIPLIER_3
+    local count = 0
+    for _ in pairs(RATE_MULTIPLIER) do count = count + 1 end
+
+    for i=1,count do
+        if (player:GetLevel() >= RATE_MULTIPLIER[i][1] and player:GetLevel() <= RATE_MULTIPLIER[i][2]) then
+            multiplier = RATE_MULTIPLIER[3]
+            break
+        end
     end
 
     if (ENABLE_WEEKEND_MULTIPLIER) then

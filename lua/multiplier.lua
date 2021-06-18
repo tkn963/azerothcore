@@ -26,7 +26,7 @@ function rateMultiplier(player)
 
     for i=1,count do
         if (player:GetLevel() >= RATE_MULTIPLIER[i][1] and player:GetLevel() <= RATE_MULTIPLIER[i][2]) then
-            multiplier = RATE_MULTIPLIER[3]
+            multiplier = RATE_MULTIPLIER[i][3]
             break
         end
     end

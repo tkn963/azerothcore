@@ -2,6 +2,7 @@
 local EVENT_ON_GIVE_XP             = 12
 local EVENT_ON_REPUTATION_CHANGE   = 15
 local EVENT_ON_LOOT_MONEY          = 37
+local EVENT_ON_COMMAND             = 42
 
 -- Experience, money and reputation rates
 local ENABLE_EXPERIENCE_MULTIPLIER = true -- Enable the experience multiplier
@@ -57,3 +58,29 @@ function onReputationChange(event, player, factionId, standing, incremenetal)
 end
 
 RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, onReputationChange)
+
+-- Character performs a command
+function onCommand(event, player, command)
+    if command == 'rates' then
+        if (ENABLE_EXPERIENCE_MULTIPLIER) then
+            player:SendBroadcastMessage("The experience you receive is "..(100 * rateMultiplier(player)).."% of the normal value.")
+        end
+
+        if (ENABLE_REPUTATION_MULTIPLIER) then
+            player:SendBroadcastMessage("The reputation you receive is "..(100 * rateMultiplier(player)).."% of the normal value.")
+        end
+
+        if (ENABLE_MONEY_LOOT_MULTIPLIER) then
+            player:SendBroadcastMessage("The looted money you receive is "..(100 * rateMultiplier(player)).."% of the normal value.")
+        end
+
+        if (ENABLE_WEEKEND_MULTIPLIE and ENABLE_EXPERIENCE_MULTIPLIER or ENABLE_REPUTATION_MULTIPLIER or ENABLE_MONEY_LOOT_MULTIPLIER) then
+            if (os.date("*t").wday == 6 or os.date("*t").wday == 7 or os.date("*t").wday == 8) then
+                player:SendBroadcastMessage("The weekend multiplier is active, increasing the above rates by "..(100 * MULTIPLIER_WEEKEND).."%.")
+            end
+        end
+        return false
+    end
+end
+
+RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)

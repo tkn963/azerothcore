@@ -70,7 +70,7 @@ RegisterPlayerEvent(EVENT_ON_LOGIN, onLogin)
 
 -- Character performs a command
 function onCommand(event, player, command)
-    if (ENABLE_GLYPHS or ENABLE_GEMS or ENABLE_HEIRLOOMS or ENABLE_UTILITIES) then
+    if (ENABLE_CONTAINERS or ENABLE_GLYPHS or ENABLE_GEMS or ENABLE_HEIRLOOMS or ENABLE_UTILITIES or ENABLE_MISCELLANEOUS) then
         if command == 'assistant' then
             onGossipHello(event, player, player)
             return false

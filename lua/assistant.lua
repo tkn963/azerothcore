@@ -1,8 +1,9 @@
 -- Features
-local ENABLE_CONTAINERS             = true
+local ENABLE_EQUIPMENT              = true
+local ENABLE_HEIRLOOMS              = true
 local ENABLE_GLYPHS                 = true
 local ENABLE_GEMS                   = true
-local ENABLE_HEIRLOOMS              = true
+local ENABLE_CONTAINERS             = true
 local ENABLE_UTILITIES              = true
 local ENABLE_MISCELLANEOUS          = true
 
@@ -53,13 +54,14 @@ local UTILITIES_COST_FACTION_CHANGE = 1000 -- Money required in gold to perform 
 local UTILITIES_COST_RACE_CHANGE    = 500 -- Money required in gold to perform a race change
 
 -- Ids for gossip selects
-local INT_CONTAINERS                = 100
-local INT_GLYPHS                    = 200
-local INT_GEMS                      = 400
-local INT_HEIRLOOMS                 = 500
+local INT_EQUIPMENT                 = 100
+local INT_HEIRLOOMS                 = 200
+local INT_GLYPHS                    = 300
+local INT_GEMS                      = 500
+local INT_CONTAINERS                = 600
 local INT_UTILITIES                 = 700
 local INT_MISCELLANEOUS             = 800
-local INT_RETURN                    = 900
+local INT_RETURN                    = 2000
 
 -- When a character enters the world
 function onLogin(event, player)
@@ -83,8 +85,11 @@ RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)
 -- Gossip: Hello
 function onGossipHello(event, player, object)
     player:GossipClearMenu()
-    if (ENABLE_CONTAINERS) then
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want containers", 1, INT_CONTAINERS)
+    if (ENABLE_EQUIPMENT and player:GetLevel() == 80) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want equipment", 1, INT_EQUIPMENT)
+    end
+    if (ENABLE_HEIRLOOMS) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want heirlooms", 1, INT_HEIRLOOMS)
     end
     if (ENABLE_GLYPHS) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want glyphs", 1, INT_GLYPHS)
@@ -92,8 +97,8 @@ function onGossipHello(event, player, object)
     if (ENABLE_GEMS) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want gems", 1, INT_GEMS)
     end
-    if (ENABLE_HEIRLOOMS) then
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want heirlooms", 1, INT_HEIRLOOMS)
+    if (ENABLE_CONTAINERS) then
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want containers", 1, INT_CONTAINERS)
     end
     if (ENABLE_UTILITIES) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want utilities", 1, INT_UTILITIES)
@@ -111,14 +116,282 @@ RegisterPlayerGossipEvent(1, 1, onGossipHello)
 function onGossipSelect(event, player, object, sender, intid, code)
     if (intid == INT_RETURN) then
         onGossipHello(event, player, player)
-    elseif (intid == INT_CONTAINERS) then
+    elseif (intid == INT_EQUIPMENT) then
         player:GossipClearMenu()
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_crate_04:25:25:-19|tForor's Crate of Endless Resist Gear Storage", 1, INT_CONTAINERS+1)
+
+    if (player:GetClass() == CLASS_WARRIOR) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Arms", 1, INT_EQUIPMENT+1)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Fury", 1, INT_EQUIPMENT+2)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Protection", 1, INT_EQUIPMENT+3)
+    elseif (player:GetClass() == CLASS_PALADIN) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Holy", 1, INT_EQUIPMENT+4)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Protection", 1, INT_EQUIPMENT+5)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Retribution", 1, INT_EQUIPMENT+6)
+    elseif (player:GetClass() == CLASS_HUNTER) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Beast Mastery", 1, INT_EQUIPMENT+7)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Marksmanship", 1, INT_EQUIPMENT+8)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Survival", 1, INT_EQUIPMENT+9)
+    elseif (player:GetClass() == CLASS_ROGUE) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Assassination", 1, INT_EQUIPMENT+10)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Combat", 1, INT_EQUIPMENT+11)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Subtlety", 1, INT_EQUIPMENT+12)
+    elseif (player:GetClass() == CLASS_PRIEST) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Discipline", 1, INT_EQUIPMENT+13)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Holy", 1, INT_EQUIPMENT+14)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Shadow", 1, INT_EQUIPMENT+15)
+    elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Blood", 1, INT_EQUIPMENT+16)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Frost", 1, INT_EQUIPMENT+17)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Unholy", 1, INT_EQUIPMENT+18)
+    elseif (player:GetClass() == CLASS_SHAMAN) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Elemental", 1, INT_EQUIPMENT+19)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Enhancement", 1, INT_EQUIPMENT+20)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Restoration", 1, INT_EQUIPMENT+21)
+    elseif (player:GetClass() == CLASS_MAGE) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Arcane", 1, INT_EQUIPMENT+22)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Fire", 1, INT_EQUIPMENT+23)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Frost", 1, INT_EQUIPMENT+24)
+    elseif (player:GetClass() == CLASS_WARLOCK) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Affliction", 1, INT_EQUIPMENT+25)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Demonology", 1, INT_EQUIPMENT+26)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "I want to use Destruction", 1, INT_EQUIPMENT+27)
+    elseif (player:GetClass() == CLASS_DRUID) then
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_nature_forceOfnature:25:25:-19|tI want to use Balance", 1, INT_EQUIPMENT+28)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_druid_catForm:25:25:-19|tI want to use Feral Combat", 1, INT_EQUIPMENT+29)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_druid_treeoflife:25:25:-19|tI want to use Restoration", 1, INT_EQUIPMENT+30)
+    end
+
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
-        player:GossipSendMenu(0x7FFFFFFF, object, 1)        
-    elseif (intid == INT_CONTAINERS+1) then
-        player:AddItem(CONTAINER_BAG)
-        onGossipSelect(event, player, object, sender, INT_CONTAINERS, code)        
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_HEIRLOOMS) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some armor", 1, INT_HEIRLOOMS+1)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some weapons", 1, INT_HEIRLOOMS+2)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want something else", 1, INT_HEIRLOOMS+3)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_HEIRLOOMS+1) then
+        player:GossipClearMenu()
+
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_30:25:25:-19|tPolished Spaulders of Valor", 1, INT_HEIRLOOMS+4)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_plate03:25:25:-19|tPolished Breastplate of Valor", 1, INT_HEIRLOOMS+5)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_20:25:25:-19|tStrengthened Stockade Pauldrons", 1, INT_HEIRLOOMS+6)
+
+            if (player:GetClass() == CLASS_PALADIN) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_10:25:25:-19|tPristine Lightforge Spaulders", 1, INT_HEIRLOOMS+7)
+            end
+        elseif (player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_01:25:25:-19|tChampion Herod's Shoulder", 1, INT_HEIRLOOMS+8)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_chain_07:25:25:-19|tChampion's Deathdealer Breastplate", 1, INT_HEIRLOOMS+9)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_10:25:25:-19|tPrized Beastmaster's Mantle", 1, INT_HEIRLOOMS+10)
+            if (player:GetClass() == CLASS_SHAMAN) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_29:25:25:-19|tMystical Pauldrons of Elements", 1, INT_HEIRLOOMS+11)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_chain_11:25:25:-19|tMystical Vest of Elements", 1, INT_HEIRLOOMS+12)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_29:25:25:-19|tAged Pauldrons of The Five Thunders", 1, INT_HEIRLOOMS+13)
+            end
+        elseif (player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_07:25:25:-19|tStained Shadowcraft Spaulders", 1, INT_HEIRLOOMS+14)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_leather_07:25:25:-19|tStained Shadowcraft Tunic", 1, INT_HEIRLOOMS+15)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_05:25:25:-19|tExceptional Stormshroud Shoulders", 1, INT_HEIRLOOMS+16)
+
+            if (player:GetClass() == CLASS_DRUID) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_06:25:25:-19|tPreened Ironfeather Shoulders", 1, INT_HEIRLOOMS+17)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_leather_06:25:25:-19|tPreened Ironfeather Breastplate", 1, INT_HEIRLOOMS+18)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_01:25:25:-19|tLasting Feralheart Spaulders", 1, INT_HEIRLOOMS+19)
+            end
+        elseif (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_misc_bone_taurenskull_01:25:25:-19|tTattered Dreadmist Mantle", 1, INT_HEIRLOOMS+20)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_cloth_49:25:25:-19|tTattered Dreadmist Robe", 1, INT_HEIRLOOMS+21)
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_02:25:25:-19|tExquisite Sunderseer Mantle", 1, INT_HEIRLOOMS+22)
+        end
+
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_ring_39:25:25:-19|tDread Pirate Ring", 1, INT_HEIRLOOMS+23)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_01:25:25:-19|tSwift Hand of Justice", 1, INT_HEIRLOOMS+24)
+
+        if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_08:25:25:-19|tDiscerning Eye of the Beast", 1, INT_HEIRLOOMS+25)
+        end
+
+        if (player:GetTeam() == TEAM_ALLIANCE) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_trinketpvp_01:25:25:-19|tInherited Insignia of the Alliance", 1, INT_HEIRLOOMS+26)
+        elseif (player:GetTeam() == TEAM_HORDE) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_trinketpvp_02:25:25:-19|tInherited Insignia of the Horde", 1, INT_HEIRLOOMS+27)
+        end
+
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_HEIRLOOMS+2) then
+        player:GossipClearMenu()
+
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_axe_09:25:25:-19|tBloodied Arcanite Reaper", 1, INT_HEIRLOOMS+28)
+        end
+        if (player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_17:25:25:-19|tBalanced Heartseeker", 1, INT_HEIRLOOMS+29)
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DEATH_KNIGHT) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_43:25:25:-19|tVenerable Dal'Rend's Sacred Charge", 1, INT_HEIRLOOMS+30)
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_bow_08:25:25:-19|tCharmed Ancient Bone Bow", 1, INT_HEIRLOOMS+31)
+        end
+        if (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_12:25:25:-19|tDignified Headmaster's Charge", 1, INT_HEIRLOOMS+32)
+        end
+        if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_05:25:25:-19|tDevout Aurastone Hammer", 1, INT_HEIRLOOMS+33)
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_shortblade_03:25:25:-19|tSharpened Scarlet Kris", 1, INT_HEIRLOOMS+34)
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_19:25:25:-19|tReforged Truesilver Champion", 1, INT_HEIRLOOMS+35)
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_rifle_09:25:25:-19|tUpgraded Dwarven Hand Cannon", 1, INT_HEIRLOOMS+36)
+        end
+        if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_07:25:25:-19|tThe Blessed Hammer of Grace", 1, INT_HEIRLOOMS+37)
+        end
+        if (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_staff_13:25:25:-19|tGrand Staff of Jordan", 1, INT_HEIRLOOMS+38)
+        end
+        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DEATH_KNIGHT or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_36:25:25:-19|tBattleworn Thrash Blade", 1, INT_HEIRLOOMS+39)
+        end
+        if (player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_17:25:25:-19|tVenerable Mass of McGowan", 1, INT_HEIRLOOMS+40)
+        end
+        if (player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
+            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_gizmo_02:25:25:-19|tRepurposed Lava Dredger", 1, INT_HEIRLOOMS+41)
+        end
+
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_HEIRLOOMS+3) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_misc_book_11:25:25:-19|tTome of Cold Weather Flight", 1, INT_HEIRLOOMS+42, false, "Do you wish to continue the transaction?", 10000000)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_HEIRLOOMS+4) then
+        player:AddItem(42949)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+5) then
+        player:AddItem(48685)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+6) then
+        player:AddItem(44099)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+7) then
+        player:AddItem(44100)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+8) then
+        player:AddItem(42950)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+9) then
+        player:AddItem(48677)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+10) then
+        player:AddItem(44101)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+11) then
+        player:AddItem(42951)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+12) then
+        player:AddItem(48683)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+13) then
+        player:AddItem(44102)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+14) then
+        player:AddItem(42952)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+15) then
+        player:AddItem(48689)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+16) then
+        player:AddItem(44103)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+17) then
+        player:AddItem(42984)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+18) then
+        player:AddItem(48687)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+19) then
+        player:AddItem(44105)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+20) then
+        player:AddItem(42985)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+21) then
+        player:AddItem(48691)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+22) then
+        player:AddItem(44107)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+23) then
+        player:AddItem(50255)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+24) then
+        player:AddItem(42991)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+25) then
+        player:AddItem(42992)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+26) then
+        player:AddItem(44098)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+27) then
+        player:AddItem(44097)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
+    elseif (intid == INT_HEIRLOOMS+28) then
+        player:AddItem(42943)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+29) then
+        player:AddItem(42944)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+30) then
+        player:AddItem(42945)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+31) then
+        player:AddItem(42946)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+32) then
+        player:AddItem(42947)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+33) then
+        player:AddItem(42948)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+34) then
+        player:AddItem(44091)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+35) then
+        player:AddItem(44092)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+36) then
+        player:AddItem(44093)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+37) then
+        player:AddItem(44094)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+38) then
+        player:AddItem(44095)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+39) then
+        player:AddItem(44096)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+40) then
+        player:AddItem(48716)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+41) then
+        player:AddItem(48718)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
+    elseif (intid == INT_HEIRLOOMS+42) then
+        player:ModifyMoney(-10000000)
+        player:AddItem(49177)
+        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+3, code)
     elseif (intid == INT_GLYPHS) then
         player:GossipClearMenu()
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some major glyphs", 1, INT_GLYPHS+1)
@@ -947,236 +1220,14 @@ function onGossipSelect(event, player, object, sender, intid, code)
         40162
         40163
         --]]
-
-    elseif (intid == INT_HEIRLOOMS) then
+    elseif (intid == INT_CONTAINERS) then
         player:GossipClearMenu()
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some armor", 1, INT_HEIRLOOMS+1)
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some weapons", 1, INT_HEIRLOOMS+2)
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want something else", 1, INT_HEIRLOOMS+3)
+        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_crate_04:25:25:-19|tForor's Crate of Endless Resist Gear Storage", 1, INT_CONTAINERS+1)
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
-    elseif (intid == INT_HEIRLOOMS+1) then
-        player:GossipClearMenu()
-
-        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_30:25:25:-19|tPolished Spaulders of Valor", 1, INT_HEIRLOOMS+4)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_plate03:25:25:-19|tPolished Breastplate of Valor", 1, INT_HEIRLOOMS+5)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_20:25:25:-19|tStrengthened Stockade Pauldrons", 1, INT_HEIRLOOMS+6)
-
-            if (player:GetClass() == CLASS_PALADIN) then
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_10:25:25:-19|tPristine Lightforge Spaulders", 1, INT_HEIRLOOMS+7)
-            end
-        elseif (player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_01:25:25:-19|tChampion Herod's Shoulder", 1, INT_HEIRLOOMS+8)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_chain_07:25:25:-19|tChampion's Deathdealer Breastplate", 1, INT_HEIRLOOMS+9)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_10:25:25:-19|tPrized Beastmaster's Mantle", 1, INT_HEIRLOOMS+10)
-            if (player:GetClass() == CLASS_SHAMAN) then
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_29:25:25:-19|tMystical Pauldrons of Elements", 1, INT_HEIRLOOMS+11)
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_chain_11:25:25:-19|tMystical Vest of Elements", 1, INT_HEIRLOOMS+12)
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_29:25:25:-19|tAged Pauldrons of The Five Thunders", 1, INT_HEIRLOOMS+13)
-            end
-        elseif (player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_07:25:25:-19|tStained Shadowcraft Spaulders", 1, INT_HEIRLOOMS+14)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_leather_07:25:25:-19|tStained Shadowcraft Tunic", 1, INT_HEIRLOOMS+15)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_05:25:25:-19|tExceptional Stormshroud Shoulders", 1, INT_HEIRLOOMS+16)
-
-            if (player:GetClass() == CLASS_DRUID) then
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_06:25:25:-19|tPreened Ironfeather Shoulders", 1, INT_HEIRLOOMS+17)
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_leather_06:25:25:-19|tPreened Ironfeather Breastplate", 1, INT_HEIRLOOMS+18)
-                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_01:25:25:-19|tLasting Feralheart Spaulders", 1, INT_HEIRLOOMS+19)
-            end
-        elseif (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_misc_bone_taurenskull_01:25:25:-19|tTattered Dreadmist Mantle", 1, INT_HEIRLOOMS+20)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_chest_cloth_49:25:25:-19|tTattered Dreadmist Robe", 1, INT_HEIRLOOMS+21)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_shoulder_02:25:25:-19|tExquisite Sunderseer Mantle", 1, INT_HEIRLOOMS+22)
-        end
-
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_ring_39:25:25:-19|tDread Pirate Ring", 1, INT_HEIRLOOMS+23)
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_01:25:25:-19|tSwift Hand of Justice", 1, INT_HEIRLOOMS+24)
-
-        if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_08:25:25:-19|tDiscerning Eye of the Beast", 1, INT_HEIRLOOMS+25)
-        end
-
-        if (player:GetTeam() == TEAM_ALLIANCE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_trinketpvp_01:25:25:-19|tInherited Insignia of the Alliance", 1, INT_HEIRLOOMS+26)
-        elseif (player:GetTeam() == TEAM_HORDE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_trinketpvp_02:25:25:-19|tInherited Insignia of the Horde", 1, INT_HEIRLOOMS+27)
-        end
-
-        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS)
-        player:GossipSendMenu(0x7FFFFFFF, object, 1)
-    elseif (intid == INT_HEIRLOOMS+2) then
-        player:GossipClearMenu()
-
-        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_axe_09:25:25:-19|tBloodied Arcanite Reaper", 1, INT_HEIRLOOMS+28)
-        end
-        if (player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_17:25:25:-19|tBalanced Heartseeker", 1, INT_HEIRLOOMS+29)
-        end
-        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_43:25:25:-19|tVenerable Dal'Rend's Sacred Charge", 1, INT_HEIRLOOMS+30)
-        end
-        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_bow_08:25:25:-19|tCharmed Ancient Bone Bow", 1, INT_HEIRLOOMS+31)
-        end
-        if (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_jewelry_talisman_12:25:25:-19|tDignified Headmaster's Charge", 1, INT_HEIRLOOMS+32)
-        end
-        if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_05:25:25:-19|tDevout Aurastone Hammer", 1, INT_HEIRLOOMS+33)
-        end
-        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_shortblade_03:25:25:-19|tSharpened Scarlet Kris", 1, INT_HEIRLOOMS+34)
-        end
-        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_19:25:25:-19|tReforged Truesilver Champion", 1, INT_HEIRLOOMS+35)
-        end
-        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_weapon_rifle_09:25:25:-19|tUpgraded Dwarven Hand Cannon", 1, INT_HEIRLOOMS+36)
-        end
-        if (player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_07:25:25:-19|tThe Blessed Hammer of Grace", 1, INT_HEIRLOOMS+37)
-        end
-        if (player:GetClass() == CLASS_PRIEST or player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_staff_13:25:25:-19|tGrand Staff of Jordan", 1, INT_HEIRLOOMS+38)
-        end
-        if (player:GetClass() == CLASS_WARRIOR or player:GetClass() == CLASS_PALADIN or player:GetClass() == CLASS_HUNTER or player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_DEATH_KNIGHT or player:GetClass() == CLASS_MAGE or player:GetClass() == CLASS_WARLOCK) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_sword_36:25:25:-19|tBattleworn Thrash Blade", 1, INT_HEIRLOOMS+39)
-        end
-        if (player:GetClass() == CLASS_ROGUE or player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_hammer_17:25:25:-19|tVenerable Mass of McGowan", 1, INT_HEIRLOOMS+40)
-        end
-        if (player:GetClass() == CLASS_SHAMAN or player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_gizmo_02:25:25:-19|tRepurposed Lava Dredger", 1, INT_HEIRLOOMS+41)
-        end
-
-        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS)
-        player:GossipSendMenu(0x7FFFFFFF, object, 1)
-    elseif (intid == INT_HEIRLOOMS+3) then
-        player:GossipClearMenu()
-        player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\inv_misc_book_11:25:25:-19|tTome of Cold Weather Flight", 1, INT_HEIRLOOMS+42, false, "Do you wish to continue the transaction?", 10000000)
-        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_HEIRLOOMS)
-        player:GossipSendMenu(0x7FFFFFFF, object, 1)
-    elseif (intid == INT_HEIRLOOMS+4) then
-        player:AddItem(42949)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+5) then
-        player:AddItem(48685)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+6) then
-        player:AddItem(44099)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+7) then
-        player:AddItem(44100)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+8) then
-        player:AddItem(42950)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+9) then
-        player:AddItem(48677)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+10) then
-        player:AddItem(44101)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+11) then
-        player:AddItem(42951)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+12) then
-        player:AddItem(48683)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+13) then
-        player:AddItem(44102)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+14) then
-        player:AddItem(42952)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+15) then
-        player:AddItem(48689)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+16) then
-        player:AddItem(44103)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+17) then
-        player:AddItem(42984)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+18) then
-        player:AddItem(48687)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+19) then
-        player:AddItem(44105)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+20) then
-        player:AddItem(42985)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+21) then
-        player:AddItem(48691)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+22) then
-        player:AddItem(44107)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+23) then
-        player:AddItem(50255)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+24) then
-        player:AddItem(42991)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+25) then
-        player:AddItem(42992)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+26) then
-        player:AddItem(44098)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+27) then
-        player:AddItem(44097)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+1, code)
-    elseif (intid == INT_HEIRLOOMS+28) then
-        player:AddItem(42943)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+29) then
-        player:AddItem(42944)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+30) then
-        player:AddItem(42945)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+31) then
-        player:AddItem(42946)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+32) then
-        player:AddItem(42947)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+33) then
-        player:AddItem(42948)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+34) then
-        player:AddItem(44091)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+35) then
-        player:AddItem(44092)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+36) then
-        player:AddItem(44093)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+37) then
-        player:AddItem(44094)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+38) then
-        player:AddItem(44095)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+39) then
-        player:AddItem(44096)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+40) then
-        player:AddItem(48716)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+41) then
-        player:AddItem(48718)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+2, code)
-    elseif (intid == INT_HEIRLOOMS+42) then
-        player:ModifyMoney(-10000000)
-        player:AddItem(49177)
-        onGossipSelect(event, player, object, sender, INT_HEIRLOOMS+3, code)
+    elseif (intid == INT_CONTAINERS+1) then
+        player:AddItem(CONTAINER_BAG)
+        onGossipSelect(event, player, object, sender, INT_CONTAINERS, code)
     elseif (intid == INT_UTILITIES) then
         player:GossipClearMenu()
         player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my name", 1, INT_UTILITIES+1, false, "Do you wish to continue the transaction?", (UTILITIES_COST_RENAME * 10000))

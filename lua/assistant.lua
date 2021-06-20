@@ -103,7 +103,7 @@ function onGossipHello(event, player, object)
     if (ENABLE_UTILITIES) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want utilities", 1, INT_UTILITIES)
     end
-    if (ENABLE_MISCELLANEOUS) then
+    if (ENABLE_MISCELLANEOUS and player:GetClass() == CLASS_SHAMAN) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "What else can I get?", 1, INT_MISCELLANEOUS)
     end
 

@@ -1,65 +1,65 @@
 -- Features
-local ENABLE_CONTAINERS               = true
-local ENABLE_GLYPHS                   = true
-local ENABLE_GEMS                     = true
-local ENABLE_HEIRLOOMS                = true
-local ENABLE_UTILITIES                = true
-local ENABLE_MISCELLANEOUS            = true
+local ENABLE_CONTAINERS             = true
+local ENABLE_GLYPHS                 = true
+local ENABLE_GEMS                   = true
+local ENABLE_HEIRLOOMS              = true
+local ENABLE_UTILITIES              = true
+local ENABLE_MISCELLANEOUS          = true
 
 -- Events
-local EVENT_ON_LOGIN                  = 3
-local EVENT_ON_COMMAND                = 42
+local EVENT_ON_LOGIN                = 3
+local EVENT_ON_COMMAND              = 42
 
 -- Teams
-local TEAM_ALLIANCE                   = 0
-local TEAM_HORDE                      = 1
+local TEAM_ALLIANCE                 = 0
+local TEAM_HORDE                    = 1
 
 -- Classes
-local CLASS_WARRIOR                   = 1
-local CLASS_PALADIN                   = 2
-local CLASS_HUNTER                    = 3
-local CLASS_ROGUE                     = 4
-local CLASS_PRIEST                    = 5
-local CLASS_DEATH_KNIGHT              = 6
-local CLASS_SHAMAN                    = 7
-local CLASS_MAGE                      = 8
-local CLASS_WARLOCK                   = 9
-local CLASS_DRUID                     = 11
+local CLASS_WARRIOR                 = 1
+local CLASS_PALADIN                 = 2
+local CLASS_HUNTER                  = 3
+local CLASS_ROGUE                   = 4
+local CLASS_PRIEST                  = 5
+local CLASS_DEATH_KNIGHT            = 6
+local CLASS_SHAMAN                  = 7
+local CLASS_MAGE                    = 8
+local CLASS_WARLOCK                 = 9
+local CLASS_DRUID                   = 11
 
 -- Login flags
-local AT_LOGIN_RENAME                 = 0x01
-local AT_LOGIN_CUSTOMIZE              = 0x08
-local AT_LOGIN_CHANGE_FACTION         = 0x40
-local AT_LOGIN_CHANGE_RACE            = 0x80
+local AT_LOGIN_RENAME               = 0x01
+local AT_LOGIN_CUSTOMIZE            = 0x08
+local AT_LOGIN_CHANGE_FACTION       = 0x40
+local AT_LOGIN_CHANGE_RACE          = 0x80
 
 -- Gossip icons
-local GOSSIP_ICON_CHAT                = 0 -- white chat bubble
-local GOSSIP_ICON_VENDOR              = 1 -- brown bag
-local GOSSIP_ICON_TAXI                = 2 -- flightmarker (paperplane)
-local GOSSIP_ICON_TRAINER             = 3 -- brown book (trainer)
-local GOSSIP_ICON_INTERACT_1          = 4 -- golden interaction wheel
-local GOSSIP_ICON_MONEY_BAG           = 6 -- brown bag (with gold coin in lower corner)
-local GOSSIP_ICON_TALK                = 7 -- white chat bubble (with "..." inside)
-local GOSSIP_ICON_TABARD              = 8 -- white tabard
-local GOSSIP_ICON_BATTLE              = 9 -- two crossed swords
-local GOSSIP_ICON_DOT                 = 10 -- yellow dot/point
+local GOSSIP_ICON_CHAT              = 0 -- white chat bubble
+local GOSSIP_ICON_VENDOR            = 1 -- brown bag
+local GOSSIP_ICON_TAXI              = 2 -- flightmarker (paperplane)
+local GOSSIP_ICON_TRAINER           = 3 -- brown book (trainer)
+local GOSSIP_ICON_INTERACT_1        = 4 -- golden interaction wheel
+local GOSSIP_ICON_MONEY_BAG         = 6 -- brown bag (with gold coin in lower corner)
+local GOSSIP_ICON_TALK              = 7 -- white chat bubble (with "..." inside)
+local GOSSIP_ICON_TABARD            = 8 -- white tabard
+local GOSSIP_ICON_BATTLE            = 9 -- two crossed swords
+local GOSSIP_ICON_DOT               = 10 -- yellow dot/point
 
-local CONTAINER_BAG                   = 23162 -- Foror's Crate of Endless Resist Gear Storage (36 slot)
+local CONTAINER_BAG                 = 23162 -- Foror's Crate of Endless Resist Gear Storage (36 slot)
 
 -- Required copper values
-local UTILITIES_COST_RENAME           = 10 -- Money required in gold to perform a name change
-local UTILITIES_COST_CUSTOMIZE        = 50 -- Money required in gold to perform a customization
-local UTILITIES_COST_FACTION_CHANGE   = 1000 -- Money required in gold to perform a faction change
-local UTILITIES_COST_RACE_CHANGE      = 500 -- Money required in gold to perform a race change
+local UTILITIES_COST_RENAME         = 10 -- Money required in gold to perform a name change
+local UTILITIES_COST_CUSTOMIZE      = 50 -- Money required in gold to perform a customization
+local UTILITIES_COST_FACTION_CHANGE = 1000 -- Money required in gold to perform a faction change
+local UTILITIES_COST_RACE_CHANGE    = 500 -- Money required in gold to perform a race change
 
 -- Ids for gossip selects
-local INT_CONTAINERS                  = 100
-local INT_GLYPHS                      = 200
-local INT_GEMS                        = 400
-local INT_HEIRLOOMS                   = 500
-local INT_UTILITIES                   = 700
-local INT_MISCELLANEOUS               = 800
-local INT_RETURN                      = 900
+local INT_CONTAINERS                = 100
+local INT_GLYPHS                    = 200
+local INT_GEMS                      = 400
+local INT_HEIRLOOMS                 = 500
+local INT_UTILITIES                 = 700
+local INT_MISCELLANEOUS             = 800
+local INT_RETURN                    = 900
 
 -- When a character enters the world
 function onLogin(event, player)

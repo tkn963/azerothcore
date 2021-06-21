@@ -196,10 +196,199 @@ function onGossipSelect(event, player, object, sender, intid, code)
 
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
-    elseif (intid == INT_EQUIPMENT+28) then
+    elseif (intid == INT_EQUIPMENT+1) then -- Warrior: Arms
         player:GossipClearMenu()
 
-        if not (hasItemEquipped(player)) then -- Druid: Balance
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+2) then -- Warrior: Fury
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+3) then -- Warrior: Protection
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+4) then -- Paladin: Holy
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+5) then -- Paladin: Protection
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+6) then -- Paladin: Retribution
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+7) then -- Hunter: Beast Mastery
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+8) then -- Hunter: Marksmanship
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+9) then -- Hunter: Survival
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+10) then -- Rogue: Assassination
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+11) then -- Rogue: Combat
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+12) then -- Rogue: Subtlety
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+13) then -- Priest: Discipline
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+14) then -- Priest: Holy
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+15) then -- Priest: Shadow
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+16) then -- Death Knight: Blood
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+17) then -- Death Knight: Frost
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+18) then -- Death Knight: Unholy
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+19) then -- Shaman: Elemental
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+20) then -- Shaman: Enhancement
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+21) then -- Shaman: Restoration
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+22) then -- Mage: Arcane
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+23) then -- Mage: Fire
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+24) then -- Mage: Frost
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+25) then -- Warlock: Affliction
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+26) then -- Warlock: Demonology
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+27) then -- Warlock: Destruction
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+28) then -- Druid: Balance
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
             player:EquipItem(43905, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42800, EQUIPMENT_SLOT_SHOULDERS)

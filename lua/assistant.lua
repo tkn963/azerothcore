@@ -400,6 +400,43 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_MACES)) then
+                player:LearnSpell(SPELL_ONE_HANDED_MACES)
+            end
+
+            if not (player:HasSpell(SPELL_SHIELD)) then
+                player:LearnSpell(SPELL_SHIELD)
+            end
+
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_MACES, player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES))
+            end
+
+            player:EquipItem(42829, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42793, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42876, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42877, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43831, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42881, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42883, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42830, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43943, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(43874, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38763, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39143, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42860, EQUIPMENT_SLOT_OFFHAND)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -407,6 +444,43 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
+            end
+
+            if not (player:HasSpell(SPELL_SHIELD)) then
+                player:LearnSpell(SPELL_SHIELD)
+            end
+
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
+            end
+
+            player:EquipItem(42879, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43849, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43844, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42827, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(39471, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(43845, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42884, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42825, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43842, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(39482, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43923, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(43843, EQUIPMENT_SLOT_OFFHAND)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -414,6 +488,42 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_TWO_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_TWO_HANDED_SWORDS)
+            end
+
+            if not (player:HasSpell(SPELL_SHIELD)) then
+                player:LearnSpell(SPELL_SHIELD)
+            end
+
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_TWO_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS))
+            end
+
+            player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(43945, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42882, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42832, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42833, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(39100, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(42835, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42864, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43832, EQUIPMENT_SLOT_MAINHAND)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)

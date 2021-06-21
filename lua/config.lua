@@ -20,7 +20,7 @@ ENABLE_EXPERIENCE_MULTIPLIER            = false -- Enable the experience multipl
 ENABLE_REPUTATION_MULTIPLIER            = false -- Enable the reputation multiplier
 ENABLE_MONEY_LOOT_MULTIPLIER            = false -- Enable the money loot multiplier
 ENABLE_WEEKEND_MULTIPLIER               = false -- Changes the multiplier on friday, saturday and sunday
-MULTIPLIER_WEEKEND                      = 2 -- Multiplier for all rates on weekends
+WEEKEND_MULTIPLIER                      = 2 -- Multiplier for all rates on weekends
 
 -- The container that a player obtains via the assistant
 ASSISTANT_CONTAINER_BAG                 = 23162 -- Foror's Crate of Endless Resist Gear Storage (36 slot)

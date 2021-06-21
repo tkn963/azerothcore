@@ -18,7 +18,7 @@ function rateMultiplier(player)
 
     if (ENABLE_WEEKEND_MULTIPLIER) then
         if (os.date("*t").wday == 6 or os.date("*t").wday == 7 or os.date("*t").wday == 8) then
-            multiplier = multiplier * MULTIPLIER_WEEKEND
+            multiplier = multiplier * WEEKEND_MULTIPLIER
         end
     end
 

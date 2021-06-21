@@ -83,7 +83,7 @@ local INT_UTILITIES                 = 700
 local INT_MISCELLANEOUS             = 800
 local INT_RETURN                    = 2000
 
-function hasEquipment(player)
+function hasItemEquipped(player)
     local ITEM_EQUIPPED = false
     for i = EQUIPMENT_SLOT_HEAD, EQUIPMENT_SLOT_RANGED do
         if not (player:GetEquippedItemBySlot(i) == nil) then
@@ -199,7 +199,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_EQUIPMENT+28) then
         player:GossipClearMenu()
 
-        if not (hasEquipment(player)) then -- Druid: Balance
+        if not (hasItemEquipped(player)) then -- Druid: Balance
             player:EquipItem(43905, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42800, EQUIPMENT_SLOT_SHOULDERS)
@@ -221,7 +221,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_EQUIPMENT+29) then -- Druid: Feral Combat
         player:GossipClearMenu()
 
-        if not (hasEquipment(player)) then
+        if not (hasItemEquipped(player)) then
             player:EquipItem(42872, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42869, EQUIPMENT_SLOT_SHOULDERS)
@@ -243,7 +243,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_EQUIPMENT+30) then -- Druid: Restoration
         player:GossipClearMenu()
 
-        if not (hasEquipment(player)) then
+        if not (hasItemEquipped(player)) then
             player:EquipItem(43905, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(42793, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42800, EQUIPMENT_SLOT_SHOULDERS)

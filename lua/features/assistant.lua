@@ -7,7 +7,6 @@ require("flags")
 require("functions")
 require("gossip")
 require("proficiencies")
-require("config")
 
 -- Ids for gossip selects
 local INT_EQUIPMENT                  = 100

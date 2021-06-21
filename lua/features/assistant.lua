@@ -2168,52 +2168,175 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_GEMS) then
         player:GossipClearMenu()
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some meta gems", 1, INT_GEMS+1)
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some red gems", 1, INT_GEMS+2)
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some blue gems", 1, INT_GEMS+3)
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some yellow gems", 1, INT_GEMS+4)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some red gems", 1, INT_GEMS+5)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some blue gems", 1, INT_GEMS+5)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some yellow gems", 1, INT_GEMS+5)
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some purple gems", 1, INT_GEMS+5)
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some green gems", 1, INT_GEMS+6)
-        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some orange gems", 1, INT_GEMS+7)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some green gems", 1, INT_GEMS+5)
+        player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want some orange gems", 1, INT_GEMS+5)
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_GEMS+1) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_07:25:25:-19|tDestructive Skyfire Diamond", 1, INT_GEMS+5)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_07:25:25:-19|tMystical Skyfire Diamond", 1, INT_GEMS+6)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_07:25:25:-19|tSwift Skyfire Diamond", 1, INT_GEMS+7)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_07:25:25:-19|tEnigmatic Skyfire Diamond", 1, INT_GEMS+8)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_06:25:25:-19|tPowerful Earthstorm Diamond", 1, INT_GEMS+9)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_06:25:25:-19|tBracing Earthstorm Diamond", 1, INT_GEMS+10)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_06:25:25:-19|tTenacious Earthstorm Diamond", 1, INT_GEMS+11)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_06:25:25:-19|tBrutal Earthstorm Diamond", 1, INT_GEMS+12)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_06:25:25:-19|tInsightful Earthstorm Diamond", 1, INT_GEMS+13)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_06:25:25:-19|tRelentless Earthstorm Diamond", 1, INT_GEMS+14)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Proceed to the next page", 1, INT_GEMS+2)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_GEMS)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_GEMS+2) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_07:25:25:-19|tThundering Skyfire Diamond", 1, INT_GEMS+15)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_07:25:25:-19|tChaotic Skyfire Diamond", 1, INT_GEMS+16)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_06:25:25:-19|tEternal Earthstorm Diamond", 1, INT_GEMS+17)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_misc_gem_diamond_07:25:25:-19|tEmber Skyfire Diamond", 1, INT_GEMS+18)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tChaotic Skyflare Diamond", 1, INT_GEMS+19)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tDestructive Skyflare Diamond", 1, INT_GEMS+20)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tEmber Skyflare Diamond", 1, INT_GEMS+21)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tEnigmatic Skyflare Diamond", 1, INT_GEMS+22)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tSwift Skyflare Diamond", 1, INT_GEMS+23)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tTireless Skyflare Diamond", 1, INT_GEMS+24)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Proceed to the next page", 1, INT_GEMS+3)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_GEMS+1)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_GEMS+3) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tRevitalizing Skyflare Diamond", 1, INT_GEMS+25)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tEffulgent Skyflare Diamond", 1, INT_GEMS+26)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tForlorn Skyflare Diamond", 1, INT_GEMS+27)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_icediamond_02:25:25:-19|tImpassive Skyflare Diamond", 1, INT_GEMS+28)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tAustere Earthsiege Diamond", 1, INT_GEMS+29)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tPersistent Earthsiege Diamond", 1, INT_GEMS+30)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tTrenchant Earthsiege Diamond", 1, INT_GEMS+31)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tInvigorating Earthsiege Diamond", 1, INT_GEMS+32)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tBeaming Earthsiege Diamond", 1, INT_GEMS+33)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tBracing Earthsiege Diamond", 1, INT_GEMS+34)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Proceed to the next page", 1, INT_GEMS+4)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_GEMS+2)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_GEMS+4) then
+        player:GossipClearMenu()
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tEternal Earthsiege Diamond", 1, INT_GEMS+35)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tPowerful Earthsiege Diamond", 1, INT_GEMS+36)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tRelentless Earthsiege Diamond", 1, INT_GEMS+37)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tThundering Skyflare Diamond", 1, INT_GEMS+38)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "|TInterface\\icons\\inv_jewelcrafting_shadowspirit_02:25:25:-19|tInsightful Earthsiege Diamond", 1, INT_GEMS+39)
+        player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_GEMS+3)
+        player:GossipSendMenu(0x7FFFFFFF, object, 1)
+    elseif (intid == INT_GEMS+5) then
+        player:AddItem(25890)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+6) then
+        player:AddItem(25893)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+7) then
+        player:AddItem(25894)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+8) then
+        player:AddItem(25895)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+9) then
+        player:AddItem(25896)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+10) then
+        player:AddItem(25897)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+11) then
+        player:AddItem(25898)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+12) then
+        player:AddItem(25899)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+13) then
+        player:AddItem(25901)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+14) then
+        player:AddItem(32409)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+1, code)
+    elseif (intid == INT_GEMS+15) then
+        player:AddItem(32410)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+16) then
+        player:AddItem(34220)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+17) then
+        player:AddItem(35501)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+18) then
+        player:AddItem(35503)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+19) then
+        player:AddItem(41285)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+20) then
+        player:AddItem(41307)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+21) then
+        player:AddItem(41333)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+22) then
+        player:AddItem(41335)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+23) then
+        player:AddItem(41339)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+24) then
+        player:AddItem(41375)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+2, code)
+    elseif (intid == INT_GEMS+25) then
+        player:AddItem(41376)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+26) then
+        player:AddItem(41377)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+27) then
+        player:AddItem(41378)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+28) then
+        player:AddItem(41379)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+29) then
+        player:AddItem(41380)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+30) then
+        player:AddItem(41381)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+31) then
+        player:AddItem(41382)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+32) then
+        player:AddItem(41385)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+33) then
+        player:AddItem(41389)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+34) then
+        player:AddItem(41395)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+3, code)
+    elseif (intid == INT_GEMS+35) then
+        player:AddItem(41396)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+4, code)
+    elseif (intid == INT_GEMS+36) then
+        player:AddItem(41397)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+4, code)
+    elseif (intid == INT_GEMS+37) then
+        player:AddItem(41398)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+4, code)
+    elseif (intid == INT_GEMS+38) then
+        player:AddItem(41400)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+4, code)
+    elseif (intid == INT_GEMS+39) then
+        player:AddItem(41401)
+        assistantOnGossipSelect(event, player, object, sender, INT_GEMS+4, code)
 
         --[[
-        -- Meta Gems
-        41285
-        41307
-        41333
-        41335
-        41339
-        41375
-        41376
-        41377
-        41378
-        41379
-        41380
-        41381
-        41382
-        41385
-        41389
-        41395
-        41396
-        41397
-        41398
-        41400
-        41401
-        25890
-        25893
-        25894
-        25895
-        25896
-        25897
-        25898
-        25899
-        25901
-        32409
-        32410
-        34220
-        35501
-        35503
         -- Red Gems
         40111
         40112

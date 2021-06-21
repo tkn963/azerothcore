@@ -21,14 +21,16 @@ local INT_RETURN                     = 2000
 
 -- Character enters the world
 function assistantOnLogin(event, player)
-    player:SendBroadcastMessage("This server uses an assistant to aid players. Type .assistant to access this feature.")
+    if (ENABLE_ASSISTANT and ((ENABLE_ASSISTANT_EQUIPMENT or ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP) or ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL or ENABLE_ASSISTANT_HEIRLOOMS or ENABLE_ASSISTANT_GLYPHS or ENABLE_ASSISTANT_GEMS or ENABLE_ASSISTANT_CONTAINERS or ENABLE_ASSISTANT_UTILITIES or ENABLE_ASSISTANT_MISCELLANEOUS)) then
+        player:SendBroadcastMessage("This server uses an assistant to aid players. Type .assistant to access this feature.")
+    end
 end
 
 RegisterPlayerEvent(EVENT_ON_LOGIN, assistantOnLogin)
 
 -- Character performs a command
 function assistantOnCommand(event, player, command)
-    if ((ENABLE_ASSISTANT_EQUIPMENT or ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP) or ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL or ENABLE_ASSISTANT_HEIRLOOMS or ENABLE_ASSISTANT_GLYPHS or ENABLE_ASSISTANT_GEMS or ENABLE_ASSISTANT_CONTAINERS or ENABLE_ASSISTANT_UTILITIES or ENABLE_ASSISTANT_MISCELLANEOUS) then
+    if (ENABLE_ASSISTANT and ((ENABLE_ASSISTANT_EQUIPMENT or ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP) or ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL or ENABLE_ASSISTANT_HEIRLOOMS or ENABLE_ASSISTANT_GLYPHS or ENABLE_ASSISTANT_GEMS or ENABLE_ASSISTANT_CONTAINERS or ENABLE_ASSISTANT_UTILITIES or ENABLE_ASSISTANT_MISCELLANEOUS)) then
         if command == 'assistant' then
             assistantOnGossipHello(event, player, player)
             return false

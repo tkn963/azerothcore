@@ -1,4 +1,5 @@
 -- Enabled features
+ENABLE_ASSISTANT                        = false -- Enable the assistant. If this is set to false, all variables related to the assistant are obsolete
 ENABLE_ASSISTANT_EQUIPMENT              = false -- Enable obtaining a full set of green, quest equivalent, equipment for a specific specalization using the .assistant command
 ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP     = false -- If ENABLE_EQUIPMENT is set to true, this lets the player level up to 80 before accessing equipment
 ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL    = false -- If ENABLE_EQUIPMENT is set to true, this sets skills that are gained through the equipment feature to their max value
@@ -9,6 +10,7 @@ ENABLE_ASSISTANT_CONTAINERS             = false -- Enable obtaining containers u
 ENABLE_ASSISTANT_UTILITIES              = false -- Enable obtaining utilities from the .assistant command. The utilities are rename, customize, faction change and race change
 ENABLE_ASSISTANT_MISCELLANEOUS          = false -- Enable obtaining miscellaneous features from the .assistant command. Currently this is just a way for shamans to get their totems
 ENABLE_PLAYER_LEVEL_MONEY_REWARD        = false -- Give players reward money for reaching specific levels
+ENABLE_SET_SPAWN_POINT                  = false -- Set spawn point and hearthstone to stormwind for alliance and orgrimmar for horde. Does not include death knight
 ENABLE_SPELLS_ON_LEVEL_UP               = false -- Automatically learn new spells when leveling up
 ENABLE_TALENTS_ON_LEVEL_UP              = false -- Automatically learn new ranks of talents when leveling up
 ENABLE_PROFICIENCY_ON_LEVEL_UP          = false -- Automatically learn new weapon and armor skills when leveling up

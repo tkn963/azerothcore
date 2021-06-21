@@ -1,8 +1,9 @@
--- Events
-local EVENT_ON_LEVEL_CHANGED     = 13
+-- Requires
+require("events")
 
--- Money to give to players when they reach certain levels
-local ENABLE_PLAYER_LEVEL_REWARD = true -- Enable giving players reward money for reaching specific levels
+local ENABLE_PLAYER_LEVEL_REWARD = true -- Give players reward money for reaching specific levels
+
+-- Money rewards
 local PLAYER_LEVEL_REWARD        = {
 --    Level  Money        Text sent to the player
     { 10,    10 * 10000,  "Congratulations on reaching level 10! Take this gift of gold, let it aid you in your travels." },
@@ -15,12 +16,8 @@ local PLAYER_LEVEL_REWARD        = {
     { 80,    250 * 10000, "Congratulations on reaching level 80! Take this gift of gold, let it aid you in your travels." },
 }
 
--- Weapon skills
-local ENABLE_MAX_SKILL_ON_LEVEL  = true -- Set weapon skills to thier maximum value when leveling up
-local MAX_SKILL_MAX_LEVEL        = 70 -- Last level when a players skills will be set to their maximum value
-
 -- Player levels up
-function onLevelChanged(event, player, oldLevel)
+function playerLevelRewards(event, player, oldLevel)
     if (ENABLE_PLAYER_LEVEL_REWARD) then
         local count = 0
         for _ in pairs(PLAYER_LEVEL_REWARD) do count = count + 1 end
@@ -32,14 +29,6 @@ function onLevelChanged(event, player, oldLevel)
             end
         end
     end
-
-    if (ENABLE_MAX_SKILL_ON_LEVEL) then
-        if (player:GetLevel() <= MAX_SKILL_MAX_LEVEL) then
-            player:AdvanceSkillsToMax()
-        end
-    end
-
-    return 0
 end
 
-RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, onLevelChanged)
+RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, playerLevelRewards)

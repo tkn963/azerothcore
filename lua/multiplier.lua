@@ -1,8 +1,5 @@
--- Events
-local EVENT_ON_GIVE_XP             = 12
-local EVENT_ON_REPUTATION_CHANGE   = 15
-local EVENT_ON_LOOT_MONEY          = 37
-local EVENT_ON_COMMAND             = 42
+-- Requires
+require("events")
 
 -- Experience, money and reputation rates
 local ENABLE_EXPERIENCE_MULTIPLIER = true -- Enable the experience multiplier
@@ -10,6 +7,7 @@ local ENABLE_REPUTATION_MULTIPLIER = true -- Enable the reputation multiplier
 local ENABLE_MONEY_LOOT_MULTIPLIER = true -- Enable the money loot multiplier
 local ENABLE_WEEKEND_MULTIPLIER    = true -- Changes the multiplier on friday, saturday and sunday
 local MULTIPLIER_WEEKEND           = 2 -- Multiplier for all rates on weekends
+
 local RATE_MULTIPLIER              = { -- Multiplier for specific levels. It's modular so you can set your own level ranges
 --    Min level  Max level  Multiplier
     { 1,         59,        4 },
@@ -42,25 +40,25 @@ function rateMultiplier(player)
 end
 
 -- Character gains experience
-function onGiveXP(event, player, amount, victim)
+function multiplierOnGiveXP(event, player, amount, victim)
     if (ENABLE_EXPERIENCE_MULTIPLIER) then
         return amount * rateMultiplier(player)
     end
 end
 
-RegisterPlayerEvent(EVENT_ON_GIVE_XP, onGiveXP)
+RegisterPlayerEvent(EVENT_ON_GIVE_XP, multiplierOnGiveXP)
 
 -- Character gains reputation
-function onReputationChange(event, player, factionId, standing, incremenetal)
+function multiplierOnReputationChange(event, player, factionId, standing, incremenetal)
     if (ENABLE_REPUTATION_MULTIPLIER) then
         return standing * rateMultiplier(player)
     end
 end
 
-RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, onReputationChange)
+RegisterPlayerEvent(EVENT_ON_REPUTATION_CHANGE, multiplierOnReputationChange)
 
 -- Character performs a command
-function onCommand(event, player, command)
+function multiplierOnCommand(event, player, command)
     if command == 'rates' then
         if (ENABLE_EXPERIENCE_MULTIPLIER) then
             player:SendBroadcastMessage("The experience you receive is "..(100 * rateMultiplier(player)).."% of the normal value.")
@@ -83,4 +81,4 @@ function onCommand(event, player, command)
     end
 end
 
-RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)
+RegisterPlayerEvent(EVENT_ON_COMMAND, multiplierOnCommand)

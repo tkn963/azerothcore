@@ -1,15 +1,9 @@
--- Events
-local EVENT_ON_FIRST_LOGIN            = 30
-
--- Teams
-local TEAM_ALLIANCE                   = 0
-local TEAM_HORDE                      = 1
-
--- Classes
-local CLASS_DEATH_KNIGHT              = 6
+-- Requires
+require("class_ids")
+require("events")
 
 -- Character logs in for the first time
-function onFirstLogin(event, player)
+function spawnOnFirstLogin(event, player)
     if not (player:GetClass() == CLASS_DEATH_KNIGHT) then
         if (player:GetTeam() == TEAM_ALLIANCE) then
             player:Teleport(0, -8830.438477, 626.666199, 93.982887, 0.682076)
@@ -21,4 +15,4 @@ function onFirstLogin(event, player)
     end
 end
 
-RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, onFirstLogin)
+RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, spawnOnFirstLogin)

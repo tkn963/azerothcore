@@ -249,10 +249,6 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_BOWS)
             end
 
-            if not (player:HasSpell(SPELL_SHIELD)) then
-                player:LearnSpell(SPELL_SHIELD)
-            end
-
             if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
@@ -295,10 +291,6 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_ONE_HANDED_MACES)
             end
 
-            if not (player:HasSpell(SPELL_SHIELD)) then
-                player:LearnSpell(SPELL_SHIELD)
-            end
-
             if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_ONE_HANDED_MACES, player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES))
@@ -337,10 +329,6 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
 
             if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
                 player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
-            end
-
-            if not (player:HasSpell(SPELL_SHIELD)) then
-                player:LearnSpell(SPELL_SHIELD)
             end
 
             if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
@@ -383,10 +371,6 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_TWO_HANDED_SWORDS)
             end
 
-            if not (player:HasSpell(SPELL_SHIELD)) then
-                player:LearnSpell(SPELL_SHIELD)
-            end
-
             if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_TWO_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS))
@@ -414,6 +398,41 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if not (player:HasSpell(SPELL_BOWS)) then
+                player:LearnSpell(SPELL_BOWS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+                player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
+            end
+
+            player:EquipItem(42895, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42887, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42813, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(39065, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42817, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42891, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42816, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(39070, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(39480, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(43926, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43889, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39130, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(43915, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43928, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -421,6 +440,41 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if not (player:HasSpell(SPELL_BOWS)) then
+                player:LearnSpell(SPELL_BOWS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+                player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
+            end
+
+            player:EquipItem(42895, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42887, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42813, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(39065, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42817, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42891, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42816, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(39070, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(39480, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(43926, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43889, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39130, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(43915, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43928, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -428,6 +482,41 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if not (player:HasSpell(SPELL_BOWS)) then
+                player:LearnSpell(SPELL_BOWS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+                player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
+            end
+
+            player:EquipItem(42895, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42887, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42813, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(39065, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42817, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42891, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42816, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(39070, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(39480, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(43926, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43889, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39130, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(43915, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43928, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -435,6 +524,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42872, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42869, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(39036, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43892, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(43896, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42804, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42871, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43904, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42812, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39480, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43889, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39130, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(43915, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43900, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -442,6 +557,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42872, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42869, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(39036, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43892, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(43896, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42804, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42871, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43904, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42812, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39480, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43889, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39130, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(43915, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43900, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -449,6 +590,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42872, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42869, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(39036, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43892, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(43896, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42804, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42871, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43904, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42812, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39480, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43889, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39130, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(43915, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43900, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -456,6 +623,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(38737, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42793, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42842, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42788, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42795, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42789, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(43855, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(38741, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(43903, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38763, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -463,6 +656,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(38737, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42793, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42842, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42788, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42795, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42789, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(43855, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(38741, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(43903, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38763, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -470,6 +689,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42843, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43862, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43866, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42841, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(43839, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(38739, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43856, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42845, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38765, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -477,6 +722,38 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_TWO_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_TWO_HANDED_SWORDS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_TWO_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS))
+            end
+
+            player:EquipItem(42879, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43849, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43844, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42827, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(39471, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(43845, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42884, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42825, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43842, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(39482, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43832, EQUIPMENT_SLOT_MAINHAND)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -484,6 +761,39 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
+            end
+
+            player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(43945, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42882, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42832, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42833, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(39100, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(42835, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42864, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43923, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42786, EQUIPMENT_SLOT_OFFHAND)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -491,6 +801,39 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
+            end
+
+            player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(43945, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42882, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42832, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42833, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(39100, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(42835, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42864, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43923, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42786, EQUIPMENT_SLOT_OFFHAND)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -498,6 +841,35 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_MACES)) then
+                player:LearnSpell(SPELL_ONE_HANDED_MACES)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_MACES, player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES))
+            end
+
+            player:EquipItem(42810, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43830, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(43935, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42814, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42890, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42815, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42888, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43976, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(42845, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38765, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39143, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42860, EQUIPMENT_SLOT_OFFHAND)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -505,6 +877,35 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_MACES)) then
+                player:LearnSpell(SPELL_ONE_HANDED_MACES)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_MACES, player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES))
+            end
+
+            player:EquipItem(42895, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42887, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42813, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(39065, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42817, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42891, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42816, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(39070, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(39480, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(43926, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43889, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43888, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(39144, EQUIPMENT_SLOT_OFFHAND)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -512,6 +913,35 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_MACES)) then
+                player:LearnSpell(SPELL_ONE_HANDED_MACES)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_MACES, player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES))
+            end
+
+            player:EquipItem(42810, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42793, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43830, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(43935, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42814, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42890, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42815, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42888, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43976, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(43874, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38763, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(39143, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42860, EQUIPMENT_SLOT_OFFHAND)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -519,6 +949,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42843, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43862, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43866, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42841, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(43839, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(38739, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43856, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42845, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38765, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -526,6 +982,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42843, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43862, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43866, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42841, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(43839, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(38739, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43856, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42845, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38765, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -533,6 +1015,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42843, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43862, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43866, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42841, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(43839, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(38739, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43856, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42845, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38765, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -540,6 +1048,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42843, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43862, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43866, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42841, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(43839, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(38739, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43856, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42845, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38765, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -547,6 +1081,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42843, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43862, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43866, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42841, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(43839, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(38739, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43856, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42845, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38765, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -554,6 +1114,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_DAGGERS)) then
+                player:LearnSpell(SPELL_DAGGERS)
+            end
+
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_DAGGERS, player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS), player:GetMaxSkillValue(SKILL_DAGGERS))
+            end
+
+            player:EquipItem(42843, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43862, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42792, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(43866, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42841, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(43839, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(38739, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43856, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42845, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(42791, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(38765, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(38764, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43925, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(42811, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42796, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(43828, EQUIPMENT_SLOT_RANGED)
         end
 
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)

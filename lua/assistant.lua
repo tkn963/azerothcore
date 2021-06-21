@@ -73,6 +73,28 @@ local UTILITIES_COST_CUSTOMIZE      = 50 -- Money required in gold to perform a 
 local UTILITIES_COST_FACTION_CHANGE = 1000 -- Money required in gold to perform a faction change
 local UTILITIES_COST_RACE_CHANGE    = 500 -- Money required in gold to perform a race change
 
+local SPELL_BLOCK                   = 107
+local SPELL_ONE_HANDED_AXES         = 196
+local SPELL_TWO_HANDED_AXES         = 197
+local SPELL_ONE_HANDED_MACES        = 198
+local SPELL_TWO_HANDED_MACES        = 199
+local SPELL_POLEARMS                = 200
+local SPELL_ONE_HANDED_SWORDS       = 201
+local SPELL_TWO_HANDED_SWORDS       = 202
+local SPELL_STAVES                  = 227
+local SPELL_BOWS                    = 264
+local SPELL_GUNS                    = 266
+local SPELL_DUAL_WIELD              = 674
+local SPELL_PLATE_MAIL              = 750
+local SPELL_DAGGERS                 = 1180
+local SPELL_THROWN                  = 2567
+local SPELL_PARRY                   = 3127
+local SPELL_WANDS                   = 5009
+local SPELL_CROSSBOWS               = 5011
+local SPELL_MAIL                    = 8737
+local SPELL_SHIELD                  = 9116
+local SPELL_FIST_WEAPONS            = 15590
+
 -- Ids for gossip selects
 local INT_EQUIPMENT                 = 100
 local INT_HEIRLOOMS                 = 200
@@ -198,6 +220,22 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
+            end
+
+            if not (player:HasSpell(SPELL_BOWS)) then
+                player:LearnSpell(SPELL_BOWS)
+            end
+
             player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
@@ -222,6 +260,22 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
+            end
+
+            if not (player:HasSpell(SPELL_BOWS)) then
+                player:LearnSpell(SPELL_BOWS)
+            end
+
             player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
@@ -246,6 +300,26 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
+            end
+
+            if not (player:HasSpell(SPELL_BOWS)) then
+                player:LearnSpell(SPELL_BOWS)
+            end
+
+            if not (player:HasSpell(SPELL_SHIELD)) then
+                player:LearnSpell(SPELL_SHIELD)
+            end
+
             player:EquipItem(42879, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(43849, EQUIPMENT_SLOT_NECK)
             player:EquipItem(43844, EQUIPMENT_SLOT_SHOULDERS)
@@ -438,6 +512,10 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_STAVES)) then
+                player:LearnSpell(SPELL_STAVES)
+            end
+
             player:EquipItem(43905, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(43884, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42800, EQUIPMENT_SLOT_SHOULDERS)
@@ -460,6 +538,10 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_STAVES)) then
+                player:LearnSpell(SPELL_STAVES)
+            end
+
             player:EquipItem(42872, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42869, EQUIPMENT_SLOT_SHOULDERS)
@@ -482,6 +564,10 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_STAVES)) then
+                player:LearnSpell(SPELL_STAVES)
+            end
+
             player:EquipItem(43905, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(42793, EQUIPMENT_SLOT_NECK)
             player:EquipItem(42800, EQUIPMENT_SLOT_SHOULDERS)

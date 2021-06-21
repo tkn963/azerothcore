@@ -7,6 +7,9 @@ local ENABLE_CONTAINERS             = true
 local ENABLE_UTILITIES              = true
 local ENABLE_MISCELLANEOUS          = true
 
+local ENABLE_LEVEL_UP               = true -- If ENABLE_EQUIPMENT is set to true, this lets the player level up to 80 before accessing equipment
+local ENABLE_MAX_SKILL              = true -- If ENABLE_EQUIPMENT is set to true, this sets skills that are gained through the equipment feature to their max value
+
 -- Events
 local EVENT_ON_LOGIN                = 3
 local EVENT_ON_COMMAND              = 42
@@ -73,6 +76,7 @@ local UTILITIES_COST_CUSTOMIZE      = 50 -- Money required in gold to perform a 
 local UTILITIES_COST_FACTION_CHANGE = 1000 -- Money required in gold to perform a faction change
 local UTILITIES_COST_RACE_CHANGE    = 500 -- Money required in gold to perform a race change
 
+-- Weapon and armor spells
 local SPELL_BLOCK                   = 107
 local SPELL_ONE_HANDED_AXES         = 196
 local SPELL_TWO_HANDED_AXES         = 197
@@ -94,6 +98,23 @@ local SPELL_CROSSBOWS               = 5011
 local SPELL_MAIL                    = 8737
 local SPELL_SHIELD                  = 9116
 local SPELL_FIST_WEAPONS            = 15590
+-- Weapon and armor skills
+local SKILL_ONE_HANDED_AXES         = 44
+local SKILL_TWO_HANDED_AXES         = 172
+local SKILL_ONE_HANDED_MACES        = 54
+local SKILL_TWO_HANDED_MACES        = 160
+local SKILL_POLEARMS                = 229
+local SKILL_ONE_HANDED_SWORDS       = 43
+local SKILL_TWO_HANDED_SWORDS       = 55
+local SKILL_STAVES                  = 136
+local SKILL_BOWS                    = 45
+local SKILL_GUNS                    = 46
+local SKILL_DAGGERS                 = 173
+local SKILL_THROWN                  = 176
+local SKILL_WANDS                   = 228
+local SKILL_CROSSBOWS               = 226
+local SKILL_FIST_WEAPONS            = 473
+local SKILL_DEFENSE                 = 95
 
 -- Ids for gossip selects
 local INT_EQUIPMENT                 = 100
@@ -138,7 +159,7 @@ RegisterPlayerEvent(EVENT_ON_COMMAND, onCommand)
 -- Gossip: Hello
 function onGossipHello(event, player, object)
     player:GossipClearMenu()
-    if (ENABLE_EQUIPMENT and player:GetLevel() == 80) then
+    if (ENABLE_EQUIPMENT and (player:GetLevel() == 80 or ENABLE_LEVEL_UP)) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want equipment", 1, INT_EQUIPMENT)
     end
     if (ENABLE_HEIRLOOMS) then
@@ -172,51 +193,59 @@ function onGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_EQUIPMENT) then
         player:GossipClearMenu()
 
-        if (player:GetClass() == CLASS_WARRIOR) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_warrior_offensivestance:25:25:-19|tI want to use Arms", 1, INT_EQUIPMENT+1)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_racial_avatar:25:25:-19|tI want to use Fury", 1, INT_EQUIPMENT+2)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_warrior_defensivestance:25:25:-19|tI want to use Protection", 1, INT_EQUIPMENT+3)
-        elseif (player:GetClass() == CLASS_PALADIN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_paladin_beaconoflight:25:25:-19|tI want to use Holy", 1, INT_EQUIPMENT+4)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_paladin_hammeroftherighteous:25:25:-19|tI want to use Protection", 1, INT_EQUIPMENT+5)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_paladin_divinestorm:25:25:-19|tI want to use Retribution", 1, INT_EQUIPMENT+6)
-        elseif (player:GetClass() == CLASS_HUNTER) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_hunter_beastmastery:25:25:-19|tI want to use Beast Mastery", 1, INT_EQUIPMENT+7)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_hunter_chimerashot2:25:25:-19|tI want to use Marksmanship", 1, INT_EQUIPMENT+8)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_hunter_explosiveshot:25:25:-19|tI want to use Survival", 1, INT_EQUIPMENT+9)
-        elseif (player:GetClass() == CLASS_ROGUE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_rogue_hungerforblood:25:25:-19|tI want to use Assassination", 1, INT_EQUIPMENT+10)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_rogue_murderspree:25:25:-19|tI want to use Combat", 1, INT_EQUIPMENT+11)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_rogue_shadowdance:25:25:-19|tI want to use Subtlety", 1, INT_EQUIPMENT+12)
-        elseif (player:GetClass() == CLASS_PRIEST) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_holy_penance:25:25:-19|tI want to use Discipline", 1, INT_EQUIPMENT+13)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_holy_guardianspirit:25:25:-19|tI want to use Holy", 1, INT_EQUIPMENT+14)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_shadow_dispersion:25:25:-19|tI want to use Shadow", 1, INT_EQUIPMENT+15)
-        elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_deathknight_bloodpresence:25:25:-19|tI want to use Blood", 1, INT_EQUIPMENT+16)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_deathknight_frostpresence:25:25:-19|tI want to use Frost", 1, INT_EQUIPMENT+17)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_deathknight_unholypresence:25:25:-19|tI want to use Unholy", 1, INT_EQUIPMENT+18)
-        elseif (player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_shaman_thunderstorm:25:25:-19|tI want to use Elemental", 1, INT_EQUIPMENT+19)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_shaman_feralspirit:25:25:-19|tI want to use Enhancement", 1, INT_EQUIPMENT+20)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_nature_riptide:25:25:-19|tI want to use Restoration", 1, INT_EQUIPMENT+21)
-        elseif (player:GetClass() == CLASS_MAGE) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_mage_arcanebarrage:25:25:-19|tI want to use Arcane", 1, INT_EQUIPMENT+22)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_mage_livingbomb:25:25:-19|tI want to use Fire", 1, INT_EQUIPMENT+23)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_mage_deepfreeze:25:25:-19|tI want to use Frost", 1, INT_EQUIPMENT+24)
-        elseif (player:GetClass() == CLASS_WARLOCK) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_warlock_haunt:25:25:-19|tI want to use Affliction", 1, INT_EQUIPMENT+25)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_shadow_demonform:25:25:-19|tI want to use Demonology", 1, INT_EQUIPMENT+26)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_warlock_chaosbolt:25:25:-19|tI want to use Destruction", 1, INT_EQUIPMENT+27)
-        elseif (player:GetClass() == CLASS_DRUID) then
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_druid_starfall:25:25:-19|tI want to use Balance", 1, INT_EQUIPMENT+28)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_druid_berserk:25:25:-19|tI want to use Feral Combat", 1, INT_EQUIPMENT+29)
-            player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_druid_flourish:25:25:-19|tI want to use Restoration", 1, INT_EQUIPMENT+30)
+        if (player:GetLevel() == 80) then
+            if (player:GetClass() == CLASS_WARRIOR) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_warrior_offensivestance:25:25:-19|tI want to use Arms", 1, INT_EQUIPMENT+2)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_racial_avatar:25:25:-19|tI want to use Fury", 1, INT_EQUIPMENT+3)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_warrior_defensivestance:25:25:-19|tI want to use Protection", 1, INT_EQUIPMENT+4)
+            elseif (player:GetClass() == CLASS_PALADIN) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_paladin_beaconoflight:25:25:-19|tI want to use Holy", 1, INT_EQUIPMENT+5)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_paladin_hammeroftherighteous:25:25:-19|tI want to use Protection", 1, INT_EQUIPMENT+6)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_paladin_divinestorm:25:25:-19|tI want to use Retribution", 1, INT_EQUIPMENT+7)
+            elseif (player:GetClass() == CLASS_HUNTER) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_hunter_beastmastery:25:25:-19|tI want to use Beast Mastery", 1, INT_EQUIPMENT+8)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_hunter_chimerashot2:25:25:-19|tI want to use Marksmanship", 1, INT_EQUIPMENT+9)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_hunter_explosiveshot:25:25:-19|tI want to use Survival", 1, INT_EQUIPMENT+10)
+            elseif (player:GetClass() == CLASS_ROGUE) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_rogue_hungerforblood:25:25:-19|tI want to use Assassination", 1, INT_EQUIPMENT+11)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_rogue_murderspree:25:25:-19|tI want to use Combat", 1, INT_EQUIPMENT+12)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_rogue_shadowdance:25:25:-19|tI want to use Subtlety", 1, INT_EQUIPMENT+13)
+            elseif (player:GetClass() == CLASS_PRIEST) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_holy_penance:25:25:-19|tI want to use Discipline", 1, INT_EQUIPMENT+14)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_holy_guardianspirit:25:25:-19|tI want to use Holy", 1, INT_EQUIPMENT+15)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_shadow_dispersion:25:25:-19|tI want to use Shadow", 1, INT_EQUIPMENT+16)
+            elseif (player:GetClass() == CLASS_DEATH_KNIGHT) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_deathknight_bloodpresence:25:25:-19|tI want to use Blood", 1, INT_EQUIPMENT+17)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_deathknight_frostpresence:25:25:-19|tI want to use Frost", 1, INT_EQUIPMENT+18)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_deathknight_unholypresence:25:25:-19|tI want to use Unholy", 1, INT_EQUIPMENT+19)
+            elseif (player:GetClass() == CLASS_SHAMAN) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_shaman_thunderstorm:25:25:-19|tI want to use Elemental", 1, INT_EQUIPMENT+20)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_shaman_feralspirit:25:25:-19|tI want to use Enhancement", 1, INT_EQUIPMENT+21)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_nature_riptide:25:25:-19|tI want to use Restoration", 1, INT_EQUIPMENT+22)
+            elseif (player:GetClass() == CLASS_MAGE) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_mage_arcanebarrage:25:25:-19|tI want to use Arcane", 1, INT_EQUIPMENT+23)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_mage_livingbomb:25:25:-19|tI want to use Fire", 1, INT_EQUIPMENT+24)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_mage_deepfreeze:25:25:-19|tI want to use Frost", 1, INT_EQUIPMENT+25)
+            elseif (player:GetClass() == CLASS_WARLOCK) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_warlock_haunt:25:25:-19|tI want to use Affliction", 1, INT_EQUIPMENT+26)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\spell_shadow_demonform:25:25:-19|tI want to use Demonology", 1, INT_EQUIPMENT+27)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_warlock_chaosbolt:25:25:-19|tI want to use Destruction", 1, INT_EQUIPMENT+28)
+            elseif (player:GetClass() == CLASS_DRUID) then
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_druid_starfall:25:25:-19|tI want to use Balance", 1, INT_EQUIPMENT+29)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_druid_berserk:25:25:-19|tI want to use Feral Combat", 1, INT_EQUIPMENT+30)
+                player:GossipMenuAddItem(GOSSIP_ICON_VENDOR, "|TInterface\\icons\\ability_druid_flourish:25:25:-19|tI want to use Restoration", 1, INT_EQUIPMENT+31)
+            end
+        else
+            player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want help to reach level 80", 1, INT_EQUIPMENT+1)
         end
 
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
-    elseif (intid == INT_EQUIPMENT+1) then -- Warrior: Arms
+    elseif (intid == INT_EQUIPMENT+1) then
+        player:GossipClearMenu()
+        player:SetLevel(80)
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+2) then -- Warrior: Arms
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
@@ -228,12 +257,73 @@ function onGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_PLATE_MAIL)
             end
 
+            if not (player:HasSpell(SPELL_DUAL_WIELD)) then
+                player:LearnSpell(SPELL_DUAL_WIELD)
+            end
+
             if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
                 player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
             end
 
             if not (player:HasSpell(SPELL_BOWS)) then
                 player:LearnSpell(SPELL_BOWS)
+            end
+
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
+                player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
+            end
+
+
+            player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(43945, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42882, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42832, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42833, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(39100, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(42835, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42864, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43923, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42786, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(39134, EQUIPMENT_SLOT_RANGED)
+        end
+
+        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
+    elseif (intid == INT_EQUIPMENT+3) then -- Warrior: Fury
+        player:GossipClearMenu()
+
+        if not (hasItemEquipped(player)) then
+            if not (player:HasSpell(SPELL_MAIL)) then
+                player:LearnSpell(SPELL_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
+                player:LearnSpell(SPELL_PLATE_MAIL)
+            end
+
+            if not (player:HasSpell(SPELL_DUAL_WIELD)) then
+                player:LearnSpell(SPELL_DUAL_WIELD)
+            end
+
+            if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
+                player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
+            end
+
+            if not (player:HasSpell(SPELL_BOWS)) then
+                player:LearnSpell(SPELL_BOWS)
+            end
+
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
+                player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
             end
 
             player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
@@ -256,47 +346,7 @@ function onGossipSelect(event, player, object, sender, intid, code)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+2) then -- Warrior: Fury
-        player:GossipClearMenu()
-
-        if not (hasItemEquipped(player)) then
-            if not (player:HasSpell(SPELL_MAIL)) then
-                player:LearnSpell(SPELL_MAIL)
-            end
-
-            if not (player:HasSpell(SPELL_PLATE_MAIL)) then
-                player:LearnSpell(SPELL_PLATE_MAIL)
-            end
-
-            if not (player:HasSpell(SPELL_ONE_HANDED_SWORDS)) then
-                player:LearnSpell(SPELL_ONE_HANDED_SWORDS)
-            end
-
-            if not (player:HasSpell(SPELL_BOWS)) then
-                player:LearnSpell(SPELL_BOWS)
-            end
-
-            player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
-            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
-            player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
-            player:EquipItem(43945, EQUIPMENT_SLOT_CHEST)
-            player:EquipItem(42882, EQUIPMENT_SLOT_WAIST)
-            player:EquipItem(42832, EQUIPMENT_SLOT_LEGS)
-            player:EquipItem(42833, EQUIPMENT_SLOT_FEET)
-            player:EquipItem(39100, EQUIPMENT_SLOT_WRISTS)
-            player:EquipItem(42835, EQUIPMENT_SLOT_HANDS)
-            player:EquipItem(42864, EQUIPMENT_SLOT_FINGER1)
-            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
-            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
-            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
-            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
-            player:EquipItem(43923, EQUIPMENT_SLOT_MAINHAND)
-            player:EquipItem(42786, EQUIPMENT_SLOT_OFFHAND)
-            player:EquipItem(39134, EQUIPMENT_SLOT_RANGED)
-        end
-
-        onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+3) then -- Warrior: Protection
+    elseif (intid == INT_EQUIPMENT+4) then -- Warrior: Protection
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
@@ -320,6 +370,12 @@ function onGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_SHIELD)
             end
 
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
+                player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
+            end
+
             player:EquipItem(42879, EQUIPMENT_SLOT_HEAD)
             player:EquipItem(43849, EQUIPMENT_SLOT_NECK)
             player:EquipItem(43844, EQUIPMENT_SLOT_SHOULDERS)
@@ -340,180 +396,185 @@ function onGossipSelect(event, player, object, sender, intid, code)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+4) then -- Paladin: Holy
+    elseif (intid == INT_EQUIPMENT+5) then -- Paladin: Holy
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+5) then -- Paladin: Protection
+    elseif (intid == INT_EQUIPMENT+6) then -- Paladin: Protection
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+6) then -- Paladin: Retribution
+    elseif (intid == INT_EQUIPMENT+7) then -- Paladin: Retribution
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+7) then -- Hunter: Beast Mastery
+    elseif (intid == INT_EQUIPMENT+8) then -- Hunter: Beast Mastery
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+8) then -- Hunter: Marksmanship
+    elseif (intid == INT_EQUIPMENT+9) then -- Hunter: Marksmanship
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+9) then -- Hunter: Survival
+    elseif (intid == INT_EQUIPMENT+10) then -- Hunter: Survival
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+10) then -- Rogue: Assassination
+    elseif (intid == INT_EQUIPMENT+11) then -- Rogue: Assassination
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+11) then -- Rogue: Combat
+    elseif (intid == INT_EQUIPMENT+12) then -- Rogue: Combat
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+12) then -- Rogue: Subtlety
+    elseif (intid == INT_EQUIPMENT+13) then -- Rogue: Subtlety
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+13) then -- Priest: Discipline
+    elseif (intid == INT_EQUIPMENT+14) then -- Priest: Discipline
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+14) then -- Priest: Holy
+    elseif (intid == INT_EQUIPMENT+15) then -- Priest: Holy
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+15) then -- Priest: Shadow
+    elseif (intid == INT_EQUIPMENT+16) then -- Priest: Shadow
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+16) then -- Death Knight: Blood
+    elseif (intid == INT_EQUIPMENT+17) then -- Death Knight: Blood
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+17) then -- Death Knight: Frost
+    elseif (intid == INT_EQUIPMENT+18) then -- Death Knight: Frost
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+18) then -- Death Knight: Unholy
+    elseif (intid == INT_EQUIPMENT+19) then -- Death Knight: Unholy
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+19) then -- Shaman: Elemental
+    elseif (intid == INT_EQUIPMENT+20) then -- Shaman: Elemental
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+20) then -- Shaman: Enhancement
+    elseif (intid == INT_EQUIPMENT+21) then -- Shaman: Enhancement
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+21) then -- Shaman: Restoration
+    elseif (intid == INT_EQUIPMENT+22) then -- Shaman: Restoration
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+22) then -- Mage: Arcane
+    elseif (intid == INT_EQUIPMENT+23) then -- Mage: Arcane
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+23) then -- Mage: Fire
+    elseif (intid == INT_EQUIPMENT+24) then -- Mage: Fire
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+24) then -- Mage: Frost
+    elseif (intid == INT_EQUIPMENT+25) then -- Mage: Frost
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+25) then -- Warlock: Affliction
+    elseif (intid == INT_EQUIPMENT+26) then -- Warlock: Affliction
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+26) then -- Warlock: Demonology
+    elseif (intid == INT_EQUIPMENT+27) then -- Warlock: Demonology
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+27) then -- Warlock: Destruction
+    elseif (intid == INT_EQUIPMENT+28) then -- Warlock: Destruction
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+28) then -- Druid: Balance
+    elseif (intid == INT_EQUIPMENT+29) then -- Druid: Balance
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
             if not (player:HasSpell(SPELL_STAVES)) then
                 player:LearnSpell(SPELL_STAVES)
+            end
+
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_STAVES, player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES))
             end
 
             player:EquipItem(43905, EQUIPMENT_SLOT_HEAD)
@@ -534,12 +595,17 @@ function onGossipSelect(event, player, object, sender, intid, code)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+29) then -- Druid: Feral Combat
+    elseif (intid == INT_EQUIPMENT+30) then -- Druid: Feral Combat
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
             if not (player:HasSpell(SPELL_STAVES)) then
                 player:LearnSpell(SPELL_STAVES)
+            end
+
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_STAVES, player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES))
             end
 
             player:EquipItem(42872, EQUIPMENT_SLOT_HEAD)
@@ -560,12 +626,17 @@ function onGossipSelect(event, player, object, sender, intid, code)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
-    elseif (intid == INT_EQUIPMENT+30) then -- Druid: Restoration
+    elseif (intid == INT_EQUIPMENT+31) then -- Druid: Restoration
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
             if not (player:HasSpell(SPELL_STAVES)) then
                 player:LearnSpell(SPELL_STAVES)
+            end
+
+            if (ENABLE_MAX_SKILL) then
+                player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
+                player:SetSkill(SKILL_STAVES, player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES))
             end
 
             player:EquipItem(43905, EQUIPMENT_SLOT_HEAD)

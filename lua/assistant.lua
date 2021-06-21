@@ -84,16 +84,14 @@ local INT_MISCELLANEOUS             = 800
 local INT_RETURN                    = 2000
 
 function hasItemEquipped(player)
-    local ITEM_EQUIPPED = false
     for i = EQUIPMENT_SLOT_HEAD, EQUIPMENT_SLOT_RANGED do
         if not (player:GetEquippedItemBySlot(i) == nil) then
             player:SendNotification("You need to unequip all of your items before you can do this")
-            ITEM_EQUIPPED = true
-            break
+            return true
         end
     end
 
-    return ITEM_EQUIPPED
+    return false
 end
 
 -- When a character enters the world
@@ -200,6 +198,23 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(43945, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42882, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42832, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42833, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(39100, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(42835, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42864, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43923, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42786, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(39134, EQUIPMENT_SLOT_RANGED)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -207,6 +222,23 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            player:EquipItem(42878, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(42808, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(42834, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(43945, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(42882, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(42832, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42833, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(39100, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(42835, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(42864, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43923, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(42786, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(39134, EQUIPMENT_SLOT_RANGED)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
@@ -214,6 +246,23 @@ function onGossipSelect(event, player, object, sender, intid, code)
         player:GossipClearMenu()
 
         if not (hasItemEquipped(player)) then
+            player:EquipItem(42879, EQUIPMENT_SLOT_HEAD)
+            player:EquipItem(43849, EQUIPMENT_SLOT_NECK)
+            player:EquipItem(43844, EQUIPMENT_SLOT_SHOULDERS)
+            player:EquipItem(42827, EQUIPMENT_SLOT_CHEST)
+            player:EquipItem(39471, EQUIPMENT_SLOT_WAIST)
+            player:EquipItem(43845, EQUIPMENT_SLOT_LEGS)
+            player:EquipItem(42884, EQUIPMENT_SLOT_FEET)
+            player:EquipItem(42825, EQUIPMENT_SLOT_WRISTS)
+            player:EquipItem(43842, EQUIPMENT_SLOT_HANDS)
+            player:EquipItem(39482, EQUIPMENT_SLOT_FINGER1)
+            player:EquipItem(39481, EQUIPMENT_SLOT_FINGER2)
+            player:EquipItem(43838, EQUIPMENT_SLOT_TRINKET1)
+            player:EquipItem(43829, EQUIPMENT_SLOT_TRINKET2)
+            player:EquipItem(43924, EQUIPMENT_SLOT_BACK)
+            player:EquipItem(43923, EQUIPMENT_SLOT_MAINHAND)
+            player:EquipItem(43843, EQUIPMENT_SLOT_OFFHAND)
+            player:EquipItem(39134, EQUIPMENT_SLOT_RANGED)
         end
 
         onGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)

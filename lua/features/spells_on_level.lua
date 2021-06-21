@@ -5,8 +5,8 @@ require("class_spells")
 require("events")
 require("proficiencies")
 
--- Player levels up
-function playerClassSpells(event, player, oldLevel)
+-- Learn class spells
+function classSpells(player)
     if (ENABLE_SPELLS_ON_LEVEL_UP) then
         local count = 0
         for _ in pairs(CLASS_SPELL_LIST[player:GetClass()]) do count = count + 1 end
@@ -19,7 +19,10 @@ function playerClassSpells(event, player, oldLevel)
             end
         end
     end
+end
 
+-- Learn class talent ranks
+function classTalents(player)
     if (ENABLE_TALENTS_ON_LEVEL_UP) then
         local count = 0
         for _ in pairs(CLASS_TALENT_LIST[player:GetClass()]) do count = count + 1 end
@@ -32,7 +35,10 @@ function playerClassSpells(event, player, oldLevel)
             end
         end
     end
+end
 
+-- Learn class proficiencies
+function classProficiencies(player)
     if (ENABLE_PROFICIENCY_ON_LEVEL_UP) then
         local count = 0
         for _ in pairs(CLASS_PROFICIENCY_LIST[player:GetClass()]) do count = count + 1 end
@@ -45,7 +51,10 @@ function playerClassSpells(event, player, oldLevel)
             end
         end
     end
+end
 
+-- Set skills to max
+function classMaxSkill(player)
     if (ENABLE_MAX_SKILL_ON_LEVEL) then
         if (player:GetLevel() <= MAX_SKILL_MAX_LEVEL) then
             player:AdvanceSkillsToMax()
@@ -53,4 +62,22 @@ function playerClassSpells(event, player, oldLevel)
     end
 end
 
-RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, playerClassSpells)
+-- Character logs in for the first time
+function classOnFirstLogin(event, player)
+    classSpells(player)
+    classTalents(player)
+    classProficiencies(player)
+    classMaxSkill(player)
+end
+
+RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, classOnFirstLogin)
+
+-- Player levels up
+function classOnLevelChanged(event, player, oldLevel)
+    classSpells(player)
+    classTalents(player)
+    classProficiencies(player)
+    classMaxSkill(player)
+end
+
+RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, classOnLevelChanged)

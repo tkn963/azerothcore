@@ -1,4 +1,5 @@
 -- Requires
+require("config")
 require("class_ids")
 require("events")
 

@@ -1,29 +1,13 @@
 -- Requires
+require("config")
 require("class_ids")
 require("events")
 require("equipment_slots")
 require("flags")
+require("functions")
 require("gossip")
 require("proficiencies")
-
--- Features
-local ENABLE_EQUIPMENT               = true
-local ENABLE_EQUIPMENT_LEVEL_UP      = true -- If ENABLE_EQUIPMENT is set to true, this lets the player level up to 80 before accessing equipment
-local ENABLE_EQUIPMENT_MAX_SKILL     = true -- If ENABLE_EQUIPMENT is set to true, this sets skills that are gained through the equipment feature to their max value
-local ENABLE_HEIRLOOMS               = true
-local ENABLE_GLYPHS                  = true
-local ENABLE_GEMS                    = true
-local ENABLE_CONTAINERS              = true
-local ENABLE_UTILITIES               = true
-local ENABLE_MISCELLANEOUS           = true
-
-local CONTAINER_BAG                  = 23162 -- Foror's Crate of Endless Resist Gear Storage (36 slot)
-
--- Required copper values
-local UTILITIES_COST_RENAME          = 10 -- Money required in gold to perform a name change
-local UTILITIES_COST_CUSTOMIZE       = 50 -- Money required in gold to perform a customization
-local UTILITIES_COST_FACTION_CHANGE  = 1000 -- Money required in gold to perform a faction change
-local UTILITIES_COST_RACE_CHANGE     = 500 -- Money required in gold to perform a race change
+require("config")
 
 -- Ids for gossip selects
 local INT_EQUIPMENT                  = 100
@@ -35,17 +19,6 @@ local INT_UTILITIES                  = 700
 local INT_MISCELLANEOUS              = 800
 local INT_RETURN                     = 2000
 
-function hasItemEquipped(player)
-    for i = EQUIPMENT_SLOT_HEAD, EQUIPMENT_SLOT_RANGED do
-        if not (player:GetEquippedItemBySlot(i) == nil) then
-            player:SendNotification("You need to unequip all of your items before you can do this")
-            return true
-        end
-    end
-
-    return false
-end
-
 -- Character enters the world
 function assistantOnLogin(event, player)
     player:SendBroadcastMessage("This server uses an assistant to aid players. Type .assistant to access this feature.")
@@ -55,7 +28,7 @@ RegisterPlayerEvent(EVENT_ON_LOGIN, assistantOnLogin)
 
 -- Character performs a command
 function assistantOnCommand(event, player, command)
-    if (ENABLE_CONTAINERS or ENABLE_GLYPHS or ENABLE_GEMS or ENABLE_HEIRLOOMS or ENABLE_UTILITIES or ENABLE_MISCELLANEOUS) then
+    if ((ENABLE_ASSISTANT_EQUIPMENT or ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP) or ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL or ENABLE_ASSISTANT_HEIRLOOMS or ENABLE_ASSISTANT_GLYPHS or ENABLE_ASSISTANT_GEMS or ENABLE_ASSISTANT_CONTAINERS or ENABLE_ASSISTANT_UTILITIES or ENABLE_ASSISTANT_MISCELLANEOUS) then
         if command == 'assistant' then
             assistantOnGossipHello(event, player, player)
             return false
@@ -68,25 +41,25 @@ RegisterPlayerEvent(EVENT_ON_COMMAND, assistantOnCommand)
 -- Gossip: Hello
 function assistantOnGossipHello(event, player, object)
     player:GossipClearMenu()
-    if (ENABLE_EQUIPMENT and (player:GetLevel() == 80 or ENABLE_EQUIPMENT_LEVEL_UP)) then
+    if (ENABLE_ASSISTANT_EQUIPMENT and (player:GetLevel() == 80 or ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP)) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want equipment", 1, INT_EQUIPMENT)
     end
-    if (ENABLE_HEIRLOOMS) then
+    if (ENABLE_ASSISTANT_HEIRLOOMS) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want heirlooms", 1, INT_HEIRLOOMS)
     end
-    if (ENABLE_GLYPHS) then
+    if (ENABLE_ASSISTANT_GLYPHS) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want glyphs", 1, INT_GLYPHS)
     end
-    if (ENABLE_GEMS) then
+    if (ENABLE_ASSISTANT_GEMS) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want gems", 1, INT_GEMS)
     end
-    if (ENABLE_CONTAINERS) then
+    if (ENABLE_ASSISTANT_CONTAINERS) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want containers", 1, INT_CONTAINERS)
     end
-    if (ENABLE_UTILITIES) then
+    if (ENABLE_ASSISTANT_UTILITIES) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want utilities", 1, INT_UTILITIES)
     end
-    if (ENABLE_MISCELLANEOUS and player:GetClass() == CLASS_SHAMAN) then
+    if (ENABLE_ASSISTANT_MISCELLANEOUS and player:GetClass() == CLASS_SHAMAN) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "What else can I get?", 1, INT_MISCELLANEOUS)
     end
 
@@ -178,7 +151,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_BOWS)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
                 player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
@@ -229,7 +202,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_BOWS)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
                 player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
@@ -279,7 +252,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_SHIELD)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
                 player:SetSkill(SKILL_BOWS, player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS), player:GetMaxSkillValue(SKILL_BOWS))
@@ -325,7 +298,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_SHIELD)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_ONE_HANDED_MACES, player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES), player:GetMaxSkillValue(SKILL_ONE_HANDED_MACES))
             end
@@ -369,7 +342,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_SHIELD)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_ONE_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_ONE_HANDED_SWORDS))
             end
@@ -413,7 +386,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_SHIELD)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_TWO_HANDED_SWORDS, player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS), player:GetMaxSkillValue(SKILL_TWO_HANDED_SWORDS))
             end
@@ -591,7 +564,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_STAVES)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_STAVES, player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES))
             end
@@ -622,7 +595,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_STAVES)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_STAVES, player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES))
             end
@@ -653,7 +626,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
                 player:LearnSpell(SPELL_STAVES)
             end
 
-            if (ENABLE_EQUIPMENT_MAX_SKILL) then
+            if (ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL) then
                 player:SetSkill(SKILL_DEFENSE, player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE), player:GetMaxSkillValue(SKILL_DEFENSE))
                 player:SetSkill(SKILL_STAVES, player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES), player:GetMaxSkillValue(SKILL_STAVES))
             end
@@ -1739,14 +1712,14 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
     elseif (intid == INT_CONTAINERS+1) then
-        player:AddItem(CONTAINER_BAG)
+        player:AddItem(ASSISTANT_CONTAINER_BAG)
         assistantOnGossipSelect(event, player, object, sender, INT_CONTAINERS, code)
     elseif (intid == INT_UTILITIES) then
         player:GossipClearMenu()
-        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my name", 1, INT_UTILITIES+1, false, "Do you wish to continue the transaction?", (UTILITIES_COST_RENAME * 10000))
-        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my appearance", 1, INT_UTILITIES+2, false, "Do you wish to continue the transaction?", (UTILITIES_COST_CUSTOMIZE * 10000))
-        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my faction", 1, INT_UTILITIES+3, false, "Do you wish to continue the transaction?", (UTILITIES_COST_FACTION_CHANGE * 10000))
-        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my race", 1, INT_UTILITIES+4, false, "Do you wish to continue the transaction?", (UTILITIES_COST_RACE_CHANGE * 10000))
+        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my name", 1, INT_UTILITIES+1, false, "Do you wish to continue the transaction?", (ASSISTANT_UTILITIES_COST_RENAME * 10000))
+        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my appearance", 1, INT_UTILITIES+2, false, "Do you wish to continue the transaction?", (ASSISTANT_UTILITIES_COST_CUSTOMIZE * 10000))
+        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my faction", 1, INT_UTILITIES+3, false, "Do you wish to continue the transaction?", (ASSISTANT_UTILITIES_COST_FACTION_CHANGE * 10000))
+        player:GossipMenuAddItem(GOSSIP_ICON_MONEY_BAG, "I want to change my race", 1, INT_UTILITIES+4, false, "Do you wish to continue the transaction?", (ASSISTANT_UTILITIES_COST_RACE_CHANGE * 10000))
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
     elseif (intid == INT_UTILITIES+1) then
@@ -1754,7 +1727,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
             assistantOnGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
-            player:ModifyMoney(-(UTILITIES_COST_RENAME * 10000))
+            player:ModifyMoney(-(ASSISTANT_UTILITIES_COST_RENAME * 10000))
             player:SetAtLoginFlag(AT_LOGIN_RENAME)
             player:SendBroadcastMessage("You can now log out to apply the name change.")
             player:GossipComplete()
@@ -1764,7 +1737,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
             assistantOnGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
-            player:ModifyMoney(-(UTILITIES_COST_CUSTOMIZE * 10000))
+            player:ModifyMoney(-(ASSISTANT_UTILITIES_COST_CUSTOMIZE * 10000))
             player:SetAtLoginFlag(AT_LOGIN_CUSTOMIZE)
             player:SendBroadcastMessage("You can now log out to apply the customization.")
             player:GossipComplete()
@@ -1774,7 +1747,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
             assistantOnGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
-            player:ModifyMoney(-(UTILITIES_COST_FACTION_CHANGE * 10000))
+            player:ModifyMoney(-(ASSISTANT_UTILITIES_COST_FACTION_CHANGE * 10000))
             player:SetAtLoginFlag(AT_LOGIN_CHANGE_FACTION)
             player:SendBroadcastMessage("You can now log out to apply the faction change.")
             player:GossipComplete()
@@ -1784,7 +1757,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
             player:SendBroadcastMessage("You have to complete the previously activated feature before trying to perform another.")
             assistantOnGossipSelect(event, player, object, sender, INT_UTILITIES, code)
         else
-            player:ModifyMoney(-(UTILITIES_COST_RACE_CHANGE * 10000))
+            player:ModifyMoney(-(ASSISTANT_UTILITIES_COST_RACE_CHANGE * 10000))
             player:SetAtLoginFlag(AT_LOGIN_CHANGE_RACE)
             player:SendBroadcastMessage("You can now log out to apply the race change.")
             player:GossipComplete()

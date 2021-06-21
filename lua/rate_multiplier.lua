@@ -1,20 +1,6 @@
 -- Requires
+require("config")
 require("events")
-
--- Experience, money and reputation rates
-local ENABLE_EXPERIENCE_MULTIPLIER = true -- Enable the experience multiplier
-local ENABLE_REPUTATION_MULTIPLIER = true -- Enable the reputation multiplier
-local ENABLE_MONEY_LOOT_MULTIPLIER = true -- Enable the money loot multiplier
-local ENABLE_WEEKEND_MULTIPLIER    = true -- Changes the multiplier on friday, saturday and sunday
-local MULTIPLIER_WEEKEND           = 2 -- Multiplier for all rates on weekends
-
-local RATE_MULTIPLIER              = { -- Multiplier for specific levels. It's modular so you can set your own level ranges
---    Min level  Max level  Multiplier
-    { 1,         59,        4 },
-    { 60,        69,        3 },
-    { 70,        79,        2 },
-    { 80,        80,        1 },
-}
 
 -- Calculate multiplier
 function rateMultiplier(player)

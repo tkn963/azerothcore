@@ -1,8 +1,8 @@
 -- Requires
 require("class_ids")
+require("class_spells")
 require("events")
 require("proficiencies")
-require("class_spells")
 
 -- Features
 local ENABLE_SPELLS_ON_LEVEL_UP      = true -- Automatically learn new spells when leveling up
@@ -15,15 +15,12 @@ local MAX_SKILL_MAX_LEVEL            = 70 -- Last level when a players skills wi
 function playerClassSpells(event, player, oldLevel)
     if (ENABLE_SPELLS_ON_LEVEL_UP) then
         local count = 0
+        for _ in pairs(CLASS_SPELL_LIST[player:GetClass()]) do count = count + 1 end
 
-        if (player:GetClass() == CLASS_WARRIOR) then
-            for _ in pairs(SPELL_LIST_WARRIOR) do count = count + 1 end
-
-            for i=1,count do
-                if (SPELL_LIST_WARRIOR[i][2] <= player:GetLevel()) then
-                    if not (player:HasSpell(SPELL_LIST_WARRIOR[i][1])) then
-                        player:LearnSpell(SPELL_LIST_WARRIOR[i][1])
-                    end
+        for i=1,count do
+            if (CLASS_SPELL_LIST[player:GetClass()][i][2] <= player:GetLevel()) then
+                if not (player:HasSpell(CLASS_SPELL_LIST[player:GetClass()][i][1])) then
+                    player:LearnSpell(CLASS_SPELL_LIST[player:GetClass()][i][1])
                 end
             end
         end
@@ -31,15 +28,12 @@ function playerClassSpells(event, player, oldLevel)
 
     if (ENABLE_TALENTS_ON_LEVEL_UP) then
         local count = 0
+        for _ in pairs(CLASS_TALENT_LIST[player:GetClass()]) do count = count + 1 end
 
-        if (player:GetClass() == CLASS_WARRIOR) then
-            for _ in pairs(TALENT_LIST_WARRIOR) do count = count + 1 end
-
-            for i=1,count do
-                if (TALENT_LIST_WARRIOR[i][2] <= player:GetLevel() and player:HasSpell(TALENT_LIST_WARRIOR[i][3])) then
-                    if not (player:HasSpell(TALENT_LIST_WARRIOR[i][1])) then
-                        player:LearnSpell(TALENT_LIST_WARRIOR[i][1])
-                    end
+        for i=1,count do
+            if (CLASS_TALENT_LIST[player:GetClass()][i][2] <= player:GetLevel() and player:HasSpell(CLASS_TALENT_LIST[player:GetClass()][i][3])) then
+                if not (player:HasSpell(CLASS_TALENT_LIST[player:GetClass()][i][1])) then
+                    player:LearnSpell(CLASS_TALENT_LIST[player:GetClass()][i][1])
                 end
             end
         end
@@ -47,15 +41,12 @@ function playerClassSpells(event, player, oldLevel)
 
     if (ENABLE_PROFICIENCY_ON_LEVEL_UP) then
         local count = 0
+        for _ in pairs(CLASS_PROFICIENCY_LIST[player:GetClass()]) do count = count + 1 end
 
-        if (player:GetClass() == CLASS_WARRIOR) then
-            for _ in pairs(PROFICIENCY_LIST_WARRIOR) do count = count + 1 end
-
-            for i=1,count do
-                if (PROFICIENCY_LIST_WARRIOR[i][2] <= player:GetLevel()) then
-                    if not (player:HasSpell(PROFICIENCY_LIST_WARRIOR[i][1])) then
-                        player:LearnSpell(PROFICIENCY_LIST_WARRIOR[i][1])
-                    end
+        for i=1,count do
+            if (CLASS_PROFICIENCY_LIST[player:GetClass()][i][2] <= player:GetLevel()) then
+                if not (player:HasSpell(CLASS_PROFICIENCY_LIST[player:GetClass()][i][1])) then
+                    player:LearnSpell(CLASS_PROFICIENCY_LIST[player:GetClass()][i][1])
                 end
             end
         end

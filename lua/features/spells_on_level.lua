@@ -68,7 +68,7 @@ function classMounts(player)
     for _ in pairs(RIDING_SPELL) do count = count + 1 end
 
     for i=1,count do
-        if (RIDING_SPELL[i][2] <= player:GetLevel() and RIDING_SPELL[i][3]) then
+        if (RIDING_SPELL[i][2] <= player:GetLevel() and RIDING_SPELL[i][3] and (RIDING_SPELL[i][4] == 0 or player:HasSpell(RIDING_SPELL[i][4]))) then
             if not (player:HasSpell(RIDING_SPELL[i][1])) then
                 player:LearnSpell(RIDING_SPELL[i][1])
             end
@@ -79,7 +79,7 @@ function classMounts(player)
     for _ in pairs(MOUNT_SPELL[player:GetRace()]) do count = count + 1 end
 
     for i=1,count do
-        if (MOUNT_SPELL[player:GetRace()][i][2] <= player:GetLevel() and MOUNT_SPELL[player:GetRace()][i][3]) then
+        if (MOUNT_SPELL[player:GetRace()][i][2] <= player:GetLevel() and MOUNT_SPELL[player:GetRace()][i][3] and player:HasSpell(MOUNT_SPELL[player:GetRace()][i][4])) then
             if not (player:HasSpell(MOUNT_SPELL[player:GetRace()][i][1])) then
                 player:LearnSpell(MOUNT_SPELL[player:GetRace()][i][1])
             end
@@ -87,24 +87,36 @@ function classMounts(player)
     end
 end
 
--- Character logs in for the first time
-function classOnFirstLogin(event, player)
+function classCollection(player)
     classSpells(player)
     classTalents(player)
     classProficiencies(player)
     classMaxSkill(player)
     classMounts(player)
+end
+
+-- Character logs in for the first time
+function classOnFirstLogin(event, player)
+    classCollection(player)
 end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, classOnFirstLogin)
 
 -- Player levels up
 function classOnLevelChanged(event, player, oldLevel)
-    classSpells(player)
-    classTalents(player)
-    classProficiencies(player)
-    classMaxSkill(player)
-    classMounts(player)
+    classCollection(player)
 end
 
 RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, classOnLevelChanged)
+
+-- Character performs a command
+function spellsOnCommand(event, player, command)
+    if (ENABLE_SPELLS_ON_LEVEL_UP or ENABLE_TALENTS_ON_LEVEL_UP or ENABLE_PROFICIENCY_ON_LEVEL_UP or ENABLE_APPRENTICE_MOUNT_ON_LEVEL_UP or ENABLE_JOURNEYMAN_MOUNT_ON_LEVEL_UP or ENABLE_EXPERT_MOUNT_ON_LEVEL_UP or ENABLE_ARTISAN_MOUNT_ON_LEVEL_UP or ENABLE_COLD_WEATHER_FLYING_ON_LEVEL_UP or ENABLE_MAX_SKILL_ON_LEVEL) then
+        if command == 'learnspells' then
+            classCollection(player)
+            return false
+        end
+    end
+end
+
+RegisterPlayerEvent(EVENT_ON_COMMAND, spellsOnCommand)

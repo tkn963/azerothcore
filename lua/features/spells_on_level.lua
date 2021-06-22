@@ -1,8 +1,9 @@
 -- Requires
 require("config")
-require("class_ids")
+require("ids")
 require("class_spells")
 require("events")
+require("mounts")
 require("proficiencies")
 
 -- Learn class spells
@@ -62,12 +63,37 @@ function classMaxSkill(player)
     end
 end
 
+function classMounts(player)
+    local count = 0
+    for _ in pairs(RIDING_SPELL) do count = count + 1 end
+
+    for i=1,count do
+        if (RIDING_SPELL[i][2] <= player:GetLevel() and RIDING_SPELL[i][3]) then
+            if not (player:HasSpell(RIDING_SPELL[i][1])) then
+                player:LearnSpell(RIDING_SPELL[i][1])
+            end
+        end
+    end
+
+    local count = 0
+    for _ in pairs(MOUNT_SPELL[player:GetRace()]) do count = count + 1 end
+
+    for i=1,count do
+        if (MOUNT_SPELL[player:GetRace()][i][2] <= player:GetLevel() and MOUNT_SPELL[player:GetRace()][i][3]) then
+            if not (player:HasSpell(MOUNT_SPELL[player:GetRace()][i][1])) then
+                player:LearnSpell(MOUNT_SPELL[player:GetRace()][i][1])
+            end
+        end
+    end
+end
+
 -- Character logs in for the first time
 function classOnFirstLogin(event, player)
     classSpells(player)
     classTalents(player)
     classProficiencies(player)
     classMaxSkill(player)
+    classMounts(player)
 end
 
 RegisterPlayerEvent(EVENT_ON_FIRST_LOGIN, classOnFirstLogin)
@@ -78,6 +104,7 @@ function classOnLevelChanged(event, player, oldLevel)
     classTalents(player)
     classProficiencies(player)
     classMaxSkill(player)
+    classMounts(player)
 end
 
 RegisterPlayerEvent(EVENT_ON_LEVEL_CHANGED, classOnLevelChanged)

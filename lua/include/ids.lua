@@ -11,3 +11,14 @@ CLASS_SHAMAN       = 7
 CLASS_MAGE         = 8
 CLASS_WARLOCK      = 9
 CLASS_DRUID        = 11
+
+RACE_HUMAN         = 1
+RACE_ORC           = 2
+RACE_DWARF         = 3
+RACE_NIGHT_ELF     = 4
+RACE_UNDEAD        = 5
+RACE_TAUREN        = 6
+RACE_GNOME         = 7
+RACE_TROLL         = 8
+RACE_BLOOD_ELF     = 10
+RACE_DRAENEI       = 11

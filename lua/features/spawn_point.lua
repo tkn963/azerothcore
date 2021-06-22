@@ -1,6 +1,6 @@
 -- Requires
 require("config")
-require("class_ids")
+require("ids")
 require("events")
 
 -- Character logs in for the first time

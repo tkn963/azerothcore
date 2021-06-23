@@ -10,6 +10,7 @@ function invalid_arguments()
 function build_server()
 {
     install_build_packages
+    stop_server
 
     clear
 
@@ -187,7 +188,7 @@ function build_server()
     echo -e "\e[0;32mCompiling source code\e[0m"
 
     mkdir -p $CORE_DIRECTORY/build && cd $_
-    cmake ../ -DCMAKE_INSTALL_PREFIX=$CORE_DIRECTORY -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DTOOLS=0 -DSCRIPTS=1
+    cmake ../ -DCMAKE_INSTALL_PREFIX=$CORE_DIRECTORY -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DTOOLS=0 -DSCRIPTS=static
     if [ $? -ne 0 ]; then
         exit 1
     fi

@@ -58,9 +58,9 @@ function multiplierOnCommand(event, player, command)
             player:SendBroadcastMessage("The looted money you receive is "..(100 * rateMultiplier(player)).."% of the normal value.")
         end
 
-        if (ENABLE_WEEKEND_MULTIPLIE and ENABLE_EXPERIENCE_MULTIPLIER or ENABLE_REPUTATION_MULTIPLIER or ENABLE_MONEY_LOOT_MULTIPLIER) then
+        if (ENABLE_WEEKEND_MULTIPLIER and ENABLE_EXPERIENCE_MULTIPLIER or ENABLE_REPUTATION_MULTIPLIER or ENABLE_MONEY_LOOT_MULTIPLIER) then
             if (os.date("*t").wday == 6 or os.date("*t").wday == 7 or os.date("*t").wday == 8) then
-                player:SendBroadcastMessage("The weekend multiplier is active, increasing the above rates by "..(100 * MULTIPLIER_WEEKEND).."%.")
+                player:SendBroadcastMessage("The weekend multiplier is active, increasing the above rates by "..(100 * WEEKEND_MULTIPLIER).."%.")
             end
         end
         return false

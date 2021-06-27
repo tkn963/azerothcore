@@ -1,5 +1,5 @@
--- Emblem of Heroism
-SET @emblem := 40752;
+-- Emblem of Conquest
+SET @emblem := 45624;
 
 -- Ahn'kahet: The Old Kingdom
 -- Elder Nadox

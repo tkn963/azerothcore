@@ -39,6 +39,7 @@
     <preload_map_grids>0</preload_map_grids>
     <set_all_waypoints_active>0</set_all_waypoints_active>
     <allow_lfg_lootmode>false</allow_lfg_lootmode>
+    <enable_minigob_manabonk>1</enable_minigob_manabonk>
     <rates>
       <experience>1</experience>
       <rested_exp>1</rested_exp>

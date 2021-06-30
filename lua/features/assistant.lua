@@ -2748,7 +2748,7 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
             end
         end
 
-        player:SendBroadcastMessage(unbound.." instance difficulties have been reset")
+        player:SendBroadcastMessage(unbound.." instance difficulties have been reset.")
 
         assistantOnGossipSelect(event, player, object, sender, INT_MISCELLANEOUS, code)
     elseif (intid == INT_MISCELLANEOUS+2) then

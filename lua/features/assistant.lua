@@ -60,7 +60,7 @@ function assistantOnGossipHello(event, player, object)
     if (ENABLE_ASSISTANT_UTILITIES) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want utilities", 1, INT_UTILITIES)
     end
-    if (ENABLE_ASSISTANT_MISCELLANEOUS and player:GetClass() == CLASS_SHAMAN) then
+    if (ENABLE_ASSISTANT_MISCELLANEOUS) then
         player:GossipMenuAddItem(GOSSIP_ICON_TALK, "What else can I get?", 1, INT_MISCELLANEOUS)
     end
 
@@ -2726,13 +2726,32 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
     elseif (intid == INT_MISCELLANEOUS) then
         player:GossipClearMenu()
 
-        if (player:GetClass() == CLASS_SHAMAN) then
-            player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want totems", 1, INT_MISCELLANEOUS+1)
+        if (ENABLE_MISCELLANOUS_UNBIND_INSTANCES) then
+            player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want to unbind my instances", 1, INT_MISCELLANEOUS+1)
+        end
+
+        if (ENABLE_MISCELLANOUS_TOTEMS and player:GetClass() == CLASS_SHAMAN) then
+            player:GossipMenuAddItem(GOSSIP_ICON_TALK, "I want totems", 1, INT_MISCELLANEOUS+2)
         end
 
         player:GossipMenuAddItem(GOSSIP_ICON_CHAT, "Return to previous page", 1, INT_RETURN)
         player:GossipSendMenu(0x7FFFFFFF, object, 1)
     elseif (intid == INT_MISCELLANEOUS+1) then
+        local unbound = 0
+        local count = 0
+        for _ in pairs(INSTANCE_MAP_ID) do count = count + 1 end
+
+        for i=1,count do
+            if (INSTANCE_MAP_ID[i][4]) then
+                player:UnbindInstance(INSTANCE_MAP_ID[i][1], INSTANCE_MAP_ID[i][2])
+                unbound = unbound + 1
+            end
+        end
+
+        player:SendBroadcastMessage(unbound.." instance difficulties have been reset")
+
+        assistantOnGossipSelect(event, player, object, sender, INT_MISCELLANEOUS, code)
+    elseif (intid == INT_MISCELLANEOUS+2) then
         local TOTEM_EARTHEN_RING = 46978
         local TOTEM_EARTH        = 5175
         local TOTEM_FIRE         = 5176

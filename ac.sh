@@ -18,13 +18,14 @@ if [ $# -gt 0 ]; then
     if [ $# -eq 2 ]; then
         if [[ $1 == "all" ]] || [[ $1 == "auth" ]] || [[ $1 == "world" ]]; then
             if [[ $2 == "setup" ]] || [[ $2 == "install" ]] || [[ $2 == "update" ]]; then
+                stop_server
                 build_server $1
             elif [[ $2 == "database" ]] || [[ $2 == "db" ]]; then
                 import_database $1
             elif [[ $2 == "configuration" ]] || [[ $2 == "config" ]] || [[ $2 == "conf" ]] || [[ $2 == "cfg" ]]; then
                 update_configuration $1
             elif [ $2 == "all" ]; then
-                stop_server $1
+                stop_server
                 build_server $1
                 import_database $1
                 update_configuration $1
@@ -39,7 +40,7 @@ if [ $# -gt 0 ]; then
         if [ $1 == "start" ]; then
             start_server
         elif [ $1 == "stop" ]; then
-            stop_server $1
+            stop_server
         else
             invalid_arguments
         fi

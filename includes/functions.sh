@@ -10,7 +10,6 @@ function invalid_arguments()
 function build_server()
 {
     install_build_packages
-    stop_server
 
     clear
 

@@ -4,7 +4,6 @@ require("ids")
 require("events")
 require("equipment_slots")
 require("flags")
-require("functions")
 require("gossip")
 require("proficiencies")
 
@@ -17,6 +16,17 @@ local INT_CONTAINERS                 = 700
 local INT_UTILITIES                  = 800
 local INT_MISCELLANEOUS              = 900
 local INT_RETURN                     = 2000
+
+function hasItemEquipped(player)
+    for i = EQUIPMENT_SLOT_HEAD, EQUIPMENT_SLOT_RANGED do
+        if not (player:GetEquippedItemBySlot(i) == nil) then
+            player:SendNotification("You need to unequip all of your items before you can do this")
+            return true
+        end
+    end
+
+    return false
+end
 
 -- Character enters the world
 function assistantOnLogin(event, player)

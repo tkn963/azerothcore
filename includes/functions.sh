@@ -18,24 +18,24 @@ function build_server()
     if [ ! -d $CORE_DIRECTORY ]; then
         git clone --recursive --branch $AZEROTHCORE_BRANCH $AZEROTHCORE_URL $CORE_DIRECTORY
         if [ $? -ne 0 ]; then
-            exit 1
+            exit $?
         fi
     else
         cd $CORE_DIRECTORY
 
         git fetch --all
         if [ $? -ne 0 ]; then
-            exit 1
+            exit $?
         fi
 
         git reset --hard origin/$AZEROTHCORE_BRANCH
         if [ $? -ne 0 ]; then
-            exit 1
+            exit $?
         fi
 
         git submodule update
         if [ $? -ne 0 ]; then
-            exit 1
+            exit $?
         fi
     fi
 
@@ -43,7 +43,7 @@ function build_server()
         cd $CORE_DIRECTORY
         git reset $GIT_COMMIT
         if [ $? -ne 0 ]; then
-            exit 1
+            exit $?
         fi
     elif [ "$PULL_REQUEST" != "none" ]; then
         cd $CORE_DIRECTORY
@@ -53,7 +53,7 @@ function build_server()
 
             git checkout -b pr-$PULL_REQUEST
             if [ $? -ne 0 ]; then
-                exit 1
+                exit $?
             fi
 
             git pull origin pull/$PULL_REQUEST/head
@@ -64,12 +64,12 @@ function build_server()
 
             git switch -C $AZEROTHCORE_BRANCH origin/$AZEROTHCORE_BRANCH
             if [ $? -ne 0 ]; then
-                exit 1
+                exit $?
             fi
 
             git reset --hard origin/$AZEROTHCORE_BRANCH
             if [ $? -ne 0 ]; then
-                exit 1
+                exit $?
             fi
         fi
     fi
@@ -79,24 +79,24 @@ function build_server()
             if [ ! -d $CORE_DIRECTORY/modules/eluna ]; then
                 git clone --recursive --branch $MODULE_ELUNA_BRANCH $MODULE_ELUNA_URL $CORE_DIRECTORY/modules/eluna
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
             else
                 cd $CORE_DIRECTORY/modules/eluna
 
                 git fetch --all
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
 
                 git reset --hard origin/$MODULE_ELUNA_BRANCH
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
 
                 git submodule update
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
             fi
         else
@@ -113,24 +113,24 @@ function build_server()
             if [ ! -d $CORE_DIRECTORY/modules/ahbot ]; then
                 git clone --recursive --branch $MODULE_AHBOT_BRANCH $MODULE_AHBOT_URL $CORE_DIRECTORY/modules/ahbot
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
             else
                 cd $CORE_DIRECTORY/modules/ahbot
 
                 git fetch --all
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
 
                 git reset --hard origin/$MODULE_AHBOT_BRANCH
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
 
                 git submodule update
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
             fi
         else
@@ -147,24 +147,24 @@ function build_server()
             if [ ! -d $CORE_DIRECTORY/modules/skipdkarea ]; then
                 git clone --recursive --branch $MODULE_SKIPDKAREA_BRANCH $MODULE_SKIPDKAREA_URL $CORE_DIRECTORY/modules/skipdkarea
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
             else
                 cd $CORE_DIRECTORY/modules/skipdkarea
 
                 git fetch --all
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
 
                 git reset --hard origin/$MODULE_SKIPDKAREA_BRANCH
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
 
                 git submodule update
                 if [ $? -ne 0 ]; then
-                    exit 1
+                    exit $?
                 fi
             fi
         else
@@ -189,17 +189,17 @@ function build_server()
     mkdir -p $CORE_DIRECTORY/build && cd $_
     cmake ../ -DCMAKE_INSTALL_PREFIX=$CORE_DIRECTORY -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -DWITH_WARNINGS=1 -DTOOLS=0 -DSCRIPTS=static
     if [ $? -ne 0 ]; then
-        exit 1
+        exit $?
     fi
 
     make -j $(nproc)
     if [ $? -ne 0 ]; then
-        exit 1
+        exit $?
     fi
 
     make install
     if [ $? -ne 0 ]; then
-        exit 1
+        exit $?
     fi
 
     clear
@@ -254,17 +254,17 @@ function build_server()
 
             curl -L $CLIENT_DATA > $CORE_DIRECTORY/bin/data.zip
             if [ $? -ne 0 ]; then
-                exit 1
+                exit $?
             fi
 
             unzip -o "$CORE_DIRECTORY/bin/data.zip" -d "$CORE_DIRECTORY/bin/"
             if [ $? -ne 0 ]; then
-                exit 1
+                exit $?
             fi
 
             rm -rf $CORE_DIRECTORY/bin/data.zip
             if [ $? -ne 0 ]; then
-                exit 1
+                exit $?
             fi
         fi
     fi
@@ -297,21 +297,21 @@ function import_database()
                     mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH < $f
                     if [ $? -ne 0 ]; then
                         rm -rf $MYSQL_CONFIG
-                        exit 1
+                        exit $?
                     fi
 
                     if [ $(basename $f .sql) == "account" ] || [ $(basename $f .sql) == "account_access" ]; then
                         mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH -e "DELETE FROM $(basename $f .sql)"
                         if [ $? -ne 0 ]; then
                             rm -rf $MYSQL_CONFIG
-                            exit 1
+                            exit $?
                         fi
 
                         if [ $(basename $f .sql) == "account" ]; then
                             mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH -e "ALTER TABLE $(basename $f .sql) AUTO_INCREMENT = 1"
                             if [ $? -ne 0 ]; then
                                 rm -rf $MYSQL_CONFIG
-                                exit 1
+                                exit $?
                             fi
                         fi
                     fi
@@ -323,7 +323,7 @@ function import_database()
                         mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH < $f
                         if [ $? -ne 0 ]; then
                             rm -rf $MYSQL_CONFIG
-                            exit 1
+                            exit $?
                         fi
                     done
                 fi
@@ -338,7 +338,7 @@ function import_database()
                                 mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH < $f
                                 if [ $? -ne 0 ]; then
                                     rm -rf $MYSQL_CONFIG
-                                    exit 1
+                                    exit $?
                                 fi
                             done
                         fi
@@ -352,7 +352,7 @@ function import_database()
                             mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH < $f
                             if [ $? -ne 0 ]; then
                                 rm -rf $MYSQL_CONFIG
-                                exit 1
+                                exit $?
                             fi
                         done
                     fi
@@ -360,7 +360,7 @@ function import_database()
             fi
         else
             rm -rf $MYSQL_CONFIG
-            exit 1
+            exit $?
         fi
     fi
 
@@ -377,7 +377,7 @@ function import_database()
                     mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_CHARACTERS < $f
                     if [ $? -ne 0 ]; then
                         rm -rf $MYSQL_CONFIG
-                        exit 1
+                        exit $?
                     fi
                 done
 
@@ -391,7 +391,7 @@ function import_database()
                     mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
                     if [ $? -ne 0 ]; then
                         rm -rf $MYSQL_CONFIG
-                        exit 1
+                        exit $?
                     fi
                 done
 
@@ -401,7 +401,7 @@ function import_database()
                         mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_CHARACTERS < $f
                         if [ $? -ne 0 ]; then
                             rm -rf $MYSQL_CONFIG
-                            exit 1
+                            exit $?
                         fi
                     done
                 fi
@@ -416,7 +416,7 @@ function import_database()
                                 mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_CHARACTERS < $f
                                 if [ $? -ne 0 ]; then
                                     rm -rf $MYSQL_CONFIG
-                                    exit 1
+                                    exit $?
                                 fi
                             done
                         fi
@@ -429,7 +429,7 @@ function import_database()
                         mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
                         if [ $? -ne 0 ]; then
                             rm -rf $MYSQL_CONFIG
-                            exit 1
+                            exit $?
                         fi
                     done
                 fi
@@ -444,7 +444,7 @@ function import_database()
                                 mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
                                 if [ $? -ne 0 ]; then
                                     rm -rf $MYSQL_CONFIG
-                                    exit 1
+                                    exit $?
                                 fi
                             done
                         fi
@@ -462,7 +462,7 @@ function import_database()
                         mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
                         if [ $? -ne 0 ]; then
                             rm -rf $MYSQL_CONFIG
-                            exit 1
+                            exit $?
                         fi
                     done
                 fi
@@ -476,7 +476,7 @@ function import_database()
                                         echo -e "\e[0;33mImporting "$(basename $d)"\e[0m"
                                         mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $d
                                         if [ $? -ne 0 ]; then
-                                            exit 1
+                                            exit $?
                                         fi
                                     done
                                 fi
@@ -484,7 +484,7 @@ function import_database()
                                 echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
                                 mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
                                 if [ $? -ne 0 ]; then
-                                    exit 1
+                                    exit $?
                                 fi
                             fi
                         done
@@ -495,19 +495,19 @@ function import_database()
                     mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD -e "UPDATE mod_auctionhousebot SET minitems='$MODULE_AHBOT_MIN_ITEMS', maxitems='$MODULE_AHBOT_MAX_ITEMS'"
                     if [ $? -ne 0 ]; then
                         rm -rf $MYSQL_CONFIG
-                        exit 1
+                        exit $?
                     fi
                 fi
 
                 mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_AUTH -e "DELETE FROM realmlist WHERE id='$WORLD_ID';INSERT INTO realmlist (id, name, address, localAddress, localSubnetMask, port) VALUES ('$WORLD_ID', '$WORLD_NAME', '$WORLD_IP', '$WORLD_IP', '255.255.255.0', '8085')"
                 if [ $? -ne 0 ]; then
                     rm -rf $MYSQL_CONFIG
-                    exit 1
+                    exit $?
                 fi
             fi
         else
             rm -rf $MYSQL_CONFIG
-            exit 1
+            exit $?
         fi
     fi
 }
@@ -640,7 +640,7 @@ function start_server()
         else
             echo -e "\e[0;33mUnable to locate the required executable\e[0m"
 
-            exit 1
+            exit $?
         fi
     else
         echo -e "\e[0;33mThe server is already running\e[0m"
@@ -669,7 +669,7 @@ function stop_server()
         else
             echo -e "\e[0;33mUnable to locate the required executable\e[0m"
 
-            exit 1
+            exit $?
         fi
     else
         echo -e "\e[0;33mNo running server found\e[0m"

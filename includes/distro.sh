@@ -8,6 +8,6 @@ if [ -f /etc/os-release ]; then
 
     if [[ ! " ${DISTRIBUTION[@]} " =~ " ${OS}${VERSION} " ]]; then
         echo -e "\e[0;31mThis distribution is currently not supported\e[0m"
-        exit 1
+        exit $?
     fi
 fi

@@ -5,6 +5,12 @@ function backup_database()
 
     clear
 
+    if [[ -f $ROOT/backup/$BACKUP_DATE.tar.gz ]]; then
+        echo -e "\e[0;32mInitialization aborted\e[0m"
+        echo -e "\e[0;33mA backup for this date and time already exist\e[0m"
+        exit 1
+    fi
+
     echo "[client]" > $MYSQL_CONFIG
     echo "host=\"$MYSQL_HOSTNAME\"" >> $MYSQL_CONFIG
     echo "port=\"$MYSQL_PORT\"" >> $MYSQL_CONFIG

@@ -476,6 +476,7 @@ function import_database()
                                         echo -e "\e[0;33mImporting "$(basename $d)"\e[0m"
                                         mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $d
                                         if [ $? -ne 0 ]; then
+                                            rm -rf $MYSQL_CONFIG
                                             exit $?
                                         fi
                                     done
@@ -484,6 +485,7 @@ function import_database()
                                 echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
                                 mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
                                 if [ $? -ne 0 ]; then
+                                    rm -rf $MYSQL_CONFIG
                                     exit $?
                                 fi
                             fi
@@ -510,6 +512,8 @@ function import_database()
             exit $?
         fi
     fi
+
+    rm -rf $MYSQL_CONFIG
 }
 
 function update_configuration()

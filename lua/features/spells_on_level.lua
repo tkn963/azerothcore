@@ -1,9 +1,8 @@
 -- Requires
 require("config")
 require("ids")
-require("class_spells")
+require("spells")
 require("events")
-require("mounts")
 require("proficiencies")
 
 -- Learn class spells

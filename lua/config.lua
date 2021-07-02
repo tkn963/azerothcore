@@ -1,21 +1,21 @@
-ENABLE_ASSISTANT                             = true -- Enable the assistant. If this is set to false, all variables related to the assistant are obsolete
-ENABLE_ASSISTANT_EQUIPMENT                   = true -- Enable obtaining a full set of green, quest equivalent, equipment for a specific specalization using the .assistant command
-ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP          = true -- If ENABLE_EQUIPMENT is set to true, this lets the player level up to 80 before accessing equipment
-ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL         = true -- If ENABLE_EQUIPMENT is set to true, this sets skills that are gained through the equipment feature to their max value
-ENABLE_ASSISTANT_HEIRLOOMS                   = true -- Enable obtaining heirlooms using the .assistant command
-ENABLE_ASSISTANT_GLYPHS                      = true -- Enable obtaining glyphs using the .assistant command
-ENABLE_ASSISTANT_GEMS                        = true -- Enable obtaining gems using the .assistant command
-ENABLE_ASSISTANT_CONTAINERS                  = true -- Enable obtaining containers using the .assistant command
-ASSISTANT_CONTAINER_BAG                      = 23162 -- The container that a player obtains via the assistant
-ENABLE_ASSISTANT_UTILITIES                   = true -- Enable obtaining utilities from the .assistant command. The utilities are rename, customize, faction change and race change
-ASSISTANT_UTILITIES_COST_RENAME              = 10 -- Utilities: Money required in gold to perform a name change
-ASSISTANT_UTILITIES_COST_CUSTOMIZE           = 50 -- Utilities: Money required in gold to perform a customization
-ASSISTANT_UTILITIES_COST_FACTION_CHANGE      = 1000 -- Utilities: Money required in gold to perform a faction change
-ASSISTANT_UTILITIES_COST_RACE_CHANGE         = 500 -- Utilities: Money required in gold to perform a race change
-ENABLE_ASSISTANT_MISCELLANEOUS               = true -- Enable obtaining miscellaneous features from the .assistant command.
-ENABLE_MISCELLANOUS_TOTEMS                   = true -- Enable obtaining shaman totems from the miscellaneous option
-ENABLE_MISCELLANOUS_UNBIND_INSTANCES         = true -- Enable unbinding 5-man dungeon instances using the .assistant command
-INSTANCE_MAP_ID = {
+ENABLE_ASSISTANT                        = true -- Enable the assistant. If this is set to false, all variables related to the assistant are obsolete
+ENABLE_ASSISTANT_EQUIPMENT              = true -- Enable obtaining a full set of green, quest equivalent, equipment for a specific specalization using the .assistant command
+ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP     = true -- If ENABLE_EQUIPMENT is set to true, this lets the player level up to 80 before accessing equipment
+ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL    = true -- If ENABLE_EQUIPMENT is set to true, this sets skills that are gained through the equipment feature to their max value
+ENABLE_ASSISTANT_HEIRLOOMS              = true -- Enable obtaining heirlooms using the .assistant command
+ENABLE_ASSISTANT_GLYPHS                 = true -- Enable obtaining glyphs using the .assistant command
+ENABLE_ASSISTANT_GEMS                   = true -- Enable obtaining gems using the .assistant command
+ENABLE_ASSISTANT_CONTAINERS             = true -- Enable obtaining containers using the .assistant command
+ASSISTANT_CONTAINER_BAG                 = 23162 -- The container that a player obtains via the assistant
+ENABLE_ASSISTANT_UTILITIES              = true -- Enable obtaining utilities from the .assistant command. The utilities are rename, customize, faction change and race change
+ASSISTANT_UTILITIES_COST_RENAME         = 10 -- Utilities: Money required in gold to perform a name change
+ASSISTANT_UTILITIES_COST_CUSTOMIZE      = 50 -- Utilities: Money required in gold to perform a customization
+ASSISTANT_UTILITIES_COST_FACTION_CHANGE = 1000 -- Utilities: Money required in gold to perform a faction change
+ASSISTANT_UTILITIES_COST_RACE_CHANGE    = 500 -- Utilities: Money required in gold to perform a race change
+ENABLE_ASSISTANT_MISCELLANEOUS          = true -- Enable obtaining miscellaneous features from the .assistant command.
+ENABLE_MISCELLANOUS_TOTEMS              = true -- Enable obtaining shaman totems from the miscellaneous option
+ENABLE_MISCELLANOUS_UNBIND_INSTANCES    = true -- Enable unbinding 5-man dungeon instances using the .assistant command
+INSTANCE_MAP_ID                         = {
 --    Map ID, Difficulty, Name,                                  Allow unbind
     { 574,    1,          "Utgarde Keep",                        true },
     { 575,    1,          "Utgarde Pinnacle",                    true },
@@ -58,8 +58,8 @@ INSTANCE_MAP_ID = {
     { 724,    3,          "The Ruby Sanctum Heroic 25-Man",      true }
 }
 
-ENABLE_PLAYER_LEVEL_MONEY_REWARD             = true -- Give players reward money for reaching specific levels
-PLAYER_LEVEL_MONEY_REWARD                    = {
+ENABLE_PLAYER_LEVEL_MONEY_REWARD        = true -- Give players reward money for reaching specific levels
+PLAYER_LEVEL_MONEY_REWARD               = {
 --    Level  Money        Text sent to the player
     { 10,    10 * 10000,  "Congratulations on reaching level 10! Take this gift of gold, let it aid you in your travels." },
     { 20,    25 * 10000,  "Congratulations on reaching level 20! Take this gift of gold, let it aid you in your travels." },
@@ -71,30 +71,30 @@ PLAYER_LEVEL_MONEY_REWARD                    = {
     { 80,    250 * 10000, "Congratulations on reaching level 80! Take this gift of gold, let it aid you in your travels." },
 }
 
-ENABLE_SET_SPAWN_POINT                       = true -- Set spawn point and hearthstone to stormwind for alliance and orgrimmar for horde. Does not include death knight
-SET_SPAWN_POINT                              = {
+ENABLE_SET_SPAWN_POINT                  = true -- Set spawn point and hearthstone to stormwind for alliance and orgrimmar for horde. Does not include death knight
+SET_SPAWN_POINT                         = {
 --   X             Y             Z          Orientation Map Area
     {-8830.438477, 626.666199,   93.982887, 0.682076,   0,  1519}, -- Alliance
     {1630.776001,  -4412.993652, 16.567701, 0.080535,   1,  1637} -- Horde
 }
 
-ENABLE_SPELLS_ON_LEVEL_UP                    = true -- Automatically learn new spells when leveling up
-ENABLE_TALENTS_ON_LEVEL_UP                   = true -- Automatically learn new ranks of talents when leveling up
-ENABLE_PROFICIENCY_ON_LEVEL_UP               = true -- Automatically learn new weapon and armor skills when leveling up
-ENABLE_APPRENTICE_MOUNT_ON_LEVEL_UP          = true -- Automatically learn 60% riding skill and mount
-ENABLE_JOURNEYMAN_MOUNT_ON_LEVEL_UP          = true -- Automatically learn 100% riding skill and mount
-ENABLE_EXPERT_MOUNT_ON_LEVEL_UP              = true -- Automatically learn 150% riding skill and mount
-ENABLE_ARTISAN_MOUNT_ON_LEVEL_UP             = false -- Automatically learn 300% riding skill and mount
-ENABLE_COLD_WEATHER_FLYING_ON_LEVEL_UP       = false -- Automatically learn cold weather flying
-ENABLE_MAX_SKILL_ON_LEVEL                    = true -- Set weapon skills to thier maximum value when leveling up
-MAX_SKILL_MAX_LEVEL                          = 70 -- Last level when a players skills will be set to their maximum value
+ENABLE_SPELLS_ON_LEVEL_UP               = true -- Automatically learn new spells when leveling up
+ENABLE_TALENTS_ON_LEVEL_UP              = true -- Automatically learn new ranks of talents when leveling up
+ENABLE_PROFICIENCY_ON_LEVEL_UP          = true -- Automatically learn new weapon and armor skills when leveling up
+ENABLE_APPRENTICE_MOUNT_ON_LEVEL_UP     = true -- Automatically learn 60% riding skill and mount
+ENABLE_JOURNEYMAN_MOUNT_ON_LEVEL_UP     = true -- Automatically learn 100% riding skill and mount
+ENABLE_EXPERT_MOUNT_ON_LEVEL_UP         = true -- Automatically learn 150% riding skill and mount
+ENABLE_ARTISAN_MOUNT_ON_LEVEL_UP        = false -- Automatically learn 300% riding skill and mount
+ENABLE_COLD_WEATHER_FLYING_ON_LEVEL_UP  = false -- Automatically learn cold weather flying
+ENABLE_MAX_SKILL_ON_LEVEL               = true -- Set weapon skills to thier maximum value when leveling up
+MAX_SKILL_MAX_LEVEL                     = 70 -- Last level when a players skills will be set to their maximum value
 
-ENABLE_EXPERIENCE_MULTIPLIER                 = true -- Enable the experience multiplier
-ENABLE_REPUTATION_MULTIPLIER                 = true -- Enable the reputation multiplier
-ENABLE_MONEY_LOOT_MULTIPLIER                 = true -- Enable the money loot multiplier
-ENABLE_WEEKEND_MULTIPLIER                    = true -- Changes the multiplier on friday, saturday and sunday
-WEEKEND_MULTIPLIER                           = 2 -- Multiplier for all rates on weekends
-RATE_MULTIPLIER                              = {
+ENABLE_EXPERIENCE_MULTIPLIER            = true -- Enable the experience multiplier
+ENABLE_REPUTATION_MULTIPLIER            = true -- Enable the reputation multiplier
+ENABLE_MONEY_LOOT_MULTIPLIER            = true -- Enable the money loot multiplier
+ENABLE_WEEKEND_MULTIPLIER               = true -- Changes the multiplier on friday, saturday and sunday
+WEEKEND_MULTIPLIER                      = 2 -- Multiplier for all rates on weekends
+RATE_MULTIPLIER                         = {
 --    Min level  Max level  Multiplier
     { 1,         59,        4 },
     { 60,        69,        3 },

@@ -6,4 +6,7 @@
     <username>acore</username>
     <password>acore</password>
   </mysql>
+  <backup>
+    <max_files>24</max_files>
+  </backup>
 </config>

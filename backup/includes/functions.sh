@@ -31,4 +31,9 @@ function backup_database()
     rm -rf $ROOT/backup/$BACKUP_DATE
 
     rm -rf $MYSQL_CONFIG
+
+    if [[ $MAX_FILES -gt 0 ]]; then
+        MAX_FILES="$((MAX_FILES + 1))"
+        ls -tp $ROOT/backup/*.tar.gz | grep -v '/$' | tail -n +$MAX_FILES | xargs -d '\n' -r rm --
+    fi
 }

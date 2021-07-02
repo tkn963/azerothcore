@@ -18,7 +18,9 @@ if [ $# -gt 0 ]; then
     if [ $# -eq 2 ]; then
         if [[ $1 == "all" ]] || [[ $1 == "auth" ]] || [[ $1 == "world" ]]; then
             if [[ $2 == "setup" ]] || [[ $2 == "install" ]] || [[ $2 == "update" ]]; then
-                stop_server
+                if [ $(dpkg-query -W -f='${Status}' screen 2>/dev/null | grep -c "ok installed") -ne 0 ]; then
+                    stop_server
+                fi
                 build_server $1
             elif [[ $2 == "database" ]] || [[ $2 == "db" ]]; then
                 import_database $1

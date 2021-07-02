@@ -12,9 +12,9 @@ local INT_EQUIPMENT                  = 100
 local INT_HEIRLOOMS                  = 200
 local INT_GLYPHS                     = 300
 local INT_GEMS                       = 600
-local INT_CONTAINERS                 = 700
-local INT_UTILITIES                  = 800
-local INT_MISCELLANEOUS              = 900
+local INT_CONTAINERS                 = 800
+local INT_UTILITIES                  = 900
+local INT_MISCELLANEOUS              = 1000
 local INT_RETURN                     = 2000
 
 function hasItemEquipped(player)

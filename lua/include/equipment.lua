@@ -123,7 +123,7 @@ function hasItemEquipped(player)
     return false
 end
 
-function add_equipment(player, class, specialization)
+function addEquipment(player, class, specialization)
     if not (hasItemEquipped(player)) then
         if (class == CLASS_WARRIOR or class == CLASS_PALADIN or class == CLASS_DEATH_KNIGHT) then
             if not (player:HasSpell(SPELL_PLATE_MAIL)) then

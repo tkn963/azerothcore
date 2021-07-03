@@ -129,123 +129,123 @@ function assistantOnGossipSelect(event, player, object, sender, intid, code)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+2) then -- Warrior: Arms
         player:GossipClearMenu()
-        add_equipment(player, CLASS_WARRIOR, 1)
+        addEquipment(player, CLASS_WARRIOR, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+3) then -- Warrior: Fury
         player:GossipClearMenu()
-        add_equipment(player, CLASS_WARRIOR, 2)
+        addEquipment(player, CLASS_WARRIOR, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+4) then -- Warrior: Protection
         player:GossipClearMenu()
-        add_equipment(player, CLASS_WARRIOR, 3)
+        addEquipment(player, CLASS_WARRIOR, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+5) then -- Paladin: Holy
         player:GossipClearMenu()
-        add_equipment(player, CLASS_PALADIN, 1)
+        addEquipment(player, CLASS_PALADIN, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+6) then -- Paladin: Protection
         player:GossipClearMenu()
-        add_equipment(player, CLASS_PALADIN, 2)
+        addEquipment(player, CLASS_PALADIN, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+7) then -- Paladin: Retribution
         player:GossipClearMenu()
-        add_equipment(player, CLASS_PALADIN, 3)
+        addEquipment(player, CLASS_PALADIN, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+8) then -- Hunter: Beast Mastery
         player:GossipClearMenu()
-        add_equipment(player, CLASS_HUNTER, 1)
+        addEquipment(player, CLASS_HUNTER, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+9) then -- Hunter: Marksmanship
         player:GossipClearMenu()
-        add_equipment(player, CLASS_HUNTER, 2)
+        addEquipment(player, CLASS_HUNTER, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+10) then -- Hunter: Survival
         player:GossipClearMenu()
-        add_equipment(player, CLASS_HUNTER, 3)
+        addEquipment(player, CLASS_HUNTER, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+11) then -- Rogue: Assassination
         player:GossipClearMenu()
-        add_equipment(player, CLASS_ROGUE, 1)
+        addEquipment(player, CLASS_ROGUE, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+12) then -- Rogue: Combat
         player:GossipClearMenu()
-        add_equipment(player, CLASS_ROGUE, 2)
+        addEquipment(player, CLASS_ROGUE, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+13) then -- Rogue: Subtlety
         player:GossipClearMenu()
-        add_equipment(player, CLASS_ROGUE, 3)
+        addEquipment(player, CLASS_ROGUE, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+14) then -- Priest: Discipline
         player:GossipClearMenu()
-        add_equipment(player, CLASS_PRIEST, 1)
+        addEquipment(player, CLASS_PRIEST, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+15) then -- Priest: Holy
         player:GossipClearMenu()
-        add_equipment(player, CLASS_PRIEST, 2)
+        addEquipment(player, CLASS_PRIEST, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+16) then -- Priest: Shadow
         player:GossipClearMenu()
-        add_equipment(player, CLASS_PRIEST, 3)
+        addEquipment(player, CLASS_PRIEST, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+17) then -- Death Knight: Blood
         player:GossipClearMenu()
-        add_equipment(player, CLASS_DEATH_KNIGHT, 1)
+        addEquipment(player, CLASS_DEATH_KNIGHT, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+18) then -- Death Knight: Frost
         player:GossipClearMenu()
-        add_equipment(player, CLASS_DEATH_KNIGHT, 2)
+        addEquipment(player, CLASS_DEATH_KNIGHT, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+19) then -- Death Knight: Unholy
         player:GossipClearMenu()
-        add_equipment(player, CLASS_DEATH_KNIGHT, 3)
+        addEquipment(player, CLASS_DEATH_KNIGHT, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+20) then -- Shaman: Elemental
         player:GossipClearMenu()
-        add_equipment(player, CLASS_SHAMAN, 1)
+        addEquipment(player, CLASS_SHAMAN, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+21) then -- Shaman: Enhancement
         player:GossipClearMenu()
-        add_equipment(player, CLASS_SHAMAN, 2)
+        addEquipment(player, CLASS_SHAMAN, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+22) then -- Shaman: Restoration
         player:GossipClearMenu()
-        add_equipment(player, CLASS_SHAMAN, 3)
+        addEquipment(player, CLASS_SHAMAN, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+23) then -- Mage: Arcane
         player:GossipClearMenu()
-        add_equipment(player, CLASS_MAGE, 1)
+        addEquipment(player, CLASS_MAGE, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+24) then -- Mage: Fire
         player:GossipClearMenu()
-        add_equipment(player, CLASS_MAGE, 2)
+        addEquipment(player, CLASS_MAGE, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+25) then -- Mage: Frost
         player:GossipClearMenu()
-        add_equipment(player, CLASS_MAGE, 3)
+        addEquipment(player, CLASS_MAGE, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+26) then -- Warlock: Affliction
         player:GossipClearMenu()
-        add_equipment(player, CLASS_WARLOCK, 1)
+        addEquipment(player, CLASS_WARLOCK, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+27) then -- Warlock: Demonology
         player:GossipClearMenu()
-        add_equipment(player, CLASS_WARLOCK, 2)
+        addEquipment(player, CLASS_WARLOCK, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+28) then -- Warlock: Destruction
         player:GossipClearMenu()
-        add_equipment(player, CLASS_WARLOCK, 3)
+        addEquipment(player, CLASS_WARLOCK, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+29) then -- Druid: Balance
         player:GossipClearMenu()
-        add_equipment(player, CLASS_DRUID, 1)
+        addEquipment(player, CLASS_DRUID, 1)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+30) then -- Druid: Feral Combat
         player:GossipClearMenu()
-        add_equipment(player, CLASS_DRUID, 2)
+        addEquipment(player, CLASS_DRUID, 2)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_EQUIPMENT+31) then -- Druid: Restoration
         player:GossipClearMenu()
-        add_equipment(player, CLASS_DRUID, 3)
+        addEquipment(player, CLASS_DRUID, 3)
         assistantOnGossipSelect(event, player, object, sender, INT_EQUIPMENT, code)
     elseif (intid == INT_HEIRLOOMS) then
         player:GossipClearMenu()

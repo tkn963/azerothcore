@@ -59,10 +59,11 @@ function multiplierOnCommand(event, player, command)
         end
 
         if (ENABLE_WEEKEND_MULTIPLIER and (ENABLE_EXPERIENCE_MULTIPLIER or ENABLE_REPUTATION_MULTIPLIER or ENABLE_MONEY_LOOT_MULTIPLIER)) then
-            if (os.date("*t").wday == 6 or os.date("*t").wday == 7 or os.date("*t").wday == 8) then
+            if (os.date("*t").wday == 6 or os.date("*t").wday == 7 or os.date("*t").wday == 1) then
                 player:SendBroadcastMessage("The weekend multiplier is active, increasing the above rates by "..(100 * WEEKEND_MULTIPLIER).."%.")
             end
         end
+
         return false
     end
 end

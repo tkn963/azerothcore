@@ -1,7 +1,7 @@
 ENABLE_ASSISTANT                        = true -- Enable the assistant. If this is set to false, all variables related to the assistant are obsolete
-ENABLE_ASSISTANT_EQUIPMENT              = true -- Enable obtaining a full set of green, quest equivalent, equipment for a specific specalization using the .assistant command
-ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP     = true -- If ENABLE_EQUIPMENT is set to true, this lets the player level up to 80 before accessing equipment
-ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL    = true -- If ENABLE_EQUIPMENT is set to true, this sets skills that are gained through the equipment feature to their max value
+ENABLE_ASSISTANT_EQUIPMENT              = false -- Enable obtaining a full set of green, quest equivalent, equipment for a specific specalization using the .assistant command
+ENABLE_ASSISTANT_EQUIPMENT_LEVEL_UP     = false -- If ENABLE_EQUIPMENT is set to true, this lets the player level up to 80 before accessing equipment
+ENABLE_ASSISTANT_EQUIPMENT_MAX_SKILL    = false -- If ENABLE_EQUIPMENT is set to true, this sets skills that are gained through the equipment feature to their max value
 ENABLE_ASSISTANT_HEIRLOOMS              = true -- Enable obtaining heirlooms using the .assistant command
 ENABLE_ASSISTANT_GLYPHS                 = true -- Enable obtaining glyphs using the .assistant command
 ENABLE_ASSISTANT_GEMS                   = true -- Enable obtaining gems using the .assistant command

@@ -30,7 +30,7 @@
         <start_level>1</start_level>
         <start_money>0</start_money>
         <always_max_skill>0</always_max_skill>
-        <all_flight_paths>1</all_flight_paths>
+        <all_flight_paths>0</all_flight_paths>
         <maps_explored>0</maps_explored>
         <allow_commands>1</allow_commands>
         <quest_ignore_raid>1</quest_ignore_raid>

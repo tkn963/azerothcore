@@ -381,20 +381,6 @@ function import_database()
                     fi
                 done
 
-                for f in $CORE_DIRECTORY/data/sql/base/db_world/*.sql; do
-                    if [ ! -z `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names $MYSQL_DATABASE_WORLD -e "SHOW TABLES LIKE '$(basename $f .sql)'"` ]; then
-                        echo -e "\e[0;33mSkipping "$(basename $f)"\e[0m"
-                        continue;
-                    fi
-
-                    echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
-                    mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
-                    if [ $? -ne 0 ]; then
-                        rm -rf $MYSQL_CONFIG
-                        exit $?
-                    fi
-                done
-
                 if [ -d $CORE_DIRECTORY/data/sql/updates/db_characters ]; then
                     for f in $CORE_DIRECTORY/data/sql/updates/db_characters/*.sql; do
                         echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
@@ -422,6 +408,20 @@ function import_database()
                         fi
                     fi
                 fi
+
+                for f in $CORE_DIRECTORY/data/sql/base/db_world/*.sql; do
+                    if [ ! -z `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names $MYSQL_DATABASE_WORLD -e "SHOW TABLES LIKE '$(basename $f .sql)'"` ]; then
+                        echo -e "\e[0;33mSkipping "$(basename $f)"\e[0m"
+                        continue;
+                    fi
+
+                    echo -e "\e[0;33mImporting "$(basename $f)"\e[0m"
+                    mysql --defaults-extra-file=$MYSQL_CONFIG $MYSQL_DATABASE_WORLD < $f
+                    if [ $? -ne 0 ]; then
+                        rm -rf $MYSQL_CONFIG
+                        exit $?
+                    fi
+                done
 
                 if [ -d $CORE_DIRECTORY/data/sql/updates/db_world ]; then
                     for f in $CORE_DIRECTORY/data/sql/updates/db_world/*.sql; do
@@ -529,6 +529,7 @@ function update_configuration()
             cp $CORE_DIRECTORY/etc/authserver.conf.dist $CORE_DIRECTORY/etc/authserver.conf
 
             sed -i 's/LoginDatabaseInfo =.*/LoginDatabaseInfo = "'$MYSQL_HOSTNAME';'$MYSQL_PORT';'$MYSQL_USERNAME';'$MYSQL_PASSWORD';'$MYSQL_DATABASE_AUTH'"/g' $CORE_DIRECTORY/etc/authserver.conf
+            sed -i 's/Updates.EnableDatabases =.*/Updates.EnableDatabases = 0/g' $CORE_DIRECTORY/etc/authserver.conf
         fi
     fi
 
@@ -540,6 +541,7 @@ function update_configuration()
             sed -i 's/LoginDatabaseInfo     =.*/LoginDatabaseInfo     = "'$MYSQL_HOSTNAME';'$MYSQL_PORT';'$MYSQL_USERNAME';'$MYSQL_PASSWORD';'$MYSQL_DATABASE_AUTH'"/g' $CORE_DIRECTORY/etc/worldserver.conf
             sed -i 's/WorldDatabaseInfo     =.*/WorldDatabaseInfo     = "'$MYSQL_HOSTNAME';'$MYSQL_PORT';'$MYSQL_USERNAME';'$MYSQL_PASSWORD';'$MYSQL_DATABASE_WORLD'"/g' $CORE_DIRECTORY/etc/worldserver.conf
             sed -i 's/CharacterDatabaseInfo =.*/CharacterDatabaseInfo = "'$MYSQL_HOSTNAME';'$MYSQL_PORT';'$MYSQL_USERNAME';'$MYSQL_PASSWORD';'$MYSQL_DATABASE_CHARACTERS'"/g' $CORE_DIRECTORY/etc/worldserver.conf
+            sed -i 's/Updates.EnableDatabases =.*/Updates.EnableDatabases = 0/g' $CORE_DIRECTORY/etc/worldserver.conf
             sed -i 's/Ra.Enable =.*/Ra.Enable = 1/g' $CORE_DIRECTORY/etc/worldserver.conf
             sed -i 's/RealmID =.*/RealmID = '$WORLD_ID'/g' $CORE_DIRECTORY/etc/worldserver.conf
             sed -i 's/GameType =.*/GameType = '$WORLD_GAME_TYPE'/g' $CORE_DIRECTORY/etc/worldserver.conf

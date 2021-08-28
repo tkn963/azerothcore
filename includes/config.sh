@@ -20,7 +20,7 @@ MODULE_AHBOT_BRANCH="master"
 MODULE_SKIPDKAREA_URL="https://github.com/Crypticaz/SkipDeathKnightStartingArea.git"
 MODULE_SKIPDKAREA_BRANCH="master"
 
-CLIENT_DATA="https://github.com/wowgaming/client-data/releases/download/v10/data.zip"
+CLIENT_DATA="https://github.com/wowgaming/client-data/releases/download/v11/data.zip"
 
 MYSQL_HOSTNAME="$(echo "cat /config/mysql/hostname/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"
 MYSQL_PORT="$(echo "cat /config/mysql/port/text()" | xmllint --nocdata --shell $ROOT/$CONFIG_FILE | sed '1d;$d')"

@@ -67,7 +67,7 @@
             <enabled>true</enabled>
         </eluna>
         <ahbot>
-            <enabled>true</enabled>
+            <enabled>false</enabled>
             <enable_seller>1</enable_seller>
             <enable_buyer>1</enable_buyer>
             <account_id>1</account_id>

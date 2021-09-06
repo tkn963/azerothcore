@@ -91,7 +91,6 @@ MAX_SKILL_MAX_LEVEL                     = 70 -- Last level when a players skills
 
 ENABLE_EXPERIENCE_MULTIPLIER            = true -- Enable the experience multiplier
 ENABLE_REPUTATION_MULTIPLIER            = true -- Enable the reputation multiplier
-ENABLE_MONEY_LOOT_MULTIPLIER            = true -- Enable the money loot multiplier
 ENABLE_WEEKEND_MULTIPLIER               = true -- Changes the multiplier on friday, saturday and sunday
 WEEKEND_MULTIPLIER                      = 2 -- Multiplier for all rates on weekends
 RATE_MULTIPLIER                         = {

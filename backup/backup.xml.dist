@@ -7,6 +7,7 @@
     <password>acore</password>
   </mysql>
   <backup>
+    <location>/opt/backup</location>
     <max_files>24</max_files>
   </backup>
 </config>

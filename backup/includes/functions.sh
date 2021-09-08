@@ -5,7 +5,7 @@ function backup_database()
 
     clear
 
-    if [[ -f $ROOT/backup/$BACKUP_DATE.tar.gz ]]; then
+    if [[ -f $LOCATION/$BACKUP_DATE.tar.gz ]]; then
         echo -e "\e[0;32mInitialization aborted\e[0m"
         echo -e "\e[0;33mA backup for this date and time already exist\e[0m"
         exit 1
@@ -24,22 +24,22 @@ function backup_database()
 
     for DB in $DATABASE; do
         echo -e "\n\e[0;32mBacking up database $DB\e[0m"
-        mkdir -p $ROOT/backup/$BACKUP_DATE/$DB
+        mkdir -p $LOCATION/$BACKUP_DATE/$DB
 
         for TABLE in `mysql --defaults-extra-file=$MYSQL_CONFIG --skip-column-names -e "SHOW TABLES FROM $DB"`; do
             echo -e "\e[0;33mExporting table $TABLE\e[0m"
-            mysqldump --defaults-extra-file=$MYSQL_CONFIG --hex-blob $DB $TABLE > $ROOT/backup/$BACKUP_DATE/$DB/$TABLE.sql
+            mysqldump --defaults-extra-file=$MYSQL_CONFIG --hex-blob $DB $TABLE > $LOCATION/$BACKUP_DATE/$DB/$TABLE.sql
         done
     done
 
-    cd $ROOT/backup/$BACKUP_DATE
-    tar -czvf $ROOT/backup/$BACKUP_DATE.tar.gz * > /dev/null 2>&1
-    rm -rf $ROOT/backup/$BACKUP_DATE
+    cd $LOCATION/$BACKUP_DATE
+    tar -czvf $LOCATION/$BACKUP_DATE.tar.gz * > /dev/null 2>&1
+    rm -rf $LOCATION/$BACKUP_DATE
 
     rm -rf $MYSQL_CONFIG
 
     if [[ $MAX_FILES -gt 0 ]]; then
         MAX_FILES="$((MAX_FILES + 1))"
-        ls -tp $ROOT/backup/*.tar.gz | grep -v '/$' | tail -n +$MAX_FILES | xargs -d '\n' -r rm --
+        ls -tp $LOCATION/*.tar.gz | grep -v '/$' | tail -n +$MAX_FILES | xargs -d '\n' -r rm --
     fi
 }

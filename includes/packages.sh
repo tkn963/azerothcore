@@ -13,7 +13,11 @@ fi
 
 function install_build_packages()
 {
-    PACKAGES=("git" "cmake" "make" "gcc" "clang" "screen" "curl" "unzip" "g++" "libssl-dev" "libbz2-dev" "libreadline-dev" "libncurses-dev" "libace-6.*" "libace-dev" "libboost1.71-all-dev" "libmariadbclient-dev" "libmariadb-dev-compat" "mariadb-client")
+    PACKAGES=("git" "cmake" "make" "gcc" "clang" "screen" "curl" "unzip" "g++" "libssl-dev" "libbz2-dev" "libreadline-dev" "libncurses-dev" "libace-6.*" "libace-dev" "libboost1.71-all-dev" "libmariadb-dev-compat" "mariadb-client")
+
+    if [[ $VERSION != "21.04" ]]; then
+        PACKAGES="${PACKAGES} libmariadbclient-dev"
+    fi
 
     for p in "${PACKAGES[@]}"; do
         if [ $(dpkg-query -W -f='${Status}' $p 2>/dev/null | grep -c "ok installed") -eq 0 ]; then

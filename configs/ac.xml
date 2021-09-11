@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <config>
     <mysql>
-        <hostname>10.0.0.100</hostname>
+        <hostname>10.0.0.101</hostname>
         <port>3306</port>
         <username>acore</username>
         <password>acore</password>
         <database>
             <auth>acore_auth</auth>
-            <characters>ptr_characters</characters>
-            <world>ptr_world</world>
+            <characters>acore_characters</characters>
+            <world>acore_world</world>
         </database>
     </mysql>
     <core>
@@ -17,21 +17,21 @@
         <pull_request>none</pull_request>
     </core>
     <world>
-        <name>Behemoth</name>
-        <motd>Welcome to Behemoth. This is hosted for those who are truly excellent!</motd>
-        <id>2</id>
-        <ip>10.0.0.122</ip>
+        <name>Aurora</name>
+        <motd>Welcome to Aurora. This is hosted for those who are truly excellent!</motd>
+        <id>1</id>
+        <ip>10.0.0.120</ip>
         <game_type>1</game_type>
         <realm_zone>8</realm_zone>
         <expansion>2</expansion>
         <player_limit>1000</player_limit>
         <skip_cinematics>2</skip_cinematics>
         <max_level>80</max_level>
-        <start_level>80</start_level>
+        <start_level>1</start_level>
         <start_money>0</start_money>
-        <always_max_skill>1</always_max_skill>
+        <always_max_skill>0</always_max_skill>
         <all_flight_paths>0</all_flight_paths>
-        <maps_explored>1</maps_explored>
+        <maps_explored>0</maps_explored>
         <allow_commands>1</allow_commands>
         <quest_ignore_raid>1</quest_ignore_raid>
         <prevent_afk_logout>0</prevent_afk_logout>
@@ -64,7 +64,7 @@
     </world>
     <module>
         <eluna>
-            <enabled>false</enabled>
+            <enabled>true</enabled>
         </eluna>
         <ahbot>
             <enabled>false</enabled>
